@@ -1,0 +1,11 @@
+.SUBCKT MPY634_behavioral X1 X2 SF Y1 Y2 +Vs Out Z1 Z2 -Vs
+
+ECS3        2 0 VALUE = {LIMIT(V(SF,0),3,10)}
+ECS1        3 0 VALUE = {((V(4,0)*V(5,0))/V(VF1,0)-V(6,0))*17783}
+ECS4        Out 0 VALUE = {LIMIT(V(3,0),V(-Vs,0),V(+Vs,0))}
+ECS2        VF1 0 VALUE = {V(2,0)*9.9/7-29/7}
+EZ          6 0 Z1 Z2  1
+EY          5 0 Y1 Y2  1
+EX          4 0 X1 X2  1
+
+.ENDS MPY634_behavioral

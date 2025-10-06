@@ -1,0 +1,60 @@
+* selfe_tuned_filter.cir - Generated for NGSpice batch simulation
+
+.include "TL082-dual.lib"
+.include "mpy634_tina.lib"
+
+.param RCOM=1k
+.param CCOM=1u
+.param Q=1
+.param H0=1
+
+* AC Analysis
+.ac dec 100 50 1k
+.print ac V(BPF) V(LPF) V(HPF) V(V_F3)
+
+
+* Multipliers
+XIC1 HPF GND +10V V_in GND +10V mult1_out mult1_out GND -10V MPY634_behavioral
+XIC2 BPF GND +10V V_F3 GND +10V mult2_out mult2_out GND -10V MPY634_behavioral
+XIC3 LPF GND +10V V_F3 GND +10V mult3_out mult3_out GND -10V MPY634_behavioral
+
+* Capacitors
+C1 +10V -10V 100n
+C2 +10V -10V 100n
+C3 +10V -10V 100n
+C4 Net-_U2A--_ mult2_out {CCOM}
+C5 Net-_U3A--_ Net-_C5-Pad2_ {CCOM}
+C6 Net-_U2B--_ mult3_out {CCOM}
+
+* Resistors
+R1 BPF Net-_U1A--_ {RCOM*Q}
+R2 V_in Net-_U1A--_ {RCOM/H0}
+R3 HPF Net-_U2A--_ {RCOM}
+R4 mult1_out Net-_U3A--_ {RCOM}
+R5 Net-_U1A--_ BSF {RCOM}
+R6 Net-_C5-Pad2_ V_F3 {RCOM}
+R7 V_F3 V_3 {RCOM}
+R8 LPF Net-_U1B--_ {RCOM}
+R9 BSF Net-_U1B--_ {RCOM}
+R10 BPF Net-_U2B--_ {RCOM}
+R11 Net-_U1B--_ HPF {RCOM}
+
+* Operational Amplifiers
+XU1 BSF Net-_U1A--_ GND -10V GND Net-_U1B--_ HPF +10V TL082-dual
+XU2 BPF Net-_U2A--_ GND -10V GND Net-_U2B--_ LPF +10V TL082-dual
+XU3 Net-_C5-Pad2_ Net-_U3A--_ GND -10V GND GND GND +10V TL082-dual
+
+* DC / AC Voltage Sources
+V1 +10V GND DC 10
+V2 GND -10V DC 10
+V3 V_in GND DC 1 AC 1
+V4 V_3 GND DC 3
+
+* Simulation control
+.control
+set controlswait
+write selfe_tuned_filter.raw all
+.endc
+
+.end
+

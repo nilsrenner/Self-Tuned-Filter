@@ -1,0 +1,16 @@
+* MPY634 Behavioral Macro-Model for ngspice
+* angepasst für dein KiCad-Symbol
+
+.SUBCKT MPY634 X1_INPUT X2_INPUT Y1_INPUT Y2_INPUT Z1_INPUT Z2_INPUT SCALE_FACTOR OUTPUT VP VN
+
+* Multiplikationsteil
+Bmult nmult 0 V = {(V(X1_INPUT,X2_INPUT)*V(Y1_INPUT,Y2_INPUT))/V(SCALE_FACTOR)}
+
+* Subtraktion mit Z-Eingang
+Bz nout 0 V = {V(nmult) - V(Z1_INPUT,Z2_INPUT)}
+
+* Ausgangsbegrenzung an Versorgungsspannungen
+Bout OUTPUT 0 V = { limit(V(nout), V(VN), V(VP)) }
+
+.ENDS MPY634
+
