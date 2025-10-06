@@ -1,14 +1,7 @@
 project:
   type: manuscript
-  output-dir: docs
-lang: de
 
-website: 
-  title: "Vorbereitung Bachlorarbeit"
-  navbar:
-    left:
-      - text: "Bericht"
-        href: index.qmd
+lang: de
 
 manuscript:
   article: index.qmd
@@ -37,7 +30,8 @@ format:
     highlight-style: github
     mainfont: "Calibri"
 #    keep-tex: true
-    output-file: Vorbeitung_BA 
+    output-file: nr_thesis 
 #  epub:
 #    theme: flatly
-#    output-file: ans_bericht
+#    output-file: nr_thesis
+
