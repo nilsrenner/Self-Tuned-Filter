@@ -20,7 +20,10 @@ my_blue = (10/255,85/255,140/255)      #x/255 da HTMP bis 255 sene Farbscala hat
 my_red = (195/255, 5/255, 35/255)
 my_green = (0/255, 145/255, 90/255)
 my_yellow = (250/255, 190/255, 0/255)
-
+my_orange = (240/255, 120/255, 35/255)
+my_purple = (120/255, 100/255, 165/255)
+my_green2 = (110/255, 165/255, 60/255)
+my_blue2 = (50/255, 180/255, 200/255)
 
 #%% Phase Charakteristik des Multiplizierers
 
@@ -97,8 +100,81 @@ plt.show()
 
 
 
+#%% Multiplizierer DC
+
+# Import auf KiCad
+filepath = 'analog_multiplier/analog_multiplier.raw'
+l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
+l.parse()
+#print(l.variables)  # statt get_trace_names()
+
+
+time = l.get_time() * 1000
+in1_dc = l.get_data('v(in1_dc)')
+in2_dc = l.get_data('v(in2_dc)')
+out_dc = l.get_data('v(out_dc)')
+
+
+plt.figure(4, figsize=(8,6), dpi=150)
+plt.plot(time, in1_dc, color=my_blue, label = 'Input 1: cos',ls='-')
+plt.plot(time, in2_dc, color=my_red, label = 'Input 2: sin',ls='-')
+plt.plot(time, out_dc, color=my_yellow, label = 'Output',ls='-')
+
+plt.title('Demonstration mit DC-Spannungen')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+
+plt.legend()
+plt.grid(True, which='both', ls='--', lw=0.5)
+plt.show()
 
 
 
 
+#Simtime = 8ms !!!!!
+
+
+
+
+#%% Sim Multiplizier
+
+# Import auf KiCad
+filepath = 'analog_multiplier/analog_multiplier.raw'
+l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
+l.parse()
+#print(l.variables)  # statt get_trace_names()
+
+time = l.get_time() * 1000
+in1 = l.get_data('v(in_0)')
+in2 = l.get_data('v(mult1_y)')
+out1 = l.get_data('v(mult_out_0)')
+in3 = l.get_data('v(in_90)')
+out2 = l.get_data('v(mult_out_90)')
+
+plt.figure(5, figsize=(8,3), dpi=150)
+plt.subplot(121)
+plt.plot(time, in1, color=my_blue, label = 'In1: sin',ls='-')
+plt.plot(time, in2, color=my_red, label = 'In2: sin',ls='-')
+plt.plot(time, out1, color=my_yellow, label = 'Output',ls='-')
+plt.title(r'Multipliziererausgang für $\phi = 0^\circ$')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.legend()
+plt.grid(True, which='both', ls='--', lw=0.5)
+
+
+
+plt.subplot(122)
+plt.plot(time, in3, color=my_blue, label = 'In1: cos',ls='-')
+plt.plot(time, in2, color=my_red, label = 'In2: sin',ls='-')
+plt.plot(time, out2, color=my_yellow, label = 'Output',ls='-')
+plt.title(r'Multipliziererausgang für $\phi = 90^\circ$')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.legend()
+plt.grid(True, which='both', ls='--', lw=0.5)
+plt.show()
+
+#Simtime= 2ms
+#\phi in rad!!!!!
 
