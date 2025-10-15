@@ -55,7 +55,7 @@ plt.xticks(
 #=> aus "sim_data.py"
 
 # Import auf KiCad
-filepath = 'schaltungsentwurf_no1/schaltungsentwurf_no1.raw'
+filepath = '004_schaltungsentwurf_no1/schaltungsentwurf_no1.raw'
 l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
 l.parse()
 print(l.variables)  # statt get_trace_names()
@@ -104,7 +104,7 @@ plt.show()
 #%% Multiplizierer DC
 
 # Import auf KiCad
-filepath = 'analog_multiplier/analog_multiplier.raw'
+filepath = '003_analog_multiplier/analog_multiplier.raw'
 l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
 l.parse()
 #print(l.variables)  # statt get_trace_names()
@@ -139,7 +139,7 @@ plt.show()
 #%% Sim Multiplizier
 
 # Import auf KiCad
-filepath = 'analog_multiplier/analog_multiplier.raw'
+filepath = '003_analog_multiplier/analog_multiplier.raw'
 l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
 l.parse()
 #print(l.variables)  # statt get_trace_names()
@@ -187,7 +187,7 @@ plt.show()
 #%% PD anch op
 
 # Import auf KiCad
-filepath = 'analog_multiplier/analog_multiplier.raw'
+filepath = '003_analog_multiplier/analog_multiplier.raw'
 l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
 l.parse()
 #print(l.variables)  # statt get_trace_names()
