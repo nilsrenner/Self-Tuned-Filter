@@ -228,6 +228,34 @@ plt.tight_layout()
 plt.show()
 
 
+### DC offset ausrechnen
+max1 = max(op_out2)
+min1 = min(op_out2)
+dc_r1 = (max1 + min1)/2
+print(dc_r1)
+
+max2 = max(op_out90)
+min2 = min(op_out90)
+dc_r2 = (max2 + min2)/2
+print(dc_r2)
+
+
+### Steigung ausrechnen
+
+val1_r1 = op_out1[0]
+val2_r1 = op_out1[-1]
+val_r1 = -(val1_r1 - val2_r1)/5
+print(val_r1)
+
+
+val1_r5 = op_out0[0]
+val2_r5 = op_out0[-1]
+val_r5 = -(val1_r5 - val2_r5)/5
+print(val_r5)
+
+
+
+
 
 
 
