@@ -49,11 +49,10 @@
     {
       "analysis": "AC",
       "commands": [
-        ".ac dec 50 50 1k",
+        ".ac dec 10 50 1k",
         ".kicad adjustpaths",
         ".save all",
-        ".probe alli",
-        ".probe allp"
+        ".kicad esavenone"
       ],
       "dottedSecondary": true,
       "margins": {

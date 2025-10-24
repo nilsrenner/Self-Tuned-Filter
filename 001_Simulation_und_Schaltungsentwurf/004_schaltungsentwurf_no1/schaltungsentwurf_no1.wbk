@@ -21,33 +21,14 @@
       "showGrid": true,
       "traces": [
         {
-          "color": "rgb(255, 127, 0)",
-          "cursor1": {
-            "position": 178.29314446622823,
-            "x_format": "3~Hz",
-            "y_format": "3~°"
-          },
-          "cursorD": {
-            "x_format": "3~s",
-            "y_format": "3~V"
-          },
-          "signal": "V(/BPF) (phase)",
+          "color": "rgb(152, 78, 163)",
+          "signal": "V(Net-_R8-Pad1_) (phase)",
           "trace_type": 517
         },
         {
-          "color": "rgb(77, 175, 74)",
-          "signal": "V(/BSF) (phase)",
-          "trace_type": 517
-        },
-        {
-          "color": "rgb(228, 26, 28)",
-          "signal": "V(/HPF) (phase)",
-          "trace_type": 517
-        },
-        {
-          "color": "rgb(55, 126, 184)",
-          "signal": "V(/LPF) (phase)",
-          "trace_type": 517
+          "color": "rgb(152, 78, 163)",
+          "signal": "V(Net-_R8-Pad1_) (gain)",
+          "trace_type": 521
         }
       ]
     }

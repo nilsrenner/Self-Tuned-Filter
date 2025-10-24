@@ -698,7 +698,7 @@
       "meta": {
         "version": 0
       },
-      "model_mode": 4,
+      "model_mode": 1,
       "workbook_filename": "selfe_tuned_filter.wbk"
     },
     "page_layout_descr_file": "",
