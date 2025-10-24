@@ -4,7 +4,7 @@
     {
       "analysis": "TRAN",
       "commands": [
-        ".tran 100n 10m 0 1u",
+        ".tran 75n 10m 0 1u",
         ".kicad adjustpaths",
         ".save all",
         ".probe alli",
@@ -21,28 +21,27 @@
       "showGrid": true,
       "traces": [
         {
-          "color": "rgb(9, 86, 229)",
-          "signal": "V(detec_out0)",
+          "color": "rgb(65, 56, 255)",
+          "cursor1": {
+            "position": 0.03952333664349553,
+            "x_format": "3~s",
+            "y_format": "3~V"
+          },
+          "cursorD": {
+            "x_format": "3~s",
+            "y_format": "3~V"
+          },
+          "signal": "V(VCI_out0)",
           "trace_type": 257
         },
         {
-          "color": "rgb(47, 179, 34)",
-          "signal": "V(detec_out90)",
+          "color": "rgb(19, 247, 57)",
+          "signal": "V(VCI_out180)",
           "trace_type": 257
         },
         {
-          "color": "rgb(228, 26, 28)",
-          "signal": "V(op_out0)",
-          "trace_type": 257
-        },
-        {
-          "color": "rgb(255, 255, 51)",
-          "signal": "V(op_out180)",
-          "trace_type": 257
-        },
-        {
-          "color": "rgb(152, 78, 163)",
-          "signal": "V(op_out90)",
+          "color": "rgb(255, 90, 0)",
+          "signal": "V(VCI_out90)",
           "trace_type": 257
         }
       ]

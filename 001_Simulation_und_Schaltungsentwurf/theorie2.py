@@ -254,8 +254,71 @@ val_r5 = -(val1_r5 - val2_r5)/5
 print(val_r5)
 
 
+#%% Test eines einzelnen VCI
+
+# Import auf KiCad
+filepath = '003_analog_multiplier/analog_multiplier.raw'
+l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
+l.parse()
+#print(l.variables)  # statt get_trace_names()
+
+time = l.get_time() * 1000
+vci_out1 = l.get_data('v(VCI_out0)')
+vci_out2 = l.get_data('v(VCI_out90)')
+vci_out3 = l.get_data('v(VCI_out180)')
+
+time_s = time/1000 # in sec
 
 
 
+### letzten Tiefpunkt bestimmen um Freq.shift herauszubekommen
+# Simtime= 40ms !!!!!!!
+
+x_threshold = 99
+index_start = np.where(time >= x_threshold) [0][0]
+
+time_sub = time[index_start:]
+vci_out1_sub = vci_out1[index_start:]
+vci_out2_sub = vci_out2[index_start:]
+vci_out3_sub = vci_out3[index_start:]
+
+
+# Minimum im Teilbereich finden
+
+min_idx_sub1 = np.argmin(vci_out1_sub)
+min_idx_sub2 = np.argmin(vci_out2_sub)
+min_idx_sub3 = np.argmin(vci_out3_sub)
+
+min_val_sub1 = vci_out1_sub[min_idx_sub1]
+min_val_sub2 = vci_out2_sub[min_idx_sub2]
+min_val_sub3 = vci_out3_sub[min_idx_sub3]
+
+min_time_sub1 = time_sub[min_idx_sub1]
+min_time_sub2 = time_sub[min_idx_sub2]
+min_time_sub3 = time_sub[min_idx_sub3]
+
+
+print(f"Minimum für 0 bei {min_time_sub1} ms mit {min_val_sub1}")
+print(f"Minimum für 90 bei {min_time_sub2} ms mit {min_val_sub2}")
+print(f"Minimum für 180 bei {min_time_sub3} ms mit {min_val_sub3}")
+
+
+
+
+
+
+
+
+plt.figure(7, figsize=(8,6), dpi=150)
+plt.plot(time, vci_out1, color=my_blue, label = r'Input $X_1$',ls='-')
+plt.plot(time, vci_out2, color=my_red, label = r'Input $Y_1$',ls='-')
+plt.plot(time, vci_out3, color=my_green2, label = 'Output',ls='-')
+plt.title('Demonstration mit DC-Spannungen')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.legend()
+plt.grid(True, which='both', ls='--', lw=0.5)
+#plt.tight_layout()
+plt.show()
 
 
