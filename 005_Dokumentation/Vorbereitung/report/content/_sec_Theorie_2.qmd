@@ -1,0 +1,47 @@
+# Weiterführende Theorie
+
+Bislang spielte die Phase eine untergeordnete rolle, nun wird im
+folgenden versucht durch detektierung der Phase ein selbst einstellenden
+Filter zu designen.
+
+Nun werden neue Bauteile besprochen. Im nachfolgenden Kapitel der
+Simulation wird sich weiter mit der Simulation der Filterkomponenten
+befasst. Darin werden die theoretisch abgeleiteten Eigenschaften mittels
+Simulation verifiziert und visuell durch Plots unterstützt.
+
+## Analoger Multiplizierer als Baustein
+
+Grundlagen und funktionsprinzip
+
+<figure id="fig:bsb" data-latex-placement="H">
+
+<figcaption>Blockschaltbild des analogen Mulitpliziers</figcaption>
+</figure>
+
+Wie der Name schon verrät bildet ein Analogmultiplizierer das Produkt
+aus zwei anliegenden Signalen nach dem Schema: $x=a \cdot b$. Die
+Multiplizierung zweier Signale ist durch analoge Bauteile nicht so
+einfach umsetzbar, wohingegen andere arithmetische Operationen wie
+Addition, Substraktion und Integration durch einen einzigen (bzw zwei
+wegen negireung) Operationsverstärker mit entsprechender verschaltung
+durchgeführt werden können. So kann auch die Multiplikation mit Hilfe
+von Logatihmus Naturalis und der Exponentialfunktion $e^x$ als Addition
+duchchgeführt werden:
+
+$$\begin{equation*}
+x=a \cdot b = e^{ln(a \cdot b)} = e^{ln(a) + ln(b)}
+\end{equation*}$$
+
+Dieser Zusammenhang wird durch folgendes Blockschaltbild verdeutlicht:
+
+![Funktionelle Realisierung eines Analogmultiplizierers  
+**Quelle:** Wikipedia](images/bsb_multi_funktionell.pdf){#fig-bsb}
+
+Da der Logarithmus für negative Zahlen nicht reelwertig ist, eignet sich
+dieser Mulitplizierer nur für einen Quadranten.
+
+**Auswirkungen! Überleitung wie man zu vierquadranten Multis kommt.**
+
+
+
+![Kennlinie der durchschnittlichen Ausgangsspnnung des Multiplizierers gegen den Phasenwinkel](images/phasencharakteristik_multi.png){#fig-phasecharacteristic}

@@ -26,9 +26,10 @@ bibliography: references.bib
 ---
 
 {{< include content/_sec_Einleitung.qmd >}}
-{{< include content/_sec_Filter.qmd >}}
+{{< include content/_sec_Theorie_2.qmd >}}
 {{< include content/_sec_Charakterisierung.qmd >}}
 {{< include content/references.qmd >}}
+
 
 
 
