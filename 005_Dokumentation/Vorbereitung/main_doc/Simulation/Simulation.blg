@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'Simulation.blg'
+[63] biber:340> INFO - === Mon Oct 20, 2025, 08:34:50
+[75] Biber.pm:418> INFO - Reading 'Simulation.bcf'
+[123] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
+[133] bbl.pm:654> INFO - Writing 'Simulation.bbl' with encoding 'UTF-8'
+[133] bbl.pm:757> INFO - Output to Simulation.bbl
+[133] Biber.pm:130> WARN - The file 'Simulation.bcf' does not contain any citations!
+[134] Biber.pm:132> INFO - WARNINGS: 1

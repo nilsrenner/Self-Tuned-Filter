@@ -1,0 +1,265 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{Lab_Kit_PRO}{book}{}
+      \name{author}{2}{}{%
+        {{hash=0a37bab031cf14df99fa11482b06c5e2}{%
+           family={Rao},
+           familyi={R\bibinitperiod},
+           given={K.R.K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=d8eef7ee65f446a1495b9ea087202318}{%
+           family={Ravikumar},
+           familyi={R\bibinitperiod},
+           given={C.P.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Texas Instruments}%
+      }
+      \strng{namehash}{6f43cfd8ff8f0bd09738eabb17dc3ca2}
+      \strng{fullhash}{6f43cfd8ff8f0bd09738eabb17dc3ca2}
+      \strng{bibnamehash}{6f43cfd8ff8f0bd09738eabb17dc3ca2}
+      \strng{authorbibnamehash}{6f43cfd8ff8f0bd09738eabb17dc3ca2}
+      \strng{authornamehash}{6f43cfd8ff8f0bd09738eabb17dc3ca2}
+      \strng{authorfullhash}{6f43cfd8ff8f0bd09738eabb17dc3ca2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Analog System Lab Kit PRO Manual}
+      \field{year}{2012}
+    \endentry
+    \entry{francoOpAmp}{book}{}
+      \name{author}{1}{}{%
+        {{hash=fa9b0c11c668ee9ccedf35647765bc68}{%
+           family={Franco},
+           familyi={F\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{fa9b0c11c668ee9ccedf35647765bc68}
+      \strng{fullhash}{fa9b0c11c668ee9ccedf35647765bc68}
+      \strng{bibnamehash}{fa9b0c11c668ee9ccedf35647765bc68}
+      \strng{authorbibnamehash}{fa9b0c11c668ee9ccedf35647765bc68}
+      \strng{authornamehash}{fa9b0c11c668ee9ccedf35647765bc68}
+      \strng{authorfullhash}{fa9b0c11c668ee9ccedf35647765bc68}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{title}{Design with Operational Amplifiers and Analog Integrated Circuits}
+      \field{year}{2015}
+    \endentry
+    \entry{OP_Formel}{book}{}
+      \name{author}{1}{}{%
+        {{hash=b771599aae3194636daeee5489efbe0f}{%
+           family={Göble},
+           familyi={G\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{b771599aae3194636daeee5489efbe0f}
+      \strng{fullhash}{b771599aae3194636daeee5489efbe0f}
+      \strng{bibnamehash}{b771599aae3194636daeee5489efbe0f}
+      \strng{authorbibnamehash}{b771599aae3194636daeee5489efbe0f}
+      \strng{authornamehash}{b771599aae3194636daeee5489efbe0f}
+      \strng{authorfullhash}{b771599aae3194636daeee5489efbe0f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{6}
+      \field{title}{Einführung in die Halbleiter-Schaltungstechnik}
+      \field{year}{2019}
+    \endentry
+    \entry{schaumann2009design}{book}{}
+      \name{author}{2}{}{%
+        {{hash=64751a567f11b3675747f6a00576f28e}{%
+           family={Schaumann},
+           familyi={S\bibinitperiod},
+           given={Rolf},
+           giveni={R\bibinitperiod}}}%
+        {{hash=31dd44799adb7efe59d86869449e4e89}{%
+           family={Valkenburg},
+           familyi={V\bibinitperiod},
+           given={Mac\bibnamedelimb E.\bibnamedelimi Van},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{9b06cdfd30fc101620b2b8ae51bddd3f}
+      \strng{fullhash}{9b06cdfd30fc101620b2b8ae51bddd3f}
+      \strng{bibnamehash}{9b06cdfd30fc101620b2b8ae51bddd3f}
+      \strng{authorbibnamehash}{9b06cdfd30fc101620b2b8ae51bddd3f}
+      \strng{authornamehash}{9b06cdfd30fc101620b2b8ae51bddd3f}
+      \strng{authorfullhash}{9b06cdfd30fc101620b2b8ae51bddd3f}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{title}{Design of Analog Filters}
+      \field{year}{2009}
+    \endentry
+    \entry{YT_stf_lab5}{online}{}
+      \name{author}{1}{}{%
+        {{hash=4358657c230434f6be7f1727f4753ccf}{%
+           family={{Dr. KRK Rao}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{4358657c230434f6be7f1727f4753ccf}
+      \strng{fullhash}{4358657c230434f6be7f1727f4753ccf}
+      \strng{bibnamehash}{4358657c230434f6be7f1727f4753ccf}
+      \strng{authorbibnamehash}{4358657c230434f6be7f1727f4753ccf}
+      \strng{authornamehash}{4358657c230434f6be7f1727f4753ccf}
+      \strng{authorfullhash}{4358657c230434f6be7f1727f4753ccf}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2025-10-06}
+      \field{title}{5. Self-Tuned Filters.avi}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=ES7v2SNBWYI
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=ES7v2SNBWYI
+      \endverb
+    \endentry
+    \entry{YT_stf_lecture23}{online}{}
+      \name{author}{1}{}{%
+        {{hash=c5dc24695e7ed452a3b0b15fd4fa7c23}{%
+           family={{Prof. K. Radhakrishna Rao}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{c5dc24695e7ed452a3b0b15fd4fa7c23}
+      \strng{fullhash}{c5dc24695e7ed452a3b0b15fd4fa7c23}
+      \strng{bibnamehash}{c5dc24695e7ed452a3b0b15fd4fa7c23}
+      \strng{authorbibnamehash}{c5dc24695e7ed452a3b0b15fd4fa7c23}
+      \strng{authornamehash}{c5dc24695e7ed452a3b0b15fd4fa7c23}
+      \strng{authorfullhash}{c5dc24695e7ed452a3b0b15fd4fa7c23}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2025-10-06}
+      \field{title}{Lecture - 23 Self Tuned Filter}
+      \field{year}{2008}
+      \verb{urlraw}
+      \verb https://www.youtube.com/watch?v=FHWkxyAyhO8
+      \endverb
+      \verb{url}
+      \verb https://www.youtube.com/watch?v=FHWkxyAyhO8
+      \endverb
+    \endentry
+    \entry{philippsenRegelung2023}{book}{}
+      \name{author}{1}{}{%
+        {{hash=c7dcbb049aeb2c5303df8c5065ffda9e}{%
+           family={Philippsen},
+           familyi={P\bibinitperiod},
+           given={Hans-Werner},
+           giveni={H\bibinithyphendelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Hanser}%
+      }
+      \strng{namehash}{c7dcbb049aeb2c5303df8c5065ffda9e}
+      \strng{fullhash}{c7dcbb049aeb2c5303df8c5065ffda9e}
+      \strng{bibnamehash}{c7dcbb049aeb2c5303df8c5065ffda9e}
+      \strng{authorbibnamehash}{c7dcbb049aeb2c5303df8c5065ffda9e}
+      \strng{authornamehash}{c7dcbb049aeb2c5303df8c5065ffda9e}
+      \strng{authorfullhash}{c7dcbb049aeb2c5303df8c5065ffda9e}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{title}{Einstieg in die Regelungstechnik mit Python}
+      \field{year}{2023}
+    \endentry
+    \entry{razaviRFmicroelectronics}{book}{}
+      \name{author}{1}{}{%
+        {{hash=c7a8cbdc611fb566c84f257674d0a44f}{%
+           family={Razavi},
+           familyi={R\bibinitperiod},
+           given={Behzad},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{c7a8cbdc611fb566c84f257674d0a44f}
+      \strng{fullhash}{c7a8cbdc611fb566c84f257674d0a44f}
+      \strng{bibnamehash}{c7a8cbdc611fb566c84f257674d0a44f}
+      \strng{authorbibnamehash}{c7a8cbdc611fb566c84f257674d0a44f}
+      \strng{authornamehash}{c7a8cbdc611fb566c84f257674d0a44f}
+      \strng{authorfullhash}{c7a8cbdc611fb566c84f257674d0a44f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780137134731}
+      \field{title}{RF Microelectronics}
+      \field{year}{2011}
+    \endentry
+    \entry{chengCommunicationCircuits}{book}{}
+      \name{author}{2}{}{%
+        {{hash=d3cd8b7724c5c713367e52ba4ef0ffae}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Zhiqun},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=1a5d8c9a7caef59b0cae2c6962023798}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Guohua},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {De Gruyter / Science Press Beijing}%
+      }
+      \strng{namehash}{3bd573abbc207c5757c220881fdfce10}
+      \strng{fullhash}{3bd573abbc207c5757c220881fdfce10}
+      \strng{bibnamehash}{3bd573abbc207c5757c220881fdfce10}
+      \strng{authorbibnamehash}{3bd573abbc207c5757c220881fdfce10}
+      \strng{authornamehash}{3bd573abbc207c5757c220881fdfce10}
+      \strng{authorfullhash}{3bd573abbc207c5757c220881fdfce10}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Communication Electronic Circuits}
+      \field{year}{2016}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

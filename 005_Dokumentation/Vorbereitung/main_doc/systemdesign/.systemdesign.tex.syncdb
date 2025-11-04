@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/6385d59ca0e1a299e4e56a6e3e7dacd0ce87bd93","systemdesign.tex"]}

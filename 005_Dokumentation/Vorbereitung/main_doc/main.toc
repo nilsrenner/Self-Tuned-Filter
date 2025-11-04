@@ -1,0 +1,39 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {section}{\numberline {1}Einleitung}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Vorbetrachtung}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Beschreibung der Bachlorarbeit}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Softwarewerkzeuge? hierher?}{2}{section.2}%
+\contentsline {section}{\numberline {3}Theorie nach Stand des sechsten Semester/Grundlagen}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Grundlagen und mathematische Herleitung des Biquad-Filter}{3}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Herleitung der Übertragungsfunktionen}{3}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}systemtheoretische Analyse}{3}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Einfluss der Bauteilgrößen und Parameter auf das Filterverhalten}{3}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Einfluss der Bauteilgrößen $C$ und $R$}{3}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Einfluss von Güte- und Verstärkungsfaktor}{3}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Zusammenfassung des bisherigen Standes und offene Fragen}{3}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Weiterführende Theorie}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Phasenregelkreis}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Analoger Multiplizierer als Baustein}{4}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Simulation}{6}{subsubsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.3}Multiplizierer als Phasendetektor}{7}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Simulation}{10}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}Aufbau und Steuerung des Voltage Controlled Filters}{12}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Grenzfrequenzbestimmung des VFC}{12}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Ermittlung der Grenzfrequenz bei unbekannten Parametern}{14}{subsubsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.5}Einfluss des VCF auf die Filterfrequenz und praktische Parametersteuerung}{14}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Sensitivitätsanalyse von Filter und Detektor}{14}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Sensitivität des Phasendetektors}{14}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Sensitivität des VFCs}{15}{subsubsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.7}Ausblick auf die praktische Umsetzung / Messmethoden}{16}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Simulation}{18}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Frequenzsweep}{18}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Ermittlung der Grenzfrequenz}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Filterbereich des Filters}{18}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Schaltungsentwurf/ Design des Systems}{19}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Design des Schaltplans}{19}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Design der Platine}{19}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Design des Codes}{19}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Design der Website}{19}{subsubsection.6.3.1}%
+\contentsline {section}{\numberline {7}Aufnahme der Messergebnisse}{20}{section.7}%
+\contentsline {section}{\numberline {8}Auswertung}{21}{section.8}%
+\contentsline {section}{\numberline {9}Fazit und Ausblick}{22}{section.9}%

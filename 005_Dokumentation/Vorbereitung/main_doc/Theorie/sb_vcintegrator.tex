@@ -1,0 +1,50 @@
+%\documentclass[varwidth=true, border=10pt, crop=true]{standalone}
+%\usepackage{tikz}
+%\usepackage{circuitikz}
+%\usetikzlibrary{positioning,arrows.meta}
+
+%\begin{document}
+
+
+ \begin{circuitikz}[european, block2/.style = {draw, fill=white, rectangle, minimum height=3em, minimum width=4.5em}, lcircle/.style={draw, fill=white, circle, minimum size= 0.25em, inner sep=0pt}, connector/.style={-Latex, thick}, node distance=2cm and 2cm]
+
+
+
+
+% === OP === 
+
+\coordinate (start) ;
+
+\coordinate[right=2.5cm of start] (endr);
+\draw (start) to[R=R, o-*] (endr) node[near start, above] {$V_{in}$};
+\node[op amp, right=0cm of endr, anchor=-] (opamp) {};
+
+\draw (opamp.+) -- ++ (0,-0.5) node[ground] {};
+
+\coordinate (vout) at ($(opamp.out) + (2.1,0)$);
+\draw (opamp.out) -- (vout);
+\coordinate[above=1.5cm of endr] (helpC);
+\coordinate[above=2cm of vout, xshift = -2.6cm] (startc);
+\coordinate[right=0.5cm of startc] (endmulti) ;
+\draw (endmulti) -- (startc) node[above]{$V_{cap}$} to[C, a=$C$] (helpC) -- (endr);
+
+\coordinate[right=0.75cm of vout] (Vout_end);
+\draw (vout) to[short,*-o] (Vout_end) node[above] {$V_{out}$};
+
+
+% === Multiplikator ===
+\node[block2] (prod) [right=0cm of endmulti] {$\prod$};
+\coordinate[right=4.5em of endmulti, yshift= 0.3cm] (in_vc);
+\coordinate[right=4.5em of endmulti, yshift= -0.3cm] (in_vout);
+
+
+
+\draw (vout) |- (in_vout);
+\coordinate (vc) at ($(Vout_end |- in_vc)$);
+\draw (in_vc) to[short,-o] (vc) node[above] {$V_c$};
+
+\end{circuitikz}
+
+
+
+%\end{document}

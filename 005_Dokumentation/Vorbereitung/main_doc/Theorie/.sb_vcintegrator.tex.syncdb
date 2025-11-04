@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/cca2e6fa41326e8b1fa1d48271ccea4a1052c9f5","sb_vcintegrator.tex"]}

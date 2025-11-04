@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/26a51905f9526fcd7829495cbe35b40f38f06323","bsb_multi_funktionell.tex"]}

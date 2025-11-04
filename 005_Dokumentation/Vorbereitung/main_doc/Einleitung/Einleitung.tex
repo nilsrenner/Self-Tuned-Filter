@@ -1,0 +1,41 @@
+\documentclass[../main_config.tex]{subfiles}
+\begin{document}
+
+\section{Einleitung}
+
+
+\subsection{Vorbetrachtung}
+Durch das Modul ANS im letzten Semester wurde das arbeiten mit klassischen Analogen Filtern durch das Experiment 4 aus dem ASLK-Manual erlernt
+
+Durch Berechnungen und Ausprobieren wurden analoge Filter entworfen und an die gewollten werte angepasst. 
+
+So ergaben sich Filter mit fester Freqenz, da die Bauteilgrößen einmal angenommen wurden (mit ausnahme der zwei Potis) und sich daraus die Frequenz ergab
+
+In Experiment 5 des ASLK-Manuals soll es um selfe tuned Filter, also sich selbst automatisch anpassende/einstellende Filter gehen.
+
+
+
+
+\subsection{Beschreibung der Bachlorarbeit}
+
+In der Praxis schanken Bauteile (Temperatur, Alterung, Toleranzen).
+
+Diese Probleme haben Filter die sich selbst einstellen nicht, da sie nicht rein von den physischen Paramentern der eingebauten Bauteile abhängen sondern einen gewissen Spielraum bieten, diese Inperfektionen auszugleichen. 
+
+Ziel ist es, dass der Filter selbstständig seine Mittenfrequenz nachstimmen kann. Dafür braucht er eine Referenzfrequenz  und einen Mechanismus, der Prüft, ob der Filter noch auf der richtigen Frequenz liegt, oder weggedriftet ist.
+
+Vorgehen: lernen wie man einen geregelten osz verwendet  um Ref-Frequenz zu erzeugen.
+Ref-Frequenz wird verwendet um filter automaisch auf die Sollfrequenz einzustellen.
+Experiment ist also eine Kombination aus REgelungstechnik und Exp 4 (klassische Filtertheorie)
+
+
+
+
+selbst anpassende Filter sind ein wichtiger Bestandteil der Filterungstechnik heutzutage, da da immer vorhandene Bauteiltolleranzen eine geringere Rolle spielen und aufgrund des Schaltungsdesigns weniger stark ins Gewicht fallen. Vieles innerhalb des Controll Loop kann heutzutage durch einen digitalen Microcontroller durchgeführt werden, während der Filter immernoch analog bleibt. So kann die Frequenz sehr präzise auf den exakt eingestellten wert absgestimmt werden (ohne auf Auswirkungen durch Bauteiltolleranzen zu achten).
+Wichitg: unsere schaltung ist bissher nur zum detektiern der Frequenz. Also wird einfach auf die einkommende Frequenz abgestimmt. Vielleicht kommt noch ein modus für gezielte Frequenzen dazu? ist das sinnvoll?
+
+
+
+
+
+\end{document}

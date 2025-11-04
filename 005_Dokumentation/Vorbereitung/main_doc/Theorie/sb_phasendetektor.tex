@@ -1,0 +1,65 @@
+%\documentclass[varwidth=true, border=10pt, crop=true]{standalone}
+%\usepackage{tikz}
+%\usepackage{circuitikz}
+%\usetikzlibrary{positioning,arrows.meta}
+
+%\begin{document}
+
+
+ \begin{circuitikz}[european, block2/.style = {draw, fill=white, rectangle, minimum height=3em, minimum width=4.5em}, lcircle/.style={draw, fill=white, circle, minimum size= 0.25em, inner sep=0pt}, node distance=2cm and 2cm]
+
+
+% === Multiplikator ===
+\node[lcircle] (input1) {};
+\node[lcircle, below=2cm of input1] (input2) {};
+
+
+\coordinate[below=1cm of input1] (mid);
+\node[block2] (prod) [right=2cm of mid] {$\prod$};
+\coordinate[left=0cm of prod] (stutze);
+
+\coordinate[above=0.3cm of stutze] (mult_int1);
+\coordinate[below=0.3cm of stutze] (mult_int2);
+
+\coordinate[left=1cm of mult_int1] (hilfe1);
+\coordinate[left=1cm of mult_int2] (hilfe2);
+
+\draw (input1) -| (hilfe1) node[near start,above, xshift=-3mm] {$V_{HP}$};
+\draw (hilfe1) -- (mult_int1);
+\draw (input2) -| (hilfe2) node[near start, below, xshift=-3mm] {$V_{in}$};
+\draw (hilfe2) -- (mult_int2);
+
+
+
+
+% === OP === 
+
+\coordinate[right=0cm of prod] (start);
+\coordinate[right=2.5cm of start] (endr);
+\draw (start) to[R=R, -*] (endr);
+\node[op amp, right=0cm of endr, anchor=-] (opamp) {};
+
+\draw (opamp.+) -- ++ (0,-0.86) node[ground] {};
+
+\coordinate (vout) at (opamp.out);
+\coordinate[above=1.5cm of endr] (helpC);
+\coordinate[above=2cm of vout] (startr2);
+\draw (vout) -- (startr2) to[C, l=$C$] (helpC) -- (endr);
+
+\coordinate[right=2.5cm of startr2] (endr2);
+\draw (startr2) to[R=R,*-*] (endr2);
+\coordinate[right=0.75cm of endr2] (Vc);
+\draw (endr2) to[short,-o]  (Vc) node[above] {$V_c$};
+
+
+\coordinate[below=2cm of endr2] (endr3);
+\draw (endr2) to [R=R] (endr3);
+\coordinate[below=1.35cm of endr3] (gnd2);
+\draw (endr3) to[V=$V_H$] (gnd2);
+\draw (gnd2) node[ground] {};
+
+
+\end{circuitikz}
+
+
+%\end{document}

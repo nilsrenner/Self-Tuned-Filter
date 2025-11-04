@@ -1,0 +1,67 @@
+\documentclass[a4paper,12pt]{article}
+
+% --- Sprache und Kodierung ---
+\usepackage[utf8]{inputenc}    % UTF-8 Eingabekodierung
+\usepackage[T1]{fontenc}       % korrekte Darstellung von Umlauten
+\usepackage[ngerman]{babel}    % deutsche Spracheinstellungen
+
+% --- Mathematik ---
+\usepackage{amsmath, amssymb, mathtools} % erweiterte Matheumgebungen
+\usepackage{siunitx}                     % SI-Einheiten und Zahlenformatierung
+
+% --- Layout ---
+\usepackage{geometry}
+\geometry{
+  top=2cm,
+  bottom=3cm,
+  left=2.5cm,
+  right=2.5cm
+}
+\setlength\parindent{0pt} % kein Absatzeinzug
+
+\usepackage{graphicx}        % Bilder einbinden
+
+\usepackage{float}           % exakte Positionierung
+\usepackage{caption,subcaption} % Untertitel für Bilder und Tabellen
+\usepackage{booktabs,tabularx}  % schöne Tabellen
+\usepackage{longtable}       % Tabellen über mehrere Seiten
+\usepackage{array, makecell} % Tabellenoptionen
+\usepackage{enumitem}        % Listen flexibel
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+% --- Kopf- und Fußzeilen ---
+\usepackage{fancyhdr}
+\setlength\headheight{26pt}
+\setlength\headsep{35pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Nils Renner (5197659)}
+\chead{Vorbereitung Bachelorthesis}
+\rhead{\includegraphics[width=4cm]{Bilder/Logo_HSB_Hochschule_Bremen.png}}
+\cfoot{} % Seitenzahlen werden in der Hauptdatei geregelt
+
+% --- Codeblöcke ---
+\usepackage{listings}
+\usepackage{xcolor}
+\lstdefinestyle{arduino}{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    breaklines=true,
+    frame=single,
+    captionpos=b
+}
+
+% --- Literatur ---
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{Literaturverzeichnis.bib}
+
+% --- Sonstiges ---
+\usepackage{lastpage}  % für "Seite X von Y" falls nötig

@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/bc47121c8c97e99df3180dbf62aa4f8b8a2454e4","bsb_einfacher_mulitplizierer.tex"]}

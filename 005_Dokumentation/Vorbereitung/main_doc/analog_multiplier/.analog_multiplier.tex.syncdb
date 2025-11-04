@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/03b6e5685cea1c53a5faee89cf63cf414946f020","analog_multiplier.tex"]}

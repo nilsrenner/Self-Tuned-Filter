@@ -29,7 +29,7 @@ format:
     biblio-style: ieee
     highlight-style: github
     mainfont: "TeX Gyre Termes"
-#    keep-tex: true
+    keep-tex: true
     output-file: nr_thesis 
 #  epub:
 #    theme: flatly

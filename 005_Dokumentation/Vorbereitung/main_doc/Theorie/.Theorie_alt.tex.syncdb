@@ -1,0 +1,1 @@
+{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/3497928ed19be7b663e2a6970dacbd75c2b6811f","Theorie_alt.tex"]}

@@ -3963,7 +3963,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "15.75"
+		(property "Value" "14.2"
 			(at 374.65 128.1401 0)
 			(effects
 				(font
@@ -4945,7 +4945,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "250"
 			(at 364.49 110.49 90)
 			(effects
 				(font
@@ -6427,13 +6427,13 @@
 			(uuid "b80e61ed-ebe8-40d9-b78d-6d1b33185cf7")
 		)
 		(pin "7"
-			(uuid "6291ede3-b9ad-44f7-87d1-44cc733b5b12")
+			(uuid "6291ede3-b9ad-44f7-87d1-44cc733b5b13")
 		)
 		(pin "3"
 			(uuid "0838f2f0-6908-47b4-a847-1e0aee184346")
 		)
 		(pin "6"
-			(uuid "aa13d90e-3b43-49b3-bb51-4cf33c890867")
+			(uuid "aa13d90e-3b43-49b3-bb51-4cf33c890868")
 		)
 		(pin "2"
 			(uuid "d12a2eb4-7b10-4805-9cf7-86843c77730b")
@@ -6442,7 +6442,7 @@
 			(uuid "27ba7d9e-c6f6-46e7-8df8-aae0b6a8f767")
 		)
 		(pin "5"
-			(uuid "cf90d68f-af08-41bb-83a7-57258180dfa5")
+			(uuid "cf90d68f-af08-41bb-83a7-57258180dfa6")
 		)
 		(pin "4"
 			(uuid "08d1eb3d-fe74-4608-a080-1145767c4675")
@@ -7835,7 +7835,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "750"
 			(at 373.38 119.3799 0)
 			(effects
 				(font
@@ -8050,16 +8050,16 @@
 			(uuid "6291ede3-b9ad-44f7-87d1-44cc733b5b11")
 		)
 		(pin "3"
-			(uuid "0838f2f0-6908-47b4-a847-1e0aee184345")
+			(uuid "0838f2f0-6908-47b4-a847-1e0aee184347")
 		)
 		(pin "6"
 			(uuid "aa13d90e-3b43-49b3-bb51-4cf33c890866")
 		)
 		(pin "2"
-			(uuid "d12a2eb4-7b10-4805-9cf7-86843c77730a")
+			(uuid "d12a2eb4-7b10-4805-9cf7-86843c77730c")
 		)
 		(pin "1"
-			(uuid "27ba7d9e-c6f6-46e7-8df8-aae0b6a8f766")
+			(uuid "27ba7d9e-c6f6-46e7-8df8-aae0b6a8f768")
 		)
 		(pin "5"
 			(uuid "cf90d68f-af08-41bb-83a7-57258180dfa4")

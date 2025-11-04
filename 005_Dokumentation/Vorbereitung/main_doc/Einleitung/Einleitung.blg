@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'Einleitung.blg'
+[59] biber:340> INFO - === Fri Sep 26, 2025, 13:15:37
+[70] Biber.pm:418> INFO - Reading 'Einleitung.bcf'
+[115] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
+[124] bbl.pm:654> INFO - Writing 'Einleitung.bbl' with encoding 'UTF-8'
+[124] bbl.pm:757> INFO - Output to Einleitung.bbl
+[124] Biber.pm:130> WARN - The file 'Einleitung.bcf' does not contain any citations!
+[124] Biber.pm:132> INFO - WARNINGS: 1
