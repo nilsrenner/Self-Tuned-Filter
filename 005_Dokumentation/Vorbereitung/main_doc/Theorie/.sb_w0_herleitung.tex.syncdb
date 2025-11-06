@@ -1,1 +1,0 @@
-{"key":"build_command","value":["latexmk","-pdf","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/275f326d60c4fa1ea59125bc0ab5eecef70305e4","sb_w0_herleitung.tex"]}

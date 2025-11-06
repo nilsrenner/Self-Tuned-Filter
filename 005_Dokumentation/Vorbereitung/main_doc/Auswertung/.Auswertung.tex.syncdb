@@ -1,1 +1,0 @@
-{"key":"build_command","value":["latexmk","-xelatex","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","Auswertung.tex"]}

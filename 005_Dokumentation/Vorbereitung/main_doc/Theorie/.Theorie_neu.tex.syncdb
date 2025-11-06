@@ -1,1 +1,0 @@
-{"key":"build_command","value":["latexmk","-xelatex","-f","-g","-bibtex","-deps","-synctex=1","-interaction=nonstopmode","-output-directory=/tmp/3c63f8d51448156c54dac51e32c45e984fe6cbe7","Theorie_neu.tex"]}

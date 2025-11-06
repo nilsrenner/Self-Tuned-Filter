@@ -1,7 +1,0 @@
-PWD /projects/39fc73af-fe6f-4027-b59c-ead1280596ea/main_doc/Theorie
-INPUT /etc/texmf/web2c/texmf.cnf
-INPUT /usr/share/texmf/web2c/texmf.cnf
-INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/xetex/xelatex.fmt
-INPUT sb_phasendetektor.tex
-OUTPUT sb_phasendetektor.log
