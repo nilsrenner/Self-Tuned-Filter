@@ -52,7 +52,7 @@
 \fancyhf{}
 \lhead{Nils Renner (5197659)}
 \chead{Exposé}
-\rhead{\includegraphics[width=4cm]{Pictures/Logo_HSB_Hochschule_Bremen.png}}
+\rhead{}
 \cfoot{} % Keine Seitenzahl auf Titelseite und Inhaltsverzeichnis
 
 %Layout für Code
@@ -78,82 +78,100 @@
 
 % Titelseite
 \begin{titlepage}
-    \centering
-    \includegraphics[width=0.6\textwidth]{Pictures/Logo_HSB_Hochschule_Bremen.png}\\[1cm]
-    {\scshape\LARGE Hochschule Bremen\\}
-    {\scshape\Large Fakultät 4: Elektrotechnik und Informatik\\[1.5cm]}
-    {\huge\bfseries Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters\\[0.5cm]}
-    {\Large\bfseries Exposé\\[0.5cm]}
-    {\Large\bfseries Nils Renner (5197659)\\[2cm]}
-    {\Large\bfseries Ansprechpersonen\\[0.5cm]}
-    \begin{tabular}{l}
-        Prof. Dr. Mirco Meiners \\
-    \end{tabular}\\[2cm]
-    %{\Large\bfseries Abgabe: 07.03.2025}\\[2cm]
-    \vfill
+  \centering
+  \includegraphics[width=0.6\textwidth]{Pictures/Logo_HSB_Hochschule_Bremen.png} \\[1cm]
+  {\scshape\LARGE Hochschule Bremen} \\
+  {\scshape\Large Fakultät 4: Elektrotechnik und Informatik} \\[1.5cm]
+  {\Large\bfseries Exposé} \\[0.5cm]
+  {\huge\bfseries Implementierung eines selbst abgestimmten Filters auf Basis eines spannungsgesteuerten
+    Biquad-Filters} \\[0.5cm]
+  {\Large\bfseries Nils Renner (5197659)} \\[2cm]
+  {\Large\bfseries Prüfer} \\[0.5cm]
+  \begin{tabular}{l}
+    Prof. Dr.-Ing. Mirco Meiners \\
+    Prof. Dr. Sören Peik
+  \end{tabular} \\[2cm]
+  % {\Large\bfseries Abgabe: 07.03.2025}\\[2cm]
+  \vfill
 \end{titlepage}
 
-
-
-
 \newpage  
+
 % Seitenzahlen beginnen hier im Format „Seite X von Y“
 \pagenumbering{arabic}  
 \setcounter{page}{1}  
 \cfoot{Seite \thepage\ von \pageref{LastPage}}
 
-
-
-
 \section{Titel}
 
 Deutsch: \par
-Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters\medskip
+Implementierung eines selbst abgestimmten Filters auf Basis eines spannungsgesteuerten Biquad-Filters \medskip
 
 Englisch: \par
 Implementation of a Self-Tuned Filter Based on a Voltage-Controlled Biquad Filter
 
 
-
-
-
 \section{Forschungsthema}
-Frequenzadaptive Filter werden in der heutigen Zeit immer wichtiger, da sie durch ihr Design die Auswirkungen von Bauteiltoleranzen in der Praxis deutlich reduzieren. Das trägt dazu bei, den Einsatz von teuren Spezialkomponenten zu minimieren und zeitgleich die Flexibilität von Systemen erheblich zu erhöhen. Auch die Entwicklungen im Bereich 5G und Industrie 4.0 tragen zur Bedeutung dieser Technologie bei, da das Datenaufkommen und zugleich die Anforderungen an Verlässlichkeit stetig steigen. Noch nie war das Datenaufkommen höher, sodass nach günstigen, verlässlichen Lösungen gesucht wird. Self-Tuned Filter bieten hier eine vielversprechende Lösung, um kostengünstige und belastbare Systeme zu realisieren.
+Frequenzadaptive Filter werden in der heutigen Zeit immer wichtiger, da sie durch ihr Design die Auswirkungen von
+Bauteiltoleranzen in der Praxis deutlich reduzieren. Das trägt dazu bei, den Einsatz von teuren Spezialkomponenten zu
+minimieren und zeitgleich die Flexibilität von Systemen erheblich zu erhöhen. Auch die Entwicklungen im Bereich 5G und
+Industrie 4.0 tragen zur Bedeutung dieser Technologie bei, da das Datenaufkommen und zugleich die Anforderungen an
+Verlässlichkeit stetig steigen. Noch nie war das Datenaufkommen höher, sodass nach günstigen, verlässlichen Lösungen
+gesucht wird. \textsl{Self-Tuned Filter} bieten hier eine vielversprechende Lösung, um kostengünstige und belastbare
+Systeme zu realisieren.
 
-Auch im Kontext der geopolitischen und wirtschaftlichen Veränderungen spielt diese Arbeit eine Rolle. Lieferkettenprobleme und politische Unsicherheiten der letzten Jahre verdeutlichen, wie wichtig europäische Unabhängigkeit ist. Durch den Einsatz von Open-Source-Software und europäischer Hardware (wie dem RP2350) wird die Souveränität von Europa als Wirtschaftszentrum gestärkt. 
+Auch im Kontext der geopolitischen und wirtschaftlichen Veränderungen spielt diese Arbeit eine Rolle.
+Lieferkettenprobleme und politische Unsicherheiten der letzten Jahre verdeutlichen, wie wichtig europäische
+Unabhängigkeit ist. Durch den Einsatz von Open-Source-Software und europäischer Hardware (wie dem RP2350) wird die
+Souveränität von Europa als Wirtschaftszentrum gestärkt.
 
-Diese Bachelorarbeit untersucht die Entwicklung und Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters (VCF). Ziel ist es, die automatische Anpassung der Grenzfrequenz mithilfe eines Mikrocontrollers und digitaler Steuerung zu realisieren, um die praktischen Auswirkungen von Bauteiltoleranzen zu minimieren. Der Entwurf umfasst Schaltungsdesign, Hard- und Softwareentwicklung sowie Evaluierung mit Messungen. Das Projekt orientiert sich an Referenzdesigns aus dem ASLK PRO-Manual und setzt aktuelle Methoden der digitalen Signalverarbeitung zur Grenzfrequenzanalyse ein.
+Diese Bachelorarbeit untersucht die Entwicklung und Implementierung eines selbst abgestimmten Filters auf Basis eines
+spannungsgesteuerten Biquad-Filters (VCF). Ziel ist es, die automatische Anpassung der Grenzfrequenz mithilfe eines
+Mikrocontrollers und digitaler Steuerung zu realisieren, um die praktischen Auswirkungen von Bauteiltoleranzen zu
+minimieren. Der Entwurf umfasst Schaltungsdesign, Hard- und Softwareentwicklung sowie Evaluierung mit Messungen. Das
+Projekt orientiert sich an Referenzdesigns aus dem ASLK PRO-Manual \cite{rao-2012-aslkpro} und setzt aktuelle Methoden
+der digitalen Signalverarbeitung zur Grenzfrequenzanalyse ein.
 
 
 \section{Zielsetzung}
-Die zentrale Fragestellung dieser Bachelorthesis lautet: „Wie kann ein spannungsgesteuerter Biquad-Filter selbstständig und robust an wechselnde Eingangssignal-Frequenzen angepasst werden?“ Im Rahmen dieser Bachelorarbeit soll durch simulationstechnische und messtechnische Untersuchungen aufgezeigt werden, welche Funktionen und Bausteine im System dafür verantwortlich sind. Dadurch wird ein vertieftes Verständnis für Phasenschleifen (PLLs) und Self-Tuned Filter geschaffen.
+Die zentrale Fragestellung dieser Bachelorthesis lautet: „Wie kann ein spannungsgesteuerter Biquad-Filter selbstständig
+und robust an wechselnde Eingangssignal-Frequenzen angepasst werden?“ Im Rahmen dieser Bachelorarbeit soll durch
+simulationstechnische und messtechnische Untersuchungen aufgezeigt werden, welche Funktionen und Bausteine im System
+dafür verantwortlich sind. Dadurch wird ein vertieftes Verständnis für Phasenschleifen (PLLs) und Self-Tuned Filter
+geschaffen.
 
-Die Aufgaben werden gemäß der MoSCoW-Methode priorisiert, um eine klare Strukturierung und Fokussierung zu gewährleisten:
-
+Die Aufgaben werden gemäß der MoSCoW-Methode priorisiert, um eine klare Strukturierung und Fokussierung zu
+gewährleisten:
 
 
 \textbf{Must have:}
 \begin{itemize}
-    \item Entwicklung einer funktionsfähigen Schaltung inklusive passendem PCB auf Basis des im ASLK-PRO Manual beschriebenen Self-Tuned Biquad
-    \item Programmierung des Mikrocontrollers zur Steuerung der bauteilbedingten Grenzfrequenz, der Güte und der Verstärkung des Filters
+\item Entwicklung einer funktionsfähigen Schaltung inklusive passendem PCB auf Basis des im ASLK-PRO Manual
+  beschriebenen Self-Tuned Biquad
+\item Programmierung des Mikrocontrollers zur Steuerung der bauteilbedingten Grenzfrequenz, der Güte und der
+  Verstärkung des Filters
 \end{itemize}
+
 
 \textbf{Should have:}
 \begin{itemize}
-    \item Entwicklung einer App oder webbasierten Oberfläche zur Visualisierung und komfortablen Steuerung des Filters
+\item Entwicklung einer App oder webbasierten Oberfläche zur Visualisierung und komfortablen Steuerung des Filters
 \end{itemize}
 
 
 \textbf{Could have:}
 \begin{itemize}
-    \item Einfache Frequenzbestimmung des Eingangssignals über einen Nulldurchgangszähler zur schnellen Übersicht über die getunte Frequenz
-    \item Erweiterte Frequenzanalyse mittels FFT, voraussichtlich mit Einsatz eines vorprogrammierten FFT-Moduls
-    \item Design und Konstruktion eines Gehäuses für das Gesamtsystem
+\item Einfache Frequenzbestimmung des Eingangssignals über einen Nulldurchgangszähler zur schnellen Übersicht über die
+  getunte Frequenz
+\item Erweiterte Frequenzanalyse mittels FFT, voraussichtlich mit Einsatz eines vorprogrammierten FFT-Moduls
+\item Design und Konstruktion eines Gehäuses für das Gesamtsystem
 \end{itemize}
 
 
 \section{Forschungsstand}
-Die grundlegende Schaltung, die in dieser Arbeit weiterentwickelt wird, ist im ASLK PRO-Manual \cite{Lab_Kit_PRO} von Texas Instruments (Experimente 4 und 5) beschrieben. Auf dieser Basis soll ein variabler, selbsteinstellender Filter entworfen werden, der über einen Mikrocontroller, wie den europäischen RP2350, angesteuert und angepasst werden kann.
+Die grundlegende Schaltung, die in dieser Arbeit weiterentwickelt wird, ist im ASLK PRO-Manual \cite{Lab_Kit_PRO} von
+Texas Instruments (Experimente 4 und 5) beschrieben. Auf dieser Basis soll ein variabler, selbsteinstellender Filter
+entworfen werden, der über einen Mikrocontroller, wie den europäischen RP2350, angesteuert und angepasst werden kann.
 
 
 \section{Vorläufige Gliederung}
@@ -195,24 +213,20 @@ Die grundlegende Schaltung, die in dieser Arbeit weiterentwickelt wird, ist im A
 
 \subsection{Anhang}
 
-
 \newpage
- \section{Zeitplan}
- \begin{figure}
-     \centering
-     \includegraphics[width=1\linewidth]{Pictures/zp_ba.png}
-     \caption{Möglicher Zeitplan für die Bearbeitung der Bachelorthesis}
-     \label{fig:placeholder}
- \end{figure}
+
+\section{Zeitplan}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=1\linewidth]{Pictures/zp_ba.png}
+  \caption{Möglicher Zeitplan für die Bearbeitung der Bachelorthesis}
+  \label{fig:placeholder}
+\end{figure}
 
 \section{Zentrale Quellen}
-\cite{Lab_Kit_PRO}, \cite{francoOpAmp}, \cite{OP_Formel}, \cite{schaumann2009design}, \cite{YT_stf_lab5}, \cite{YT_stf_lecture23}, \cite{philippsenRegelung2023}, \cite{razaviRFmicroelectronics}, \cite{chengCommunicationCircuits}
+\cite{rao-2012-aslkpro-man}, \cite{francoOpAmp}, \cite{OP_Formel}, \cite{schaumann2009design}, \cite{YT_stf_lab5}, \cite{YT_stf_lecture23}, \cite{philippsenRegelung2023}, \cite{razaviRFmicroelectronics}, \cite{chengCommunicationCircuits}
+
 \printbibliography
-
-
-
-
-
-
 
 \end{document}
