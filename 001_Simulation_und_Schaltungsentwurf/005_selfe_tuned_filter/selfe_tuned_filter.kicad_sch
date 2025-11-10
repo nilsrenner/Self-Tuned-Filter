@@ -1369,8 +1369,8 @@
 	)
 	(text_box "Integrator\nnew LP"
 		(exclude_from_sim yes)
-		(at 312.42 88.9 0)
-		(size 72.39 53.34)
+		(at 326.39 88.9 0)
+		(size 58.42 53.34)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -3895,7 +3895,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 181.61 100.33 90)
 			(effects
 				(font
@@ -3963,7 +3963,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "14.2"
+		(property "Value" "2"
 			(at 374.65 128.1401 0)
 			(effects
 				(font
@@ -4809,7 +4809,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 332.74 107.95 90)
 			(effects
 				(font
@@ -4877,7 +4877,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM*Q}"
+		(property "Value" "{1k*Q}"
 			(at 116.84 140.97 90)
 			(effects
 				(font
@@ -4945,7 +4945,7 @@
 				)
 			)
 		)
-		(property "Value" "250"
+		(property "Value" "1k"
 			(at 364.49 110.49 90)
 			(effects
 				(font
@@ -5145,7 +5145,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM/H0}"
+		(property "Value" "{1k/H0}"
 			(at 116.84 148.59 90)
 			(effects
 				(font
@@ -5345,7 +5345,7 @@
 				)
 			)
 		)
-		(property "Value" "{CCOM}"
+		(property "Value" "1u"
 			(at 349.2563 96.52 90)
 			(effects
 				(font
@@ -7071,7 +7071,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "{1k}"
 			(at 140.97 130.81 90)
 			(effects
 				(font
@@ -7469,7 +7469,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 205.74 90.17 90)
 			(effects
 				(font
@@ -7766,7 +7766,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 181.61 107.95 90)
 			(effects
 				(font
@@ -7835,7 +7835,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "750"
+		(property "Value" "1k"
 			(at 373.38 119.3799 0)
 			(effects
 				(font

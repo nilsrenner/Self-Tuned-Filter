@@ -4,7 +4,7 @@
     {
       "analysis": "AC",
       "commands": [
-        ".ac dec 100 50 5k",
+        ".ac dec 50 1k 100k",
         ".kicad adjustpaths",
         ".save all",
         ".probe alli",
@@ -21,9 +21,24 @@
       "showGrid": true,
       "traces": [
         {
+          "color": "rgb(228, 26, 28)",
+          "signal": "V(BPF) (phase)",
+          "trace_type": 517
+        },
+        {
+          "color": "rgb(228, 26, 28)",
+          "signal": "V(BPF) (gain)",
+          "trace_type": 521
+        },
+        {
           "color": "rgb(166, 86, 40)",
           "signal": "V(BSF) (phase)",
           "trace_type": 517
+        },
+        {
+          "color": "rgb(166, 86, 40)",
+          "signal": "V(BSF) (gain)",
+          "trace_type": 521
         },
         {
           "color": "rgb(247, 129, 191)",
@@ -33,25 +48,6 @@
         {
           "color": "rgb(247, 129, 191)",
           "signal": "V(HPF) (gain)",
-          "trace_type": 521
-        },
-        {
-          "color": "rgb(152, 78, 163)",
-          "signal": "V(V_C) (gain)",
-          "trace_type": 521
-        },
-        {
-          "color": "rgb(255, 127, 0)",
-          "cursor1": {
-            "position": 448.0752509733011,
-            "x_format": "3~s",
-            "y_format": "3~V"
-          },
-          "cursorD": {
-            "x_format": "3~Hz",
-            "y_format": "3~dB"
-          },
-          "signal": "V(V_in) (gain)",
           "trace_type": 521
         }
       ]
@@ -89,8 +85,8 @@
           "color": "rgb(228, 26, 28)",
           "cursor1": {
             "position": 0.0010004642525533892,
-            "x_format": "3~s",
-            "y_format": "3~V"
+            "x_format": "3~Hz",
+            "y_format": "3~°"
           },
           "cursorD": {
             "x_format": "3~Hz",
