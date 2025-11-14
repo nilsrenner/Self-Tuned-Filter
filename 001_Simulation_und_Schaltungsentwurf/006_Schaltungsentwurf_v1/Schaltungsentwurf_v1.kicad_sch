@@ -5337,6 +5337,14 @@
 		(uuid "4958fd18-315f-40a1-980c-c7bd99a5bde0")
 	)
 	(no_connect
+		(at 184.15 250.19)
+		(uuid "6af5ab00-ed5c-4baf-8fe9-1015449ebea1")
+	)
+	(no_connect
+		(at 184.15 260.35)
+		(uuid "6e51e5ca-3dc0-4e81-9d74-52739a4bb9cc")
+	)
+	(no_connect
 		(at 91.44 222.25)
 		(uuid "6eb7ac3a-cca7-40f3-9766-4d2409ab4df2")
 	)
@@ -5353,8 +5361,16 @@
 		(uuid "916592ce-fd01-458d-9521-a08d40a99711")
 	)
 	(no_connect
+		(at 271.78 250.19)
+		(uuid "99c243e9-b3eb-481a-887c-529bd8211733")
+	)
+	(no_connect
 		(at 91.44 166.37)
 		(uuid "a41e6be2-551b-4b98-a1b1-a24f14d16c9a")
+	)
+	(no_connect
+		(at 271.78 260.35)
+		(uuid "c9c976b4-cc25-46c5-86d6-308aa9d5dcb8")
 	)
 	(no_connect
 		(at 91.44 212.09)
@@ -10524,7 +10540,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 198.12 58.42 90)
 			(effects
 				(font
@@ -11532,72 +11548,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+15V")
-		(at 24.13 228.6 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "24a40f5b-4b18-4459-b38e-e9ad2be24b03")
-		(property "Reference" "#PWR02"
-			(at 24.13 224.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "-10V"
-			(at 25.4 229.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 24.13 228.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 24.13 228.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+15V\""
-			(at 24.13 228.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d6cf303e-9f78-4727-8cde-120297f5eb61")
-		)
-		(instances
-			(project "Schaltungsentwurf_v1"
-				(path "/4769def3-e38b-4148-a1db-c66647f39559"
-					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 147.32 273.05 0)
 		(unit 1)
@@ -12044,7 +11994,7 @@
 				)
 			)
 		)
-		(property "Value" "{CCOM}"
+		(property "Value" "1u"
 			(at 148.5963 40.64 90)
 			(effects
 				(font
@@ -12608,7 +12558,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 284.48 64.77 90)
 			(effects
 				(font
@@ -13316,7 +13266,7 @@
 				)
 			)
 		)
-		(property "Value" "{CCOM}"
+		(property "Value" "1u"
 			(at 300.9963 53.34 90)
 			(effects
 				(font
@@ -13794,6 +13744,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+15V")
+		(at 24.13 273.05 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "58663c4e-bd26-41aa-996b-490bf00d9bf5")
+		(property "Reference" "#PWR03"
+			(at 24.13 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-15V"
+			(at 25.4 274.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 24.13 273.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 24.13 273.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+15V\""
+			(at 24.13 273.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ddf5f2d4-76cc-419c-b6b3-53317685baf8")
+		)
+		(instances
+			(project "Schaltungsentwurf_v1"
+				(path "/4769def3-e38b-4148-a1db-c66647f39559"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "000_My_Symbols:Testpoint")
 		(at 322.58 69.85 0)
 		(unit 1)
@@ -13904,7 +13920,7 @@
 				)
 			)
 		)
-		(property "Value" "{CCOM}"
+		(property "Value" "1u"
 			(at 63.5063 38.1 90)
 			(effects
 				(font
@@ -14214,72 +14230,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+15V")
-		(at 24.13 273.05 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "68b7e3a3-4ceb-4a41-b4df-73eb67312197")
-		(property "Reference" "#PWR03"
-			(at 24.13 269.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "-10V"
-			(at 25.4 274.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 24.13 273.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 24.13 273.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+15V\""
-			(at 24.13 273.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6a1d1766-3c67-4670-834a-a9d3b86f035c")
-		)
-		(instances
-			(project "Schaltungsentwurf_v1"
-				(path "/4769def3-e38b-4148-a1db-c66647f39559"
-					(reference "#PWR03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Potentiometer")
 		(at 271.78 111.76 0)
 		(unit 1)
@@ -14307,7 +14257,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "000_OUF:Trimmer Rund"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical"
 			(at 271.78 111.76 0)
 			(effects
 				(font
@@ -14380,7 +14330,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "000_OUF:Trimmer straight"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical"
 			(at 24.13 266.7 0)
 			(effects
 				(font
@@ -14778,72 +14728,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+15V")
-		(at 24.13 182.88 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6fe7fc59-1310-4624-b104-f9b7b8b0fc6d")
-		(property "Reference" "#PWR01"
-			(at 24.13 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "-10V"
-			(at 25.4 184.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 24.13 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 24.13 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+15V\""
-			(at 24.13 182.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "55b1c548-77ef-42b7-8f97-dbda91bea8e8")
-		)
-		(instances
-			(project "Schaltungsentwurf_v1"
-				(path "/4769def3-e38b-4148-a1db-c66647f39559"
-					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+12V")
 		(at 396.24 214.63 0)
 		(unit 1)
@@ -14904,6 +14788,72 @@
 			(project "Schaltungsentwurf_v1"
 				(path "/4769def3-e38b-4148-a1db-c66647f39559"
 					(reference "#PWR038")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+15V")
+		(at 24.13 182.88 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7248a511-f3ed-4d02-94f8-205a07020fbe")
+		(property "Reference" "#PWR01"
+			(at 24.13 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-15V"
+			(at 25.4 184.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 24.13 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 24.13 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+15V\""
+			(at 24.13 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "16ab3c3a-58fe-428b-9e94-18f37b39f7a3")
+		)
+		(instances
+			(project "Schaltungsentwurf_v1"
+				(path "/4769def3-e38b-4148-a1db-c66647f39559"
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -15943,7 +15893,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "000_OUF:Trimmer Rund"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical"
 			(at 24.13 176.53 0)
 			(effects
 				(font
@@ -16301,7 +16251,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "000_OUF:Trimmer Rund"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical"
 			(at 24.13 222.25 0)
 			(effects
 				(font
@@ -16486,7 +16436,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 162.56 88.9 90)
 			(effects
 				(font
@@ -16822,7 +16772,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 220.98 48.26 90)
 			(effects
 				(font
@@ -17574,7 +17524,7 @@
 				)
 			)
 		)
-		(property "Value" "{RCOM}"
+		(property "Value" "1k"
 			(at 198.12 101.6 90)
 			(effects
 				(font
@@ -17653,7 +17603,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "000_OUF:Trimmer Rund"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical"
 			(at 383.54 227.33 0)
 			(effects
 				(font
@@ -18257,7 +18207,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "000_OUF:Trimmer Rund"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical"
 			(at 271.78 96.52 0)
 			(effects
 				(font
@@ -19068,6 +19018,72 @@
 			(project "Schaltungsentwurf_v1"
 				(path "/4769def3-e38b-4148-a1db-c66647f39559"
 					(reference "PS1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+15V")
+		(at 24.13 228.6 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e9510873-bb02-4b51-ba0c-0f0d77c7b787")
+		(property "Reference" "#PWR02"
+			(at 24.13 224.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "-15V"
+			(at 25.4 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 24.13 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 24.13 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+15V\""
+			(at 24.13 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9a7fa242-b5df-4e53-91c3-4c6835d48ec8")
+		)
+		(instances
+			(project "Schaltungsentwurf_v1"
+				(path "/4769def3-e38b-4148-a1db-c66647f39559"
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)

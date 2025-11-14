@@ -1,0 +1,16 @@
+.SUBCKT MPY634_linear X1 X2 SF Y1 Y2 +Vs Out Z1 Z2 -Vs
+* Linear Multiplikator für kleine Signale
+* Vout = (X1-X2)*(Y1-Y2)/SF
+
+* Definiere kleine Signale
+EX Xdiff 0 VALUE = {V(X1,0) - V(X2,0)}
+EY Ydiff 0 VALUE = {V(Y1,0) - V(Y2,0)}
+
+* Berechne Ausgang
+EOUT Out 0 VALUE = { V(Xdiff,0) * V(Ydiff,0) / V(SF,0) }
+
+* Dummy-Pins, damit Subckt kompatibel bleibt
+RZ Z1 Z2 1G
+
+.ENDS MPY634_linear
+
