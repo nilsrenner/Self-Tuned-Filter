@@ -1,0 +1,42 @@
+\documentclass[../main_config.tex]{subfiles}
+\begin{document}
+
+\chapter{Simulation}
+
+Um ein besseres Verständnis für den Multiplizerer zu gewinnen, wird dieser in KiCad über Spice simuliert. Das größte Hindernis bei der Simulation des Multiplizieres ist die Implementierung der Simulationsdatei, die beschreibt, wie sich das Bauteil verhält. Leider stellt der Hersteller vom MPY634 Texas Instruments die Simulationsdatei nur für die eigene Simulationssoftware Tina TI bereit, sodass aus dieser .tsc-Datei die für die Simulation wichtigen Funktionen herausgesucht und in einer .lib-Datei abgespeichert werden müssen. Wichtig ist zum Schluss noch, dass alle Befehle innerhalb der .Lib-Datei mit ltspice (bzw PSpice) kompatibel sein müssen. Nach Abschluss dieses Unterfangens konnte die .lib-Datei in das KiCad Projekt hinzugefügt werden um den Multiplizierer zu testen. (tran funktioniert, ac leider nicht (mehr!!!))\par
+\medskip
+
+Die Verschaltung des Multis läuft in KiCad etwas anders als in der Realität. In der Realität kann der SF-Pin des Multis einfach offen gelassen werden, da dieser automatisch auf 10V getrimmt wird. in der Simulation muss diese Spannung $V_r$ von außen angelegt werden.\par
+
+
+
+
+
+
+
+
+
+
+
+
+Da alle TEilsysteme im letzten Kapitel schon simuliert wurden soll sich dieses Kapitel der Gesammtsimmultation des Filters witmen. 
+
+
+
+Simulaitonsmodell des Multis:
+https://e2e.ti.com/support/tools/simulation-hardware-system-design-tools-group/sim-hw-system-design/f/simulation-hardware-system-design-tools-forum/122765/macro-model-for-mpy634
+
+
+%\section{Analoger Multiplizierer}
+
+
+%\section{Phasendetektor}
+%\section{Integratorbaustein im VCF}
+\section{Frequenzsweep}
+Für Phase, warum greifen wir am HP ab
+\section{Ermittlung der Grenzfrequenz}
+\section{Filterbereich des Filters}
+
+
+
+\end{document}

@@ -1,0 +1,80 @@
+\begin{tikzpicture}[
+  block/.style={draw, fill=gray!20, rectangle, minimum height=2em, minimum width=3em},
+  wcircle/.style={draw, fill=white, circle, minimum size=2.5em, inner sep=0pt},
+  bcircle/.style={draw, fill=black, circle, minimum size= 0.5em, inner sep=0pt},
+  lcircle/.style={draw, fill=white, circle, minimum size= 0.5em, inner sep=0pt},
+  sum/.style={draw, circle, minimum size=1em, inner sep=0pt},
+  connector/.style={-Latex, thick},
+  node distance=2cm and 2cm
+  ]
+
+  % Nodes
+  \node[lcircle] (input) at (0,0) {};
+  \node[wcircle, right=of input] (gain1) {$-H_0$};
+  \node[sum, right=1cm of gain1] (sum1) {$\sum$};
+  \node[wcircle, right= 2.25cm of sum1] (gain2) {$-1$};
+  \node[sum, right= 1cm of gain2] (sum2) {$\sum$};
+  \node[wcircle, right=2.5cm of sum2] (gain_vr1) {$V_r$};
+  \node[sum] (prod1) at (14.75,0) {$\prod$};
+
+  \node[block, right=3cm of gain_vr1] (gain3) {$\frac{1}{s}$};
+  \node[wcircle, right=1.5cm of gain3] (gain4) {$-\frac{1}{RC}$};
+  \node[bcircle, right=1cm of gain4] (dot1) {};
+  \node[lcircle, right=1cm of dot1] (output) {};
+
+  %Rückführungen
+  \node[wcircle, above= 2cm of gain3] (gain5) {$-\frac{1}{Q}$};
+
+  \node[wcircle, below=2cm of gain4] (gain_vr2) {$V_r$};
+    \node[sum, left=1cm of gain_vr2] (prod2) {$\prod$};
+  \node[block, left=1cm of prod2] (gain6) {$\frac{1}{s}$};
+  \node[wcircle, left=1cm of gain6] (gain7) {$-\frac{1}{RC}$};
+  \node[wcircle, left=2.25cm of gain7] (gain8) {$-1$};
+
+\node[lcircle] (in_vc) at (0,-1.5) {};
+\node[bcircle] (dot2)  at (14.75,-1.5){};
+  %Abzweigung
+  %\coordinate[right=1cm of gain4] (afterW0);
+
+
+  
+  %\node[sum, right=of input] (sum2) {$\sum$};
+  %\node[block, right=of sum1] (gain) {$K$};
+  %\node[block, right=of gain] (system) {System};
+  %\node[block, right=of system] (output) {Ausgang};
+
+  % Connections
+  \draw[connector] (input) -- (gain1) node[near start,above] {$V_i$};
+  \draw[connector] (gain1) -- (sum1);
+  \draw[connector] (sum1) -- (gain2)node[midway,above] {$V_4$};
+  \draw[connector] (gain2) -- (sum2);
+  \draw[connector] (sum2) -- (gain_vr1)node[midway,above] {$V_1$};
+  \draw[connector] (gain_vr1) -- (prod1);
+  \draw[connector] (prod1) -- (gain3);
+  \draw[connector] (gain3) -- (gain4);
+  %\draw[connector] (gain4) -- (dot1);
+  \draw[connector] (gain4) -- (output) node[near end, above] {$V_2$};
+
+  % Rückführung oben mit 90°-Biegung
+  \draw[connector] (dot1) |- (gain5);
+  \draw[connector] (gain5) -| (sum1.north);
+
+  % Rückführung unten mit 90°-Biegung
+  \draw[connector] (dot1) |- (gain_vr2);
+  \draw[connector] (gain_vr2) -- (prod2);
+  \draw[connector] (prod2) -- (gain6);
+  \draw[connector] (gain6) -- (gain7);
+  \draw[connector] (gain7) -- (gain8)node[midway, above]{$V_3$};
+  \draw[connector] (gain8) -| (sum2.south) ;
+
+
+\draw[connector] (in_vc) -| (prod1)node[near start, below,  xshift=-6.85cm]{$\frac{1}{V_c}$};
+\draw[connector] (dot2) -| (prod2);
+
+
+  %\draw[connector] (input) -- (sum1);
+  %\draw[connector] (sum1) -- (gain);
+  %\draw[connector] (gain) -- (system);
+  %\draw[connector] (system) -- (output);
+
+\end{tikzpicture}

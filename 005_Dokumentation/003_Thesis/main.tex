@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt]{book}
+
+% Sprach- und Zeichencodierung
+\usepackage[T1]{fontenc}       % korrekte Darstellung von Umlauten
+\usepackage[utf8]{inputenc}    % UTF-8 Eingabekodierung
+\usepackage[german]{babel}    % deutsche Spracheinstellungen
+\usepackage{microtype}
+
+% Mathematik
+\usepackage{amsmath, amssymb, mathtools} % erweiterte Matheumgebungen
+\usepackage{siunitx}                     % SI-Einheiten und Zahlenformatierung
+
+
+% Layout und Formatierung
+\usepackage{geometry}          % Seitenränder einstellen
+\usepackage{graphicx}          % Grafiken einbinden
+
+\usepackage{float}             % präzise Positionierung von Bildern
+\usepackage{fancyhdr}          % Kopf- und Fußzeilen
+\usepackage{titlesec}          % Überschriftenformatierung
+\usepackage{tocloft}           % Inhaltsverzeichnis anpassen
+\usepackage{makecell}          % Zeilenumbrüche in Tabellenzellen
+\usepackage{array}             % erweiterte Tabellenspalten
+\usepackage{booktabs,tabularx} % schöne Tabellen
+\usepackage{longtable}         % Tabellen über mehrere Seiten
+\usepackage{caption}           % bessere Bild-/Tabellenunterschriften
+\usepackage{subcaption}        % Subfigures
+\usepackage{enumitem}          % flexible Listen
+\usepackage{subfiles}          % Kapitel einzeln kompilierbar
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+% Literatur
+\usepackage{csquotes}                           % saubere Anführungszeichen
+\usepackage[backend=biber, style=ieee]{biblatex} % IEEE-Stil mit Biber
+\addbibresource{Literaturverzeichnis.bib}       % Literaturdatenbank einbinden
+
+
+% Zusatzfunktionen
+\usepackage{lastpage}    % für "Seite X von Y"
+\usepackage{xcolor}      % Farben (für Listings etc.)
+\usepackage{listings}    % Codeblöcke
+\usepackage[hidelinks]{hyperref} % Hyperlinks (immer zuletzt)
+
+
+% Einstellungen für Code
+\lstdefinestyle{python}{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+}
+
+
+% Seitenlayout
+\geometry{
+  top=2cm,
+  bottom=3cm,
+  left=2.5cm,
+  right=2.5cm
+}
+\setlength\parindent{0pt} % kein Absatzeinzug
+
+
+% Kopf- und Fußzeilen
+\setlength\headheight{44pt}%26
+\setlength\headsep{10pt}%35
+\addtolength{\topmargin}{-12pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\raisebox{-0.2cm}{\includegraphics[height=1cm]{Bilder/hsb_logo2.png}}}
+\chead{Bachelorthesis\par Nils Renner}
+\rhead{\raisebox{-0.2cm}{\includegraphics[height=1.5cm]{Bilder/hsb_logo1.png}}}
+\cfoot{Seite \thepage\ von \pageref{LastPage}}
+
+
+% Dokumentbeginn
+\begin{document}
+
+% Titelseite
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.6\textwidth]{Bilder/Logo_HSB_Hochschule_Bremen.png}\\[1cm]
+    {\scshape\LARGE Hochschule Bremen\\}
+    {\scshape\Large Fakultät 4: Elektrotechnik und Informatik\\[1.5cm]}
+    {\huge\bfseries Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters\\[0.5cm]}
+    {\Large\bfseries Nils Renner (5197659)\\[2cm]}
+    {\Large\bfseries Prüfer\\[0.5cm]}
+    \begin{tabular}{l}
+      Prof. Dr.-Ing. Mirco Meiners \\
+      Prof. Dr. Sören Peik
+    \end{tabular} \\[2cm]
+    \vfill
+\end{titlepage}
+
+
+% Inhaltsverzeichnis
+\newpage
+\pagenumbering{gobble} % keine Seitenzahl auf Inhaltsverzeichnis
+\tableofcontents
+
+
+% Haupttext
+\newpage  
+\pagenumbering{arabic}  
+\setcounter{page}{1}
+
+
+
+\subfile{Einleitung/Einleitung.tex}
+
+\newpage
+\subfile{Tools/Tools.tex}
+
+
+\newpage
+\subfile{Theorie/Theorie_alt.tex}
+\newpage
+\subfile{Theorie/Theorie_neu.tex}
+
+\newpage
+\subfile{Simulation/Simulation.tex}
+
+\newpage
+\subfile{systemdesign/systemdesign.tex}
+
+\newpage
+\subfile{Messung/Messung.tex}
+
+\newpage
+\subfile{Auswertung/Auswertung.tex}
+
+\newpage
+\subfile{Fazit/Fazit.tex}
+
+\newpage
+\printbibliography
+\newpage
+
+\listoffigures
+
+\end{document}

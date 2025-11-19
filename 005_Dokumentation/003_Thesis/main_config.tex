@@ -1,0 +1,75 @@
+\documentclass[a4paper,12pt]{book}
+
+% --- Sprache, Kodierung & Schrift ---
+\usepackage[T1]{fontenc}          % korrekte Silbentrennung & Umlaute
+\usepackage[utf8]{inputenc}       % Eingabekodierung UTF-8
+\usepackage[ngerman]{babel}       % deutsche Spracheinstellungen
+\usepackage{microtype}            % bessere Typografie (Abstände, Randausgleich)
+\usepackage{csquotes}             % korrekte Anführungszeichen mit babel (Pflicht für biblatex!)
+
+% --- Mathematik ---
+\usepackage{amsmath, amssymb, mathtools} % erweiterte Matheumgebungen
+\usepackage{siunitx}                     % SI-Einheiten und Zahlenformatierung
+\sisetup{
+  locale = DE,                           % Komma als Dezimaltrennzeichen
+  per-mode = symbol,
+  detect-all                            % übernimmt Schriftart aus Umgebung
+}
+
+% --- Layout ---
+\usepackage{geometry}
+\geometry{
+  top=2cm,
+  bottom=3cm,
+  left=2.5cm,
+  right=2.5cm
+}
+\setlength\parindent{0pt} % kein Absatzeinzug
+\setlength\parskip{0.5em} % etwas Abstand zwischen Absätzen
+
+% --- Grafiken ---
+\usepackage{graphicx}        
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs,tabularx}
+\usepackage{longtable}
+\usepackage{array, makecell}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+% --- Kopf- und Fußzeilen ---
+\usepackage{fancyhdr}
+\setlength\headheight{26pt}
+\setlength\headsep{35pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Nils Renner (5197659)}
+\chead{Vorbereitung Bachelorthesis}
+\rhead{\includegraphics[width=4cm]{Bilder/Logo_HSB_Hochschule_Bremen.png}}
+
+% --- Codeblöcke ---
+\usepackage{listings}
+\usepackage{xcolor}
+\lstdefinestyle{arduino}{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    breaklines=true,
+    frame=single,
+    captionpos=b
+}
+
+% --- Literatur ---
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{Literaturverzeichnis.bib}
+
+% --- Sonstiges ---
+\usepackage{lastpage}  % für "Seite X von Y"

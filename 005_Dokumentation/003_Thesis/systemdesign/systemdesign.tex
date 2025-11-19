@@ -1,0 +1,34 @@
+\documentclass[../main_config.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Schaltungsentwurf/ Design des Systems}
+
+zuerst wurde die schaltung ohne ansteueerung für Micocontroller und so auf dem ASLK-PRO Board aufgebaut. dabei fiel auf, dass der Multi laut Datenblatt +-15V versorgungsspannung will. das board selber kannn aber nur 10 liefern. Dies fiel besonders am SF Pin des Multis auf, der statt den angesagten 10V lasergetrimmt nur etwa 8.78V ohne weitere verschaltung anliegen hatte. der verwentete Operationsverstärker kann laut datenblatt mehr als 15 V als versorgung ab (genauer bitte) wesshalb der erste Prototyp mit 15V versorgungsspannung geplant wurde.
+
+
+
+\section{Design des Schaltplans}
+Der Schaltplan wurde darauf optimiert, besonders leserlich und nachvollziehbar zu sein.
+\section{Design der Platine}
+
+TL082B ist präziser / besser für filter geeignet als TL082 oder TL082A (advanced version)
+
+kupferlagenbeschreibung.
+\section{Design des Codes}
+
+beispiel:
+
+\begin{lstlisting}[style=python]
+print("Hello World")
+\end{lstlisting}
+
+\subsection{Design der Website}
+
+
+\end{document}
+
+
+
+
+

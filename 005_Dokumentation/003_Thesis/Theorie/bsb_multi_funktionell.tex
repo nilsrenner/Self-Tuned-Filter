@@ -1,0 +1,36 @@
+%\documentclass[tikz,border=10pt]{standalone}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows.meta, positioning}
+
+%\begin{document}
+
+
+\begin{tikzpicture}
+    [  block/.style={draw, fill=white, rectangle, minimum            height=2em, minimum width=3em},
+    sum/.style={draw, fill=white, circle, minimum size=2.5em, inner sep=0pt},
+       lcircle/.style={draw, fill=white, circle, minimum size= 0.5em, inner sep=0pt},
+       connector/.style={-Latex, thick},
+       node distance=2cm and 2cm]
+
+\node[lcircle] (input1) {};
+\node[lcircle, below=2cm of input1] (input2) {};
+\node[block, right=2cm of input1] (log1) {$ln$};
+\node[block, right=2cm of input2] (log2) {$ln$};
+
+\coordinate[below=1cm of input1] (mid);
+%\coordinate[right=1cm of gain4] (afterW0);
+\node[sum, right=4.5cm of mid] (sum) {$\sum$};
+
+\node[block, right=1.5cm of sum] (exp) {$exp$};
+\node[lcircle, right=of exp] (output) {};
+
+\draw[connector] (input1) -- (log1) node[near start,above] {$V_x$};
+\draw[connector] (input2) -- (log2) node[near start, above] {$V_y$};
+\draw[connector] (log1) -| (sum);
+\draw[connector] (log2) -| (sum);
+\draw[connector] (sum) -- (exp);
+
+\draw[connector] (exp) -- (output) node[near end, above] {$V_{out}$};
+    
+\end{tikzpicture}
+%\end{document}

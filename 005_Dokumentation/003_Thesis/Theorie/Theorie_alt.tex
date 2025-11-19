@@ -1,0 +1,229 @@
+\documentclass[../main_config.tex]{subfiles}
+\begin{document}
+
+\chapter{Theoretische Grundlagen}
+In diesem Teil werden die bislang im Studium erlangten Kenntnisse noch einmal aufgegriffen. Bei der Dokumentation dieser wurden allerdings auch immer wieder neue Enkenntnisse gewonnen.\par
+\medskip
+
+Konventionelle Filterschaltungen basieren meist auf Kondensatoren und Induktivitäten. Während Kondensatoren sehr kompakt aufgebaut und problemlos in integrierten Schaltungen realisiert werden können, stellen Induktivitäten in dieser Hinsicht eine Herausforderung dar. Induktivitäten sind groß und lassen sich nur schwer miniaturisieren, was den Einsatz in modernen elektronischen Systemen erschwert. (Zudem weisen Induktivitäten parasitäre Eigenschaften auf, die das Filterverhalten negativ beeinflussen können.) \par
+\medskip
+Eine gute Lösung für diese Problematik sind Operationsverstärker (OpAmps), die durch die externe Verschaltung von Kondensatoren und Widerständen die Funktion von Induktivitäten übernehmen können. Durch die geschickte Kombination dieser drei Bauelemente lassen sich vielfältige Filterstrukturen auf kleinem Raum realisieren. Filter auf Basis von Operationsverstärkern werden als aktive Filter bezeichnet, da sie im Gegensatz zu passiven Filtern eingehende Signale verstärken können und desshalb eine externe Spannungsversorgung benötigen, um den Operationsverstärker mit Energie zu versorgen.\cite{active_passive_f}\par 
+\medskip
+Eine dieser aktiven Filterstrukturen ist der sogenannte Biquad-Filter, der in der Lage ist, verschiedene Filtertypen wie Tiefpass, Hochpass, Bandpass und Bandsperre innerhalb einer Schaltung bereitzustellen. \par
+\medskip    
+
+Der Biquad-Filter ist wie der Name schon andeutet ein Filter zweiter Ordnung, der Aus zwei Integratoren und zwei Addierern besteht. Durch die Verschaltung dieser OpAmps wie in Abbildung  \ref{fig:Multiple-Feetback-Biquad}  zu erkennen, liegt am Ausgang jedes OpAmps ein Signal vor, was eine andere Filtercharakteristik aufweist. Durch die Wahl des Ausgangs kann somit die gewünsche Filterung ausgegeben werden. \par
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../Bilder/Biquad_ASLK.png}
+    \caption{Multiple-Feedback-Biquad \cite{Lab_Kit_PRO}}
+    \label{fig:Multiple-Feetback-Biquad}
+\end{figure}
+
+
+\section{Grundlagen und mathematische Herleitung des Biquad-Filter}
+Zur mathematischen Beschreibung des Systems werden die Übertragungsfunkionen der einzeilnen Filtertypen mittles der Laplace-Transformation, unter Verwendung des idealisierten OpAmp-Modells, hergeleitet. Damit gilt für den Integrierer:
+
+\begin{figure}[!h]
+  \centering
+  \begin{circuitikz}[european]
+    % OPV einfügen
+  \draw
+  % Eingangsspannung
+  (0,0) node[left, blue] {$V_{in}$} 
+    to[R, l=$R$,o-] (2,0)
+    to[short,-*] (2.5,0)
+  % Verbindung zur invertierenden Eingangsseite des OPV
+    to[short] (2.5,0) 
+    node[op amp, anchor=-] (opamp) {};
+
+  % Rückkopplung: Ausgang über C zurück zum invertierenden Eingang
+  % Schritt 1: Punkt setzen
+  \coordinate (vout) at (opamp.out);
+
+  % Schritt 2: Vom OPV-Ausgang weiterzeichnen
+  \draw (vout) to[short, *-o] ++(0.5,0) node[right, blue] {$V_{out}$};
+
+
+  % Rückkopplung: vom Ausgang obenrum zurück zum invertierenden Eingang
+  \draw (vout) -- ++(0,2) 
+        to[C, l=$C$] (2.5,1.5) 
+        -- (2.5,0);
+  % nichtinvertierender Eingang an Masse
+  \draw (opamp.+) -- ++(0,-0.5) node[ground]{};
+  
+  \end{circuitikz}
+  \caption{Invertierender Integrator}
+  \label{fig:inv_integrator2}
+\end{figure}
+
+
+\begin{equation}
+  V_{out}(s) = -\frac{V_{in}(s)}{sRC}
+\end{equation}
+
+Und für den invertierenden Addierer:(\textbf{erst noch den inv. Verstärker?})
+
+
+\begin{figure}[!h]
+  \centering
+  \begin{circuitikz}[european]
+    % OPV einfügen
+  \draw
+  % Erster eingang
+  (0,0) node[left, blue] {$V_{1}$} 
+    to[R, l_=$R_{11}$, i^>=$\color{red} {I_{11}}$, o-] (2.5,0)
+    to[short,-*] (3,0)
+  % Verbindung zur invertierenden Eingangsseite des OPV
+  
+    node[op amp, anchor=-] (opamp) {};
+
+  %zweiter eingang
+  \draw (0,1.25) node[left, blue] {$V_{2}$}
+    to[R, l_=$R_{12}$, i^>=$\textcolor{red}{I_{12}}$, o-] (2.5,1.25)
+    to[short,-*] (2.5,0); %
+
+  %dritter eingang
+  \draw (0,2.5) node[left, blue] {$V_{3}$}
+    to[R, l_=$R_{13}$, i^>=$\textcolor{red}{I_{13}}$, o-] (2.5,2.5)
+    to[short,-*] (2.5,1.25); %
+
+  % Rückkopplung: Ausgang über C zurück zum invertierenden Eingang
+  % Schritt 1: Punkt setzen
+  \coordinate (vout) at (opamp.out);
+
+  % Schritt 2: Vom OPV-Ausgang weiterzeichnen
+  \draw (vout) to[short, *-o] ++(0.5,0) node[right, blue] {$V_{out} $};
+
+
+  % Rückkopplung: vom Ausgang obenrum zurück zum invertierenden Eingang
+  \draw (vout) -- ++(0,2) 
+        to[R, l=$R_2$, , i^<=$\color{red} {I}$] (3,1.5) 
+        -- (3,0);
+  % nichtinvertierender Eingang an Masse
+  \draw (opamp.+) -- ++(0,-0.5) node[ground]{};
+
+
+  \end{circuitikz}
+  \caption{invertierender Addierer}
+  \label{fig:Addierer}
+\end{figure}
+
+
+\begin{equation}
+  V_{out} = -R_2 \left( \frac{V_1}{R_{11}} + \frac{V_2}{R_{12}} + \frac{V_3}{R_{13}} \right)
+\end{equation}
+
+
+Duch die Kombinaltion dieser beschreibenen Teilschaltungen lassen sich die Übertragungsfunktionen der einzelnen OpAmp-Ausgänge herleiten:\par
+
+\begin{align}
+V_1 &= -(V_3 + V_4) \label{eq:v1} \\
+V_2 &= -\left(\frac{1}{s} \omega_0 \cdot V_1 \right) \label{eq:v2} \\
+V_3 &= -\left(\frac{1}{s} \omega_0 \cdot V_2 \right) \label{eq:v3} \\
+V_4 &= -\left( \frac{V_2}{Q} + H_0 \cdot V_i \right) \label{eq:v4}
+\end{align}
+\medskip
+
+Werden diese Gleichungen nun so ineinander eingesetzt, dass sie dem Schaltbild des Biquad-Filters entsprechen, lassen sich die Übertragungsfunktionen der vier Filtertypen herleiten. Die einzelnen Schritte der Herleitung werden im Abschlussbericht des Moduls ANS \cite{LabANS} ausführlicher besprochen. \par
+
+\begin{itemize}
+    \item Tiefpass:
+\end{itemize}
+\begin{align}
+    \frac{V_3}{V_i} &= \frac{H_0}{1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2}}\label{eq:tf_lp}
+\end{align}
+
+\begin{itemize}
+    \item Hochpass:
+\end{itemize}
+\begin{align}
+    \frac{V_1}{V_i} = \frac{H_0  \frac{s^2}{\omega_0^2}}{1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2}} \label{eq:tf_hp}
+\end{align}
+
+
+\begin{itemize}
+    \item Bandpass:
+\end{itemize}
+\begin{align}
+    \frac{V_2}{V_i} = \frac{-H_0  \frac{s}{\omega_0}}{ 1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} } \label{eq:tf_bp}
+\end{align}   
+
+\begin{itemize}
+    \item Bandsperre:
+\end{itemize}
+\begin{align}
+    \frac{V_4}{V_i}= \frac{-H_0 \left( 1 + \frac{s^2}{\omega_0^2} \right)}{1 + \frac{s}{\omega_0 Q} + \frac{s^2}{\omega_0^2} } \label{eq:tf_bs}
+\end{align}
+
+Gut zu erkennen ist hierbei, dass alle Übertragungsfunktionen den gleichen Nenner besitzen. Der Zähler unsterscheidet sich je nach Filterart.
+
+
+\section{Einfluss der Bauteilgrößen und Parameter auf das Filterverhalten}
+
+Die Werte der im Biquad eingesetzten Widerstände und Kondensatoren bestimmen die charakteristischen Größen des Filters. Insbesondere beeinflussen sie die Grenzfrequenz $\omega_0$, die Filtergüte $Q$ und die maximale Verstärkung $H_0$. Durch die gezielte Auswahl der Bauteilwerte lässt sich das Filterverhalten auf die spezifischen Anforderungen einer Anwendung abstimmen.\par
+\medskip
+Die Grenzfrequenz $\omega_0$ ergibt sich bei idealieserten Schaltungen nach folgender Formel:
+
+\begin{equation}
+    \omega_0 = \frac{1}{RC} \label{eq:w_0}
+\end{equation}
+
+
+Durch genauere Bertrachtung in der Vorbereitungsphase auf diese Thesis viel auf, dass $R$ sich nur durch den Wert der beiden Vorwiederstände der Integratoren ergibt, nicht aber durch die Widerstände der Addierer. Dieser Zusammenhang war vorher nicht klar, wesswegen im damaligen Schaltungsdesign die Kondensatoren geändert wurden (Anstatt 8 Widerstände)um die Grenzfrequenz zu verschieben. $C$ beschreibt die Kapazität der beiden Kondensatoren in den Integratoren. Der durch die Gleichung \ref{eq:w_0} gezeigte Zusammenhang kann nun dafür verwendet werden, die Grenzfrequenz auf den gewünschten Wert einzustellen.\par
+\medskip
+ 
+
+Der Gütefaktor beeinflusst im Zeitbereich die Resnonanz und Dämpfung des Filters. Je nach Wert von $Q$ lassen sich drei unterschiedliche Dämpfungsfälle anhand der Impulsantwort unterscheiden:\par
+\medskip
+
+\begin{itemize}
+\item \textbf{Schwingfall} (\( Q > \frac{1}{2} \)):
+Komplex-konjugierte Pole, gedämpftes Schwingungsverhalten:
+\begin{equation*}
+s_{1,2} = -\frac{\omega_0}{2Q} \pm j\omega_0\sqrt{1 - \frac{1}{4Q^2}}
+\end{equation*}
+
+\item \textbf{Aperiodischer Grenzfall} (\( Q = \frac{1}{2} \)):
+Doppelter reeller Pol, kritische Dämpfung:
+\begin{equation*}
+s_{1,2} = -\omega_0
+\end{equation*}
+
+\item \textbf{Kriechfall} (\( Q < \frac{1}{2} \)):
+Zwei reelle Pole, träges (überdämpftes) Verhalten:
+\begin{equation*}
+s_{1,2} = -\frac{\omega_0}{2Q} \pm \omega_0\sqrt{\frac{1}{4Q^2} - 1}
+\end{equation*}
+\end{itemize}
+
+
+
+
+Die Filtergüte $Q$ beeinflusst ebenfalls das Frequenzverhalten des Filters. Für die Gute unterscheidet sich der Zusammenhang zwischen Güte und Bandbreite je nach Filtertyp.
+
+Bei Hoch- und Tiefpassfiltern charakterisiert $Q$ die Flankensteilheit im Übergangsbereich um die Grenzfrequenz. Eine Erhöhung des Gütefaktors führt zu einer steileren Filterflanke und zu einer stärkeren Dämpfung außerhalb des Durchlassbereichs. Zudem ergibt sich ab einer Güte von $Q > 0,707$ eine Resonanzüberhöhung (Überschwinger) nahe der Grenzfrequenz. \par
+\medskip
+
+Im Gegensatz dazu verfügen Bandpass- und Bandsperrfilter über eine deutlich ausgeprägte Mittenfrequenz $\omega_0$, welche das Zentrum des Durchlass- bzw. Sperrbereichs markiert. Die Bandbreite $\Delta\omega$ beschreibt den Abstand zwischen den beiden -3\,dB-Grenzfrequenzen. Die folgende Gleichung  beschreibt den Zusammenhang zwischen Güte, Bandbreite und Mittenfrequenz.\cite{schaumanndesign}
+
+\begin{equation}
+\Delta\omega = \frac{\omega_0}{Q}
+\label{VerkleinerungBandbreite}
+\end{equation}
+
+Eine größere Güte $Q$ fürht also zu einer schmaleren Bandbreite und zu einer stärker ausgeprägten Verstärkung bzw. Dämpfung um die Mittenfrequenz. \par
+\medskip
+\textbf{hier könnte noch eine schöne überleitung zur NS und PS in der s-Ebene hinein. -> gehe ich darauf später noch mal ein?}
+
+\medskip
+
+Der Verstärkungsfaktor $H_0$ wirkt sich hingengen nur auf die Amplitudenhöhe des Filters aus, ohne die Frequenzcharakteristik zu verändern. Ein höherer Verstärkungsfaktor führt zu einer stärkeren Signalverstärkung im Durchlassbereich des Filters. \par
+\medskip
+
+\textbf{sollte hier die bestimmung der Grenzfrequenz hin? => habe das allerdings zur vorbereitung gemacht und nicht im 6. Semester}
+\section{Zusammenfassung des bisherigen Standes und offene Fragen}
+
+\end{document}

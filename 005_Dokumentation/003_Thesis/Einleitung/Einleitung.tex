@@ -1,0 +1,72 @@
+\documentclass[../main_config.tex]{subfiles}
+\begin{document}
+
+\chapter{Einleitung}
+
+
+\section{Vorbetrachtung}
+Durch das Modul ANS im letzten Semester wurde das arbeiten mit klassischen Analogen Filtern durch das Experiment 4 aus dem ASLK-Manual erlernt
+
+Durch Berechnungen und Ausprobieren wurden analoge Filter entworfen und an die gewollten werte angepasst. 
+
+So ergaben sich Filter mit fester Freqenz, da die Bauteilgrößen einmal angenommen wurden (mit ausnahme der zwei Potis) und sich daraus die Frequenz ergab
+
+In Experiment 5 des ASLK-Manuals soll es um selfe tuned Filter, also sich selbst automatisch anpassende/einstellende Filter gehen.
+
+
+
+
+\section{Beschreibung der Bachlorarbeit}
+
+In der Praxis schanken Bauteile (Temperatur, Alterung, Toleranzen).
+
+Diese Probleme haben Filter die sich selbst einstellen nicht, da sie nicht rein von den physischen Paramentern der eingebauten Bauteile abhängen sondern einen gewissen Spielraum bieten, diese Inperfektionen auszugleichen. 
+
+Ziel ist es, dass der Filter selbstständig seine Mittenfrequenz nachstimmen kann. Dafür braucht er eine Referenzfrequenz  und einen Mechanismus, der Prüft, ob der Filter noch auf der richtigen Frequenz liegt, oder weggedriftet ist.
+
+Vorgehen: lernen wie man einen geregelten osz verwendet  um Ref-Frequenz zu erzeugen.
+Ref-Frequenz wird verwendet um filter automaisch auf die Sollfrequenz einzustellen.
+Experiment ist also eine Kombination aus REgelungstechnik und Exp 4 (klassische Filtertheorie)
+
+
+
+
+selbst anpassende Filter sind ein wichtiger Bestandteil der Filterungstechnik heutzutage, da da immer vorhandene Bauteiltolleranzen eine geringere Rolle spielen und aufgrund des Schaltungsdesigns weniger stark ins Gewicht fallen. Vieles innerhalb des Controll Loop kann heutzutage durch einen digitalen Microcontroller durchgeführt werden, während der Filter immernoch analog bleibt. So kann die Frequenz sehr präzise auf den exakt eingestellten wert absgestimmt werden (ohne auf Auswirkungen durch Bauteiltolleranzen zu achten).
+Wichitg: unsere schaltung ist bissher nur zum detektiern der Frequenz. Also wird einfach auf die einkommende Frequenz abgestimmt. Vielleicht kommt noch ein modus für gezielte Frequenzen dazu? ist das sinnvoll?
+
+
+\section{Aus dem Exposé}
+\subsection{Forschungsthema}
+Frequenzadaptive Filter werden in der heutigen Zeit immer wichtiger, da sie durch ihr Design die Auswirkungen von Bauteiltoleranzen in der Praxis deutlich reduzieren. Das trägt dazu bei, den Einsatz von teuren Spezialkomponenten zu minimieren und zeitgleich die Flexibilität von Systemen erheblich zu erhöhen. Auch die Entwicklungen im Bereich 5G und Industrie 4.0 tragen zur Bedeutung dieser Technologie bei, da das Datenaufkommen und zugleich die Anforderungen an Verlässlichkeit stetig steigen. Noch nie war das Datenaufkommen höher, sodass nach günstigen, verlässlichen Lösungen gesucht wird. Self-Tuned Filter bieten hier eine vielversprechende Lösung, um kostengünstige und belastbare Systeme zu realisieren.
+
+Auch im Kontext der geopolitischen und wirtschaftlichen Veränderungen spielt diese Arbeit eine Rolle. Lieferkettenprobleme und politische Unsicherheiten der letzten Jahre verdeutlichen, wie wichtig europäische Unabhängigkeit ist. Durch den Einsatz von Open-Source-Software und europäischer Hardware (wie dem RP2350) wird die Souveränität von Europa als Wirtschaftszentrum gestärkt. 
+
+Diese Bachelorarbeit untersucht die Entwicklung und Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters (VCF). Ziel ist es, die automatische Anpassung der Grenzfrequenz mithilfe eines Mikrocontrollers und digitaler Steuerung zu realisieren, um die praktischen Auswirkungen von Bauteiltoleranzen zu minimieren. Der Entwurf umfasst Schaltungsdesign, Hard- und Softwareentwicklung sowie Evaluierung mit Messungen. Das Projekt orientiert sich an Referenzdesigns aus dem ASLK PRO-Manual und setzt aktuelle Methoden der digitalen Signalverarbeitung zur Grenzfrequenzanalyse ein.
+
+
+\subsection{Zielsetzung}
+Die zentrale Fragestellung dieser Arbeit lautet: „Wie kann ein spannungsgesteuerter Biquad-Filter selbstständig und robust an wechselnde Eingangssignal-Frequenzen angepasst werden?“ Im Rahmen dieser Bachelorarbeit soll durch simulationstechnische und messtechnische Untersuchungen aufgezeigt werden, welche Funktionen und Bausteine im System dafür verantwortlich sind. Dadurch wird ein vertieftes Verständnis für Phasenschleifen (PLLs) und Self-Tuned Filter geschaffen.
+
+Die Aufgaben werden gemäß der MoSCoW-Methode priorisiert, um eine klare Strukturierung und Fokussierung zu gewährleisten:
+
+
+\textbf{Must have:}
+\begin{itemize}
+    \item Entwicklung einer funktionsfähigen Schaltung inklusive passendem PCB auf Basis des im ASLK-PRO Manual beschriebenen Self-Tuned Biquad
+    \item Programmierung des Mikrocontrollers zur Steuerung der bauteilbedingten Grenzfrequenz, der Güte und der Verstärkung des Filters
+\end{itemize}
+
+\textbf{Should have:}
+\begin{itemize}
+    \item Entwicklung einer App oder webbasierten Oberfläche zur Visualisierung und komfortablen Steuerung des Filters
+\end{itemize}
+
+
+\textbf{Could have:}
+\begin{itemize}
+    \item Einfache Frequenzbestimmung des Eingangssignals über einen Nulldurchgangszähler zur schnellen Übersicht über die getunte Frequenz
+    \item Erweiterte Frequenzanalyse mittels FFT, voraussichtlich mit Einsatz eines vorprogrammierten FFT-Moduls
+    \item Design und Konstruktion eines Gehäuses für das Gesamtsystem
+\end{itemize}
+
+\end{document}

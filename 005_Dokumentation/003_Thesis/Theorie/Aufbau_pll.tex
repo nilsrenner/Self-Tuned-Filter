@@ -1,0 +1,39 @@
+\begin{tikzpicture}
+    [  block/.style={draw, fill=white, rectangle, minimum            height=2em, minimum width=3em},
+    block2/.style = {draw, fill=white, rectangle, minimum            height=4em, minimum width=6em},
+    sum/.style={draw, fill=white, circle, minimum size=2.5em, inner sep=0pt},
+    bcircle/.style={draw, fill=black, circle, minimum size= 0.5em, inner sep=0pt},
+       lcircle/.style={draw, fill=white, circle, minimum size= 0.5em, inner sep=0pt},
+       connector/.style={-Latex, thick},
+       node distance=2cm and 2cm]
+
+\node[lcircle] (input1) at (0,0) {};
+
+
+\node[block2] (prod) at (3.5,-0.3) {$PD$};
+\coordinate[left=0cm of prod] (stütze);
+
+\coordinate[above=0.3cm of stütze] (mult_int1);
+\coordinate[below=0.3cm of stütze] (mult_int2);
+\node[lcircle, right=of prod] (mult_out) {};
+
+\node[block2] (loopfilt) at (7,-0.3) {$Loop Filter$};
+\node[block2] (VCO) at (10.5,-0.3) {$VCO$};
+
+\node[bcircle] (loop) at (12.5,-0.3) {};
+\node[lcircle] (out) at (14,-0.3) {};
+\coordinate[below=2cm of loop] (loop_stütz1);
+\coordinate[left= 11cm of loop_stütz1] (loop_stütz2);
+
+
+\draw[connector] (input1) -- (mult_int1) node[near start,above] {$V_{in}$};
+\draw[connector] (prod) -- (loopfilt) node[midway, above] {$V_{d}$};
+\draw[connector] (loopfilt) -- (VCO) node[midway, above] {$V_{c}$};
+\draw[connector] (VCO) -- (out) node[near end,above] {$V_{out}$};
+\draw(loop) -- (loop_stütz1);
+\draw(loop_stütz1) -- (loop_stütz2);
+\draw[connector] (loop_stütz2) |- (mult_int2);
+
+
+
+\end{tikzpicture}
