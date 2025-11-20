@@ -6,19 +6,23 @@ Im Rahmen dieser Bachelorarbeit kommen viele verschiedene Softwerkzeuge für Sim
 \medskip
 Zu den wichtigsten Tools zählt die ECAD-Software KiCad 9. Dieses Open-Source-Programm wird unter anderem vom CERN und einer internationalen Entwicklergemeinschaft weiterentwickelt. Es umfasst eine umfangreiche Komponentenbibliothek, einen integrierten Schaltplan- und PCB-Editor, 3D-Visualisierung, zahlreiche Exportformate sowie einen eingebetteten SPICE-Simulator für die Analyse analoger Schaltungen.\par
 \medskip
-KiCad wird in dieser Thesis hauptsächlich für den Schaltplanentwurf, den Platinenentwurf sowie für die Simulation der Gesamt- und Teilsysteme verwendet. (Da im SPICE-Simulator von KiCad nicht alle Analysetypen zur Verfügung stehen, kann es erforderlich sein, für die Gesammtsimulation auf LTspice auszuweichen.)\par
+KiCad wird in dieser Thesis hauptsächlich für den Schaltplanentwurf, den Platinenentwurf sowie für die Simulation der Gesamt- und Teilsysteme verwendet. (Da im SPICE-Simulator von KiCad nicht alle Analysetypen zur Verfügung stehen, kann es erforderlich sein, für die Gesamtsimulation auf LTspice auszuweichen.)\par
+\medskip !!!ACHTUNG!!! Das stimmt nicht; ngspice, der SPICE-Kern in KiCAD hat alles, was LTspice auch hat.
+Schauen Sie im Handbuch von ngspice nach.
+
+Die Datenaufnahme der realen Messwerte erfolgt mithilfe eines RedPitaya STEMlab. Dies ist ein (in Europa entwickeltes,)
+vielseitiges Messgerät, das unter anderem die Funktion eines Oszilloskops, Signalgenerators und Spektrumanalysators in
+sich vereint. Es basiert auf einer (Open-Source - ich denke nicht) FPGA Entwicklungsplattform. Nach Abschluss einer Messung exportiert
+der RedPitaya (nein, der Benutzer kann die Messdaten exportieren, nicht das STEMlab) die Messdaten als CSV-Datei, welche anschließend zur weiteren Auswertung genutzt wird.\par
 \medskip
-Die Datenaufnahme der realen Messwerte erfolgt mithilfe eines RedPitaya. Dies ist ein (in Europa entwickeltes,) vielseitiges Messgerät, das unter anderem die Funktion eines Oszilloskops, Signalgenerators und Spektrumanalysators in sich vereint. Es basiert auf einer Open-Source FPGA Entwicklungsplattform. Nach Abschluss einer Messung exportiert der RedPitaya die Messdaten als CSV-Datei, welche anschließend zur weiteren Auswertung genutzt wird.\par
+Zur visuellen Aufbereitung und Analyse der Messergebnisse wird Python 3.12 in der Open-Source Entwicklungsumgebung Spyder eingesetzt. Darüber hinaus wird Python zur systemtheoretischen Analyse des Gesamtsystems verwendet. (Sollte sich dabei eine unzureichende Funktionalität ergeben, kann alternativ auf MATLAB/Simulink zurückgegriffen werden.)\par
 \medskip
-Zur visuellen Aufbereitung und Analyse der Messergebnisse wird Python 3.12 in der Open-Source Entwicklungsumgebung Spyder eingesetzt. Darüber hinaus wird Python zur systemtheoretischen Analyse des Gesammtsystems verwendet. (Sollte sich dabei eine unzureichende Funktionalität ergeben, kann alternativ auf MATLAB/Simulink zurückgegriffen werden.)\par
+Die Programmierung des Mikrocontrollers erfolgt im Editor Thonny, einer kostenlosen Open-Source Plattform für Python. (Alternativ kann auch die Arduino IDE in der Programmiersprache C verwendet werden.)\par
 \medskip
-Die Programmierung des Microcontrollers erfolgt in der Entwicklungsumgebung Thonny, einer kostenlosen Open-Source Plattform für Python. (Alternativ kann auch die Arduino IDE in der Programmiersprache C verwendet werden.)\par
-\medskip
-Die Dokumentation der Thesis erfolgt in LaTex. Die enthaltenen Schaubilder und elektronischen Schaltpläne werden ebenfalls in LaTex realisiert. \par
+Die Dokumentation der Thesis erfolgt in \LaTeX\. Die enthaltenen Schaubilder und elektronischen Schaltpläne werden
+ebenfalls in \LaTeX\ TikZ/PGF realisiert. \par
 \medskip
 Zur Versionsverwaltung und Datensicherung werden Git und GitHub eingesetzt.
-
-
 
 \end{document}
 

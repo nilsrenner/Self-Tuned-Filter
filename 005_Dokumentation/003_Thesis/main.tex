@@ -100,50 +100,52 @@
     \vfill
 \end{titlepage}
 
+\frontmatter
+% \maketitle
 
 % Inhaltsverzeichnis
-\newpage
-\pagenumbering{gobble} % keine Seitenzahl auf Inhaltsverzeichnis
+% \newpage
+% \pagenumbering{gobble} % keine Seitenzahl auf Inhaltsverzeichnis
 \tableofcontents
 
+\listoffigures
 
+
+\mainmatter
 % Haupttext
-\newpage  
-\pagenumbering{arabic}  
-\setcounter{page}{1}
-
-
+% \newpage  
+% \pagenumbering{arabic}  
+% \setcounter{page}{1}
 
 \subfile{Einleitung/Einleitung.tex}
 
-\newpage
+% \newpage
 \subfile{Tools/Tools.tex}
 
-
-\newpage
+% \newpage
 \subfile{Theorie/Theorie_alt.tex}
-\newpage
+% \newpage
 \subfile{Theorie/Theorie_neu.tex}
 
-\newpage
+% \newpage
 \subfile{Simulation/Simulation.tex}
 
-\newpage
+% \newpage
 \subfile{systemdesign/systemdesign.tex}
 
-\newpage
+% \newpage
 \subfile{Messung/Messung.tex}
 
-\newpage
+% \newpage
 \subfile{Auswertung/Auswertung.tex}
 
-\newpage
+% \newpage
 \subfile{Fazit/Fazit.tex}
 
-\newpage
+\backmatter
+\appendix
+% \newpage
 \printbibliography
-\newpage
-
-\listoffigures
+% \newpage
 
 \end{document}
