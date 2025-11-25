@@ -1,2 +1,2 @@
-# Selfe-Tuned-Filter
+# Self-Tuned Filter
 Backup für die Bachlorarbeit
