@@ -1,4 +1,4 @@
-115296939075932
+118824550862014
 000_OUF
 1-10uF
 
@@ -461,6 +461,20 @@ Raspberrypi pico2 THT
 0
 40
 34
+002_BA
+TO170P470X1028X2142-5P
+NDH0005D_2023
+Integrated Circuit
+0
+5
+5
+003_logos
+QR_GitHub
+
+
+0
+0
+0
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)

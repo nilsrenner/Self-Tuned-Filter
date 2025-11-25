@@ -1,0 +1,94 @@
+\documentclass[twoside]{mitthesis}
+
+% Sprache und Zeichencodierung
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{microtype}
+
+% Mathematik
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{siunitx}
+
+% Grafik + Layout
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{
+  top=2cm,
+  bottom=3cm,
+  left=2.5cm,
+  right=2.5cm
+}
+
+% Tabellen
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Listen
+\usepackage{enumitem}
+
+% Zusatzpakete
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+% Literaturverwaltung
+\usepackage{csquotes}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{Literaturverzeichnis.bib}
+
+% Kopf- und Fußzeilen mit scrlayer-scrpage
+\usepackage[headsepline]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\raisebox{-0.2cm}{\includegraphics[height=1cm]{Bilder/hsb_logo2.png}}}
+\chead{Bachelorthesis\\ Nils Renner}
+\ohead{\raisebox{-0.2cm}{\includegraphics[height=1.5cm]{Bilder/hsb_logo1.png}}}
+\cfoot{Seite \thepage\ von \pageref{LastPage}}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+% Titelseite wird von mitthesis generiert, z.B. so anpassen:
+\title{Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters}
+\Author{Nils Renner (5197659)}{Fakultät 4: Elektrotechnik und Informatik}
+\Degree{Elektrotechnik Bachelor of Engineering}{Fakultät 4: Elektrotechnik und Informatik}
+%\Date{November 2025}
+\Acceptor{Prof. Dr.-Ing. Mirco Meiners}{Professor der Elektrotechnik}{Fakultät 4}
+\Supervisor{Prof. Dr. Sören Peik}{Professor der Elektrotechnik}[Fakultät 4]
+\DegreeDate{June}{1876}
+\ThesisDate{May 18, 1876}
+
+\maketitle
+
+%\frontmatter
+\tableofcontents
+\listoffigures
+%\listoftables
+
+%\mainmatter
+% Kapitel einbinden
+\include{Einleitung/Einleitung}
+\include{Tools/Tools}
+%\include{Theorie/Theorie_alt}
+%\include{Theorie/Theorie_neu}
+%\include{Simulation/Simulation}
+%\include{systemdesign/systemdesign}
+%\include{Messung/Messung}
+%\include{Auswertung/Auswertung}
+%\include{Fazit/Fazit}
+
+%\backmatter
+\appendix
+\include{appendixa}
+\include{appendixb}
+
+\printbibliography
+
+\end{document}
