@@ -7,41 +7,46 @@
         ".tran 75n 10m 0 1u",
         ".kicad adjustpaths",
         ".save all",
-        ".probe alli",
-        ".probe allp"
+        ".kicad esavenone"
       ],
       "dottedSecondary": true,
       "margins": {
         "bottom": 45,
         "left": 70,
-        "right": 140,
+        "right": 70,
         "top": 30
       },
       "measurements": [],
       "showGrid": true,
       "traces": [
         {
-          "color": "rgb(65, 56, 255)",
-          "cursor1": {
-            "position": 0.03952333664349553,
-            "x_format": "3~s",
-            "y_format": "3~V"
-          },
-          "cursorD": {
-            "x_format": "3~s",
-            "y_format": "3~V"
-          },
-          "signal": "V(VCI_out0)",
+          "color": "rgb(166, 86, 40)",
+          "signal": "V(detec_out90)",
           "trace_type": 257
         },
         {
-          "color": "rgb(19, 247, 57)",
-          "signal": "V(VCI_out180)",
+          "color": "rgb(255, 255, 51)",
+          "signal": "V(detec_out_mHz)",
           "trace_type": 257
         },
         {
-          "color": "rgb(255, 90, 0)",
-          "signal": "V(VCI_out90)",
+          "color": "rgb(255, 127, 0)",
+          "signal": "V(detec_out_pHz)",
+          "trace_type": 257
+        },
+        {
+          "color": "rgb(77, 175, 74)",
+          "signal": "V(mult_out_0)",
+          "trace_type": 257
+        },
+        {
+          "color": "rgb(152, 78, 163)",
+          "signal": "V(mult_out_mHz)",
+          "trace_type": 257
+        },
+        {
+          "color": "rgb(55, 126, 184)",
+          "signal": "V(mult_out_pHz)",
           "trace_type": 257
         }
       ]

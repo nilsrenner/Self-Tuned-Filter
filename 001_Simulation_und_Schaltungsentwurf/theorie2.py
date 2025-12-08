@@ -321,4 +321,75 @@ plt.grid(True, which='both', ls='--', lw=0.5)
 #plt.tight_layout()
 plt.show()
 
+#%% Sim-Multi-Frequenz
 
+# Import auf KiCad
+filepath = '003_analog_multiplier/analog_multiplier.raw'
+l = Ltspice(filepath)  # jetzt funktioniert der Konstruktor
+l.parse()
+#print(l.variables)  # statt get_trace_names()
+
+time = l.get_time() * 1000
+in1 = l.get_data('v(mult1_y)')
+#in2 = l.get_data('v(in_0)')
+in3 = l.get_data('v(pHz)')
+in4 = l.get_data('v(mHz)')
+
+out2 = l.get_data('v(mult_out_0)')
+out3 = l.get_data('v(mult_out_pHz)')
+out4 = l.get_data('v(mult_out_mHz)')
+
+
+op1 = l.get_data('v(detec_out90)')
+op2 = l.get_data('v(detec_out_pHz)')
+op3 = l.get_data('v(detec_out_mHz)')
+
+
+plt.figure(8,figsize=(10,5), dpi=150)
+plt.subplot(211)
+#plt.plot(time, in4, color=my_red, label=r'In: $f = 900\,\mathrm{Hz}$',ls='-')
+plt.plot(time, in1, color=my_blue, label=r'In: $f = 1000\,\mathrm{Hz}$',ls='-')
+plt.plot(time, in3, color=my_green, label=r'In: $f = 1100\,\mathrm{Hz}$',ls='-')
+
+plt.title(r'Eingangssignale in $X_1$ für Frequenzen $\omega < \omega_{\mathrm{ref}}$ und $\omega > \omega_{\mathrm{ref}}$')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.legend(loc='lower left')
+plt.grid(True, which='both', ls='--', lw=0.5)
+plt.tight_layout()
+plt.show()
+
+plt.subplot(212)
+#plt.figure(9,figsize=(10,5), dpi=150)
+#plt.plot(time, out4, color=my_red, label=r'Out: $f = 900\,\mathrm{Hz}$',ls='-')
+plt.plot(time, out2, color=my_blue, label=r'Out: $f = 1000\,\mathrm{Hz}$',ls='-')
+plt.plot(time, out3, color=my_green, label=r'Out: $f = 1100\,\mathrm{Hz}$',ls='-')
+
+plt.title(r'Ausgangssignale des Multipliziers für $Y_1: f = 1000\,\mathrm{Hz},\phi=0^\circ$')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.legend(loc='lower left')
+plt.grid(True, which='both', ls='--', lw=0.5)
+plt.tight_layout()
+plt.show()
+
+
+
+
+plt.figure(10,figsize=(10,5), dpi=150)
+plt.plot(time, op3, color=my_red, label=r'Out: $f = 900\,\mathrm{Hz}$',ls='-')
+plt.plot(time, op1, color=my_blue, label=r'Out: $f = 1000\,\mathrm{Hz}$',ls='-')
+plt.plot(time, op2, color=my_green, label=r'Out: $f = 1100\,\mathrm{Hz}$',ls='-')
+
+plt.title(r'Eingangssignale in $X_1$ für Frequenzen $\omega < \omega_{\mathrm{ref}}$ und $\omega > \omega_{\mathrm{ref}}$')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.legend(loc='lower left')
+plt.grid(True, which='both', ls='--', lw=0.5)
+plt.tight_layout()
+plt.show()
+plt.tight_layout()
+plt.show()
+
+#Simtime= 2ms
+#\phi in rad!!!!!

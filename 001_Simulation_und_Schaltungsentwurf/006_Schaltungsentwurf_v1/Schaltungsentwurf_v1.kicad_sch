@@ -4612,16 +4612,6 @@
 		)
 		(uuid "6e47c19d-c0fe-472b-984e-5418aff62782")
 	)
-	(text "V_out = 1.23V * (1 + (R_up/R_down))"
-		(exclude_from_sim no)
-		(at 375.412 244.094 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "f1f4e4db-9bf2-483e-9486-1d12a894454b")
-	)
 	(text_box "Poti 2\n\n"
 		(exclude_from_sim no)
 		(at 113.03 50.8 0)
@@ -5814,7 +5804,7 @@
 	)
 	(wire
 		(pts
-			(xy 193.04 135.89) (xy 193.04 138.43)
+			(xy 182.88 135.89) (xy 182.88 138.43)
 		)
 		(stroke
 			(width 0)
@@ -11026,7 +11016,7 @@
 	)
 	(symbol
 		(lib_id "power:+15V")
-		(at 193.04 135.89 0)
+		(at 182.88 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11034,7 +11024,7 @@
 		(dnp no)
 		(uuid "1116b5e4-9cd8-4ceb-ac8c-f2bba40680ab")
 		(property "Reference" "#PWR022"
-			(at 193.04 139.7 0)
+			(at 182.88 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11043,7 +11033,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 194.31 134.62 0)
+			(at 184.15 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11052,7 +11042,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 193.04 135.89 0)
+			(at 182.88 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11061,7 +11051,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 193.04 135.89 0)
+			(at 182.88 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11070,7 +11060,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+15V\""
-			(at 193.04 135.89 0)
+			(at 182.88 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)

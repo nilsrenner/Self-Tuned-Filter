@@ -9,19 +9,73 @@ zuerst wurde die schaltung ohne ansteueerung für Micocontroller und so auf dem 
 
 
 \section{Design des Schaltplans}
+Die im VCF verwendeten Bauteile wurden größtenteils vom Aufbau des letzen Semester bzw. dem ALSK-PRO Manual \cite{Lab_Kit_PRO} übernommen. Bei der Wahl des Operationsverstärkers soltle in Version 1 der Platine der gleiche OpAmp verwendtet werden wie schon zuvor, jedoch wurde darauf geachtet, den für Filteranwendungen besseren TL082B zu verwenden. \textbf{was genau macht ihn besser? höhere Bandbreite?} 
+
+Als Digitalpotentiometer wurde das von Herrn Ziemann vorgeschlagene MCP4261 verwendet. Bei der weiteren auswahl wurde die Punkte Schrittazahl, Speichertyp berücksichtigt. Da zur einstellung der Güte- und Verstärkubngsfaktors sowie der Grenzfrequenz des Filters vier Potentiometer gebraucht werden wurde der Typ gewählt, bei dem zwei Potis in einem Gehäuse liegen. Der Baustein ist zudem als Poti und Rheostat erhäldlich. Das Rheostat bietet die gewollten Strombegrenzenden eigenschaften während das Poti eine Spannung herausgibt. Trotzdem wurde in diesem Fall die Potentiometerversion gewählt, da \textbf{günstiger? besser erhältlich?}. dazu mmuss nur ein pin, der nicht der abgreifer ist, unverbunden bleiben. 
+
+Die Ein- und Ausgänge der Potis werden jeweils mit Jumpern versehen, damit der tatsächliche Widerstandswert schnell ohne eine parallele messung der Restschaltung ermittelt werden kann.
+
+Die Multiplizierer wurden einfach an den gewollten stellen eingesetzt. Zudem wurde der Scale-Factor Pin so angeschlossen, dass das anliegende Potential über einenPoti eingestellt werden kann, wodurch sich auch die Propoionalitätskonstante innerhalb des Multiplizierers anpassen lässt. Laut Datenblatt soll der SF-Pin des Multiplizierers auf \SI{-10}{\volt} lasergetrimmt sein. Auf der Übungs-Steckplatine wird dieser Wert nie erreicht, da die Spannungsversorgung dieser bei \SI{\pm 10}{\volt} liegt. In Version 1 der Platine wird als Engangspannung \SI{\pm 15}{\volt} gewählt, damit die Spannuung an SF als \SI{10}{\volt} angenommen werden kann.
+
+Zum Zeitpunkt der Planung des Schaltplans ist noch nicht genau bekannt, welchen Nutzen die Hilfsspannung $V_H$ hat. Somit ist auch unbekannt, welchen Wert die Quelle im endeffekt haben soll. So wird eine Schaltung geplant, die einen Spannungswert zwischen \SI{\pm 15}{\volt} ausgeben kann. 
+
+Um die Signale um die verschiedenen Filtertypen besser mit geeeigneten Messinstrumenten wie einem  Oszilloskop oder Spektrumanalysator aufnehmen zu können werden BNC-Stecker auf der Platiene geplant. Diese Geräte haben meist BNC Steckverbindungen.
+
+Der Microcontroller hat die Aufgabe, die Digitalpotentiometer anzusteuern und auf diesem soll außerdem später mal die Webside zur ansteuerung des gesammten filters laufen. Dafür wird das Modul des Raspberry Pico 2 W verwendet. Der darauf befindliche µC RP2350 ist eine Weiterentwicklung des RP 2040 und wurde in Europa entwickelt und ist meht als ausreichend für diese anwendung. Auf dem Modul befindet sich zudem ein WLAN-Chip von Infinion (CYW43439), dass die drahtlose Kommunklikation zwischen Eingabegerät und Filter bereitstellt (WLAN und Bluetooth). 
+
+Sowohl die Digitalpotentiometer als auch der µC benötigen eine Versorgungsspannung zwischen \SI{1.8}{\volt} (bzw 2.7 bzw) und \SI{5.5}{\volt}. Da auch die Busse und allgemein Pins des µC auf \SI{3.3}{\volt} betrieben werden sollte auch die Versorgungsspannung \SI{3.3}{\volt} betragen. Um dieses Potential zu erreichen ohne sehr hohe Verluste zu generieren, wird ein Buck-Converter eingebaut, der die \SI{+15}{\volt} auf ein Niveau von \SI{3.3}{\volt} absenkt. Zu dem Buck-Converter gehöhren noch ein paar externe Bauteile, die wie im Datenblatt angegeben anhand des Maximalstroms, der maximalen Eingangsspannung und der Ausgangsspannung gewählt werden. 
+
+Der Verbleibende Operationsverstärker wird für die Frequenzbestimmung des Eingangssignals verwendet. Er wird als ... verschaltet und soll dafür sorgen, dass aus dem eingehenden Sinussignal ein Rechtecksignal wird. Dieses Rechtecksignal soll dann über die Nulldurchgangsmethode im µC die Eingangsfrequenz bestimmen. 
+
+Es wurde ebenfalls daran gedacht, an alle wichtigen Signale Testpunkte zu setzten, um in der Messung möglichst viele Möglichkeiten zu haben, die internen Prozesse des self-tuned Filter aufzunehmen und nachvollziehen zu können. Zudem können Testpunkte dabei helfen, bei fehlern in der Planung der Platine diese Fehler zu umgehen. 
+
+Zuletzt wurden noch Mountingholes eingeplant um die Platine an etwas zu befestigen und so unter anderem die Edge-Mount BNC-Stecker verwenden zu können. 
+
 Der Schaltplan wurde darauf optimiert, besonders leserlich und nachvollziehbar zu sein.
+
+
+
+
 \section{Design der Platine}
+
+Beim Platinendesign muss zuerst entchieden werden, wie viele Lagen die Platine haben soll. An sich kann jeder beliebige Schaltplan auf einer zweilagigen Platine umgesetzt werden. Dies geht allerdings auf kosten der Platinengröße und eventuellen Störeinflussen. Um vor allen Dingen diese beiden Sachen möglichst minimal zuhalten, wurde sich für vierlagiges Layout entschieden, da dies das Routen erheblich einfacher macht und die Kosten nur geringfügig erhöht. 
+
+Platzbedingte Vorteile der Vielagigen platine bestehen vor allen dingen darin, dass die Verwendeten Bauteile näher an einander plaziert werden können, ohne dass sich die dazwischenligenden Leiterbahnen behindern. Dieser Vorteil wirkt sich noch stärker auf PCBs mit SMD-Komponenten aus, auf diese wurde allerdings in der ersten Iteration absichtlich verzichtet, da der Umgang mit THT-Bauteilen einfacher ist und diese bei eventullen anpassungen leichter auszutauschen sind. 
+
+Die allgemeine Aufteilung der verschienden Lagen wird wie folgt zugeteilt. 
+
+\begin{enumerate}
+    \item Layer 1: Signalrouting \par
+    Die oberste Schicht der Platine dient hauptsächlich dem Signalrouting. Hierbei sollen so weit es geht alle an der Filterung beteiligten Signalpfade über diese Ebene geleitet werden. Auch wenn der in dieser Abeit beleuchtete Frequenzbereich noch nicht sehr anfällig für störungen von Bussignalen oder ähnlichem ist wird darauf geachtet diese so gering wie möglich zu halten.
+    \item Layer 2: Groundlayer \par
+    Aus diesem Grund wird direckt unter dieser Störrungsanfälligen Platinenebene eine durchgehende Massefläche plaziert. Diese Schicht bleibt ununterbrochen, sodass das Ground-Potential über die THT-Pins beziehungsweise Vias an jeder Stelle der Platine einfach erreichbar ist. 
+    \item Layer 3 Powerlayer \par
+    Diese Schicht dien nur der Spannungsversorgung der Bauteile auf der Platine. Die \SI{-15}{\volt} sowie die \SI{3.3}{\volt} werden dabei ganz normal geroutet, die \SI{+15}{\volt} verlaufen auf dem ganzen Rest der Ebene, da dieses Potentias sowohl die Operationsverstärker betreibt, als auch die \SI{3.3}{\volt} von diesem Signal aus abgehen. Dies ist die einzige Ebene in der die Zone nicht auf Ground gelegt wird.
+    \item Layer 4 Signallayer \par
+    Die unterste Schicht dient als Ausweichmöglichkeit für sich kreuzende Signale. An sonsten soll sie hauptsächlich für das Routing von Bussignalen verwendet werden. In Version 1 wurde darauf noch nicht so genau geachtet, in der Endversion (\textbf{!!}) schon. 
+\end{enumerate}
+
+Weitere Besonderheiten beim Plazieren der Komponenten sind, dass das Komulikationsmodul des µC ganz am Rand der Platine gesetzt wurde, um die Abschirmung der Antenne durch die Kupferflächen der Platine zu vermeiden. (kann man das so schreiben?) 
+
+Bei der Platizerung des Buck-Converter und der dazgehörigen weiteren Komponenten wird darauf geachtet, dass diese wie im Datenblatt beschrieben auf dem PCB plaziert werden. Aufgrund von Platzmangel hat sich das Layout tortzdem etwas verändert.
+
+Da in der linken oberen Ecke der Platine noch etwas Platz ist, wird für einen einfachen Zugang auf die Dokumentation des Projekts ein QR-Code zum Git-Reposatorium der Arbeit hinzugefügt. 
+
+
+
+
+
 
 TL082B ist präziser / besser für filter geeignet als TL082 oder TL082A (advanced version)
 
 kupferlagenbeschreibung.
 \section{Design des Codes}
 
-beispiel:
+%beispiel:
 
-\begin{lstlisting}[style=python]
-print("Hello World")
-\end{lstlisting}
+%\begin{lstlisting}[style=python]
+%print("Hello World")
+%\end{lstlisting}
 
 \subsection{Design der Website}
 
