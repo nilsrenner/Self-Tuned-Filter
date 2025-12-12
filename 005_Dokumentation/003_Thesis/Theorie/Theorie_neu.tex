@@ -430,6 +430,7 @@ Durch Herauskürzen von s, dem Exponenten und anschließender Termumformung nach
 
 \begin{equation}
 \omega_0 = \frac{V_r}{V_cRC}
+ \label{eq:filtergrenzfrequenz}
 \end{equation}
 
 
@@ -437,31 +438,9 @@ Durch Herauskürzen von s, dem Exponenten und anschließender Termumformung nach
 Im letzten Unterkapitel wurde die Beziehung zwischen der Phasendifferenz $\phi$ und der Steuerspannung $V_c$ ermittelt. Nun ist von Interesse, was diese Steuerpannung nun innerhalb des VCFs tut, bezeihungsweise was und wie die Phasendifferenz innerhalb des Systems steuert. \par
 \medskip
 
-Aus Abbildung \ref{fig:op_out_freq} ergibt sich, dass bei einer Phasenverschiebung um \SI{180}{\degree} bzw von \SI{90}{\degree} bist \SI{270}{\degree} die DC-Ausgangsspannung des Multiplizierers negativ ist und $V_c$ so nach der Integtration mit positivem Vorzeichen ansteigt. Durch die nun bestimmte Formel kann ein zusammenhang zwischen $V_c$ und der Grenzfrequenz des Filters $\omega_0$ hergestellt werden. 
-
-Wenn der steigende Wert für $V_c$ nun in die Formel $\omega_0 = \frac{V_r}{V_cRC}$ eingesetzt wird, zeigt sich, dass bei größer werdenenm $V_c$ $\omega_0$ sinkt. Daraus kann geschlussfolgert werden, dass alle Phasenverschiebungen zwischen \SI{90}{\degree} und \SI{270}{\degree} zu einer Verringerung der Grenzfrequenz führen. 
-
-Für Phasendifferenzen um \SI{0}{\degree} gilt dies genau umgekert: Das Potential von $V_c$ sinkt wodurch die Grenzfrequenz des Systems ansteigt.
-
-\textbf{Erklärung wie genau die anpassung funktioniert, mit erklärender Abbildung. Dann auf pendelsystem eingehen}
-
-
-
 
 \medskip
-Beim erstellen dieser Abbildung ist aufgefallen, dass beide betrachteten Parameter um einen gewissen wert schwingen. Zum einen Schwingt die Phase um einen \SI{90}{\degree} bzw. \SI{270}{\degree} Phasenverzug zum Referenzsignal, zum anderen schwingt die Frequenz um die Referenzfrequenz. 
-
-Die maximalen ausschlagswerte treten dabei meist ganz zu beginn der betrachtugn an, also wenn eine neue Grenzfrequenz eingestellt werden soll. Der maximale Ausschlagsimpuls (Fallhöhe) der Phase liegt bei \SI{0}{\degree} oder \SI{180}{\degree}
-
-
-
-
-
-
-
-
-\medskip
-\textbf{Berechnung der Grenzfrequenz aus dem Video}
+\textbf{Berechnung der Grenzfrequenz aus dem Video}\par
 Laut ASLK-PRO Manual müssten $V_c$ und $V_r$ getauscht sein. Jedoch ist die Grenzfrequenz eine physikalische Größe, die nicht von der Normierung abhängig sein darf. So kann davon ausgegangen werden, dass die im Manual vorgeschlagene Lösung entweder nicht korrekt ist, oder anders Normiert bzw eine andere Konvention verwendent wurde. (zweiteres ist unwahrscheinlicher, da der Rechenweg dadurch deutlich komplizierter zu sein scheint) YT vid  \cite{YT_stf_lab5}  sagt aber auch was anderes!!!\par
 \medskip
 
@@ -510,6 +489,68 @@ wobei
   \item $V_r$ der Referenzwert des Multiplizierers ist (laut Datenblatt: $V_r=10V$),
   \item $RC$ die Zeitkonstante des Filters beschreibt.
 \end{itemize}
+
+
+
+
+
+
+
+
+
+\subsection*{Herleitung der Funktionsweise des Voltage Controlled Filter}
+
+\medskip
+Im letzten Unterkapitel wurde die Beziehung zwischen der Phasendifferenz $\phi$ und der Steuerspannung $V_c$ hergeleitet. Nun ist von Interesse, welche Funktion diese Steuerpannung nun innerhalb des VCFs übernimmt und auf welche Weise die Phasendifferenz das Systemverhalten beeinflusst.\par
+\medskip
+Aus Abbildung \ref{fig:op_out_freq} geht hervor, dass bei einer Phasenverschiebung zwischen \SI{90}{\degree} und \SI{270}{\degree} die DC-Ausgangsspannung des Multiplizierers negativ wird. Dadurch steigt die Steuerspannung $V_c$ nach der Integration mit positivem Vorzeichen an. Über die hergleitete Gleichung \ref{eq:filtergrenzfrequenz} lässt sich ein Zusammenhang zwischen $V_c$ und der Grenzfrequenz des Filters herstellen.\par
+\medskip
+Wird der ansteigende Wert für $V_c$ in Gleichung $\omega_0 = \frac{V_r}{V_cRC}$ eingesetzt, wird deutlich, dass die Zunahme von $V_c$ zu einer Verringerung von $\omega_0$ führt. Somit bewirken alle Phasenverschiebungen im Bereich von \SI{90}{\degree} bis \SI{270}{\degree} eine Verringerung der Grenzfrequenz. Für Phasendifferenzen in der Umgebung von \SI{0}{\degree} tritt der umgekerte Effekt ein: Das Potential von $V_c$ sinkt, wodurch die Grenzfrequenz des Systems ansteigt.\par 
+\medskip
+Um das resultierende Verhalten anschaulich zu Untersuchen, wird der analytische Zusammenhang des Systems in Python umgesetzt. Die Phasendifferenz wird dabei nur am Nulldurchgang des internen Signal ermittelt um daraufhin die Frequenz des Signals um jeweils einen festen Betrag zu korregieren. Bei Betrachtung der Simulation in Abbildung \ref{fig:phase2omega1} fällt auf, dass dieses vereinfachte System niemals eine Anpassung über nur ein paar Perioden erreicht, unabhängig von den Startwerten. Zudem kommt es so vor, dass diese Anpassungen nicht dafür sorgen, dass die Frequenz auf den Referenzwert konvergiert, noch dass sich die die Phasenlage dem stabilen Arbeitspunkt von \SI{90}{\degree} annähert. \par
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{../Bilder/phase2omega1.png}
+    \caption{Singalverhalten bei diskreter Änderung der Frequenz anhand der Phasenlage}
+    \label{fig:phase2omega1}
+\end{figure}
+
+Gut zu erkennen ist dieses Verhalten bei betrachung der ersten und dritten turkisen Halbwelle. Die Phasenlage verbessert sich nicht im geringsten gegenüber der ersten halbwelle.Das legt den Verdacht nahe, dass das System (sowohl Phasenlage als auch Frequenz) ungedämpft schwingt. Um diesen Verdacht genauer zu überprüfen wird die weitere Programmierung mithilfe eines KI-Sprachmodells entwickelt, wobei immer wieder darauf geachtet werden muss, dass alle Vorgaben eingehalten werden und das System in der Realität auch so funktioniert.\par
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{../Bilder/phase2omega2.png}
+    \caption{Ungedämpfte Schwingung der Frequenz und Phasenlage}
+    \label{fig:phase2omega2}
+\end{figure}
+
+Aus Abbildung~\ref{fig:phase2omega2} ist deutlich zu erkennen, dass sowohl die Frequenz als auch die Phasenlage ungedämpft schwingen. Dieses Verhalten lässt sich durch die Form der Phasenkennlinie des Systems (vgl. Abbildung~\ref{fig:op_out_freq}) erklären. Die Steuerspannung reagiert besonders empfindlich auf Phasenänderungen im Bereich um \SI{180}{\degree}, da dort die Steigung der Kennlinie am größten ist. Schon kleine Abweichungen führen in diesem Bereich zu starken Änderungen der Grenzfrequenz, was das System zusätzlich antreibt und damit die ungedämpfte Schwingung begünstigt.
+
+An den beiden Extremstellen der Kennlinie – bei \SI{90}{\degree} und \SI{270}{\degree} – ist die Steigung hingegen nahezu null. Diese Punkte bilden die beiden Gleichgewichtspunkte des Systems. Der Punkt bei \SI{90}{\degree} entspricht einem stabilen Arbeitspunkt, da kleine Phasenabweichungen nur geringe und ausgleichende Änderungen an der Grenzfrequenz bewirken. Der Punkt bei \SI{270}{\degree} stellt dagegen einen instabilen Arbeitspunkt dar: Bereits geringe Abweichungen führen zu Verstärkungen in die falsche Richtung, weshalb das System diesen Zustand nicht halten kann und sich davon wegbewegt.
+
+Um das Regelverhalten zu verbessern wird die Frequenz proportional zur Phasenänderung korregiert. Bei großen Phasenabweichungen im Bezug auf die Gleichgewichtspunkte folgt eine starke Korrektur der Frequenz, kleine Abweichungen führen zu kleinen Korrekturen. Diese proporionale Regelung wird ebenfalls in den Code übernommen. Zu vereinfachungszweken wird die Phasencharakteristik des Phasendetektors nicht Sinusförimg abgebildet, sondern nur angehähert stufenförmig. So erfolgt beu großer Phasendiffernz eine große Korrektur der Frequenz und bei kleiner eine geringe.\par
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{../Bilder/phase2omega3.png}
+    \caption{Ungedämpfte Schwingung der Frequenz und Phasenlage}
+    \label{fig:phase2omega2}
+\end{figure}
+
+
+Leider ergbt sich durch das proportionale Frequenzanpassung nicht der gewünschte Dämpfungseffekt. Sogenannte PI-Regler haben in der Regelungstechnik häufiger dieses Problem. Zur Lösung diesen kann der Ausgang Tiefpassgefiltert werden, danach könnte die konvergierung zum gewollten wert besser funktionieren. \cite{philippsenReg}\par
+\medskip
+
+\textbf{ich bekomme den algorithmus nicht mit dämpfung (TP) zum laufen. falls das noch passiert, hier die geschichte mit der Fallhöhe:}
+Code wird nicht Stabiel. Frequenz des Systems haut immer nach 970 bzw 1030 Hz und weiter ab. 
+
+
+Abbildung PIT Regler\par
+
+kann es sein, dass die Einschwingzeit davon abhängig ist, wie groß die Phasen und Frequenzdifferenz ist? 
+Die Simulationsergebnisse zeigen zudem, dass die Einschwingzeit stark von der anfänglichen Phasen- und Frequenzabweichung abhängt: Je größer die Differenz zum Zielwert ist, desto länger dauert es, bis das System sich in die Nähe des stabilen Arbeitspunktes hineinbewegt.
+
 
 
 
@@ -651,35 +692,30 @@ Eingesetzt in die Gleichung \eqref{eq:ges-sensitivität} ergibt sich daraus die 
 
 
 
-\section{Theoretische Bestimmung über welche Bandbreite der Filter selfe-tuned bleibt, ohne die physischen Bauelemente zu verändern}
+\section{Theoretische und praktische Begrenzungen des Self-Tuning-Bereichs eines aktiven Filters}
 
 \subsection{Bestimmung der Maximalen Grenzfrequenz eines aktiven Filters}
 
-Wie zuvor schon besprochen lässt sich die bauteilbedingte Grenzfrequenz eines aktiven Filters über die Formel $\omega_0 = \frac{1}{RC}$ beschreiben. Bei Veränderung der verwendeten Bauteilwerte der Elemente $R$ und $C$ lässt sich die Grenzfrequenz in der Theorie beliebig verändern. In der Praxis können bei sehr kleinen Werten parasitäre Effekte das Filterverhalten stark beeinflussen. Besonders wenn diese Elemente nur "Standart"-Bauteile sind. \par
+Wie zuvor schon besprochen lässt sich die bauteilbedingte Grenzfrequenz eines aktiven Filters über die Gleichung $\omega_0 = \frac{1}{RC}$ beschreiben. Durch Variation der Werte von $R$ und $C$ lässt sich die Grenzfrequenz in der Theorie beliebig verändern. In der Praxis können parasitäre Kapazitäten sowie weitere nichtideale Bauteileigenschaften das Filterverhalten beeinflussen, besonders wenn Standardbauteile mit größeren Toleranzen verwendet werden.\par
 \medskip
-Auch die Wahl des verwendeten OpAmps spielt beim erreichen der maximal Möglchen Grenzfrequenz eine wichtige Rolle. So sind vor allem die Parameter für das Gain-Bandwidth-Product (GBW) und die Slew-Rate (SR) entscheidend. Das GBW gibt an, bis zu welcher Frequenz der OpAmp den gewünscheten Filterverlauf mit einer Verstärkung von 1 liefern kann. Die Slew-RAte beschreibt die maximale Anstiegsrate der Ausgangsspannung des OpAmps. \par
+Auch die Wahl des verwendeten Operationsverstärkers spielt für die maximal erreichbare Grenzfrequenz eine wichtige Rolle. So sind vor allem die Parameter für das Verstärkungs-Bandbreite-Produkt (eng. Gain-Bandwidth-Product, GBW) und die Slew-Rate (SR) entscheidend. Das GBW gibt an, bis zu welcher Frequenz der OpAmp eine Verstärkung von 1 stabil liefern kann. Die Slew-Rate beschreibt die maximale Anstiegsrate der Ausgangsspannung (maximale Änderungsrate der Ausgangsspannung) des OpAmps. \par\cite{halbleiter_4Quad}\par
 \medskip
-Zu guter letzt spielen topologieabhänigen Limitationen eine Rolle. So können höhere Filterordnungen sowie das allgemeine Schaltungsdesign die Maximalgrenze ebenfalls verschieben. (Bei höheren Ordnungen beansprucht jede Filerstufe einen Teil der Verstärkungsbandbreite für sich)\par
+Zusätzlich beeinflusst die gewählte Filtertopologie die maximal erreichbare  Frequenz. Höhere Filterordnungen oder Kaskaden mehrerer Stufen beanspruchen jeweils einen Teil der verfügbaren Verstärkungsbandbreite, sodass die Grenzfrequenz insgesamt weiter sinkt.\par
 \medskip
-\textbf{hier noch ein paar worte dazu wie das nun in der Wirklichkeit gehandhabt wird} In der Realität wird geschaut, wie hoch die maximal zu erreichende Grenzfrequnz sein wird. Anhand dessen wird der Operationsverstärker herausgesucht, haupstäachlich anhand der parameter GBW und SR. Meist wird ein GBW genommen das 10 oder 100x häher ist als die maximal anzudenhmende grenzfrequenz. Daran angepasst werden schließlich die restlichen Bauteilwerte des Filters ausgewählt, sodass die gewünschte Grenzfrequenz erreicht wird.\par
-\medskip
+In der Praxis wird zunächst die benötigte maximale Grenzfrequenz des Filters bestimmt. Anschließend wird ein Operationsverstärker ausgewählt, dessen GBW im Regelfall mindestens um den Faktor 10–100 höher liegt als die angestrebte Grenzfrequenz. Darauf basierend werden die Werte für $R$ und $C$ so dimensioniert, dass die gewünschte Mittenfrequenz erreicht wird.\cite{microchipADN003}, \cite{YT_opv_active_filters}
 
-
-Quellen:
-%https://www.youtube.com/watch?v=N8UhfnbKX6Q&t=2341s
-%https://ww1.microchip.com/downloads/en/DeviceDoc/adn003.pdf
 %https://dk.farnell.com/enhancing-signal-quality-understanding-the-role-of-filters-trc-ar
 (Farnell beschreibt auch unterschied aktiv und passiv filter)
 
 \subsection{Bestimmung des maximalen Tune-Bereich des hier verwendeten Filter}
 
-Eine weitere Interessante Frage ist, über welchen Bereich die Mittenfrequenz des Filters über die selfe-Tune Funktion verstellt werdenkann, ohne die Größe der verwendeten Bauelemente zu verändern. (Zudem ist wichtig herauszufinden wie ich das Messen kann)\par
+Eine weitere interessante Frage ist, über welchen Bereich die Mittenfrequenz des Filters durch die self-Tune-Funktion verstellt werden kann, ohne die physischen Bauelemente zu verändern. (Zudem ist wichtig herauszufinden wie ich das Messen kann)\par
 \medskip
+Die Mindestanforderung an den Tune-Bereich ist, die entstehenden Bauteiltolleranzen auszugleichen. Standardbauteile besitzen meist eine Toleranz von etwa \SI{5}{\percent}. Da sowohl $R$ also auch $C$ diese Abweichungen besitzen können, kann die Mittenfrequenz $\omega_0$ allein schon durch diese um bis zu \SI{10}{\percent} variieren. Der designte Self-Tuned Filter muss also mindestens diesen Bereich vollständig abdecken können. 
 
-Hierfür Quellen zu finden ist noch schwieriger als eh schon für das Thema. In der Theorie hat sich noch niemand so richtig damit beschäftigt, jedenfalls finde ich dazu nichts. Um herauszufinden wie groß der Tune-Bereich um die Bauteilbedingte Mittenfrequenz ist, sollte also eine Simulation oder direkt eine Messung gemacht werden. (Sim schwierig, da ich teile der Bauteilsims selber schreiben muss, da wieß ich nicht worauf ich achten soll.)
-
-
-
+Der Tune-Berich liegt also bei mindestens $\pm \SI{10}{\percent}$ um die Bauteilbedingte Mittenfrequenz. Andernfalls wäre der Filter nicht in der Lage, allein die üblichen Fertigungs- und Bauteiltoleranzen auszugleichen.\par
+\medskip
+In der Literatur finden sich nur wenige direkte Angaben zum real erreichbaren Tune-Bereich self-tuned aktiver Filter. Daher sollte dies besser durch eine Simulation oder Messung ermittelt werden. \par
 
 %https://www.digitalxplore.org/up_proc/pdf/143-143133720956-59.pdf
 

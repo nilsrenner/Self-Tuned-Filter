@@ -388,8 +388,6 @@ plt.legend(loc='lower left')
 plt.grid(True, which='both', ls='--', lw=0.5)
 plt.tight_layout()
 plt.show()
-plt.tight_layout()
-plt.show()
 
-#Simtime= 2ms
-#\phi in rad!!!!!
+
+#Simtime= 10ms
