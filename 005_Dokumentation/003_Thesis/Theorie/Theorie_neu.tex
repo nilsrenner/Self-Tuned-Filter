@@ -2,15 +2,28 @@
 \begin{document}
 
 \chapter{Weiterführende Theorie}
-In der Überprüfung des Biquad-Filters spielte die Phase nur eine untergeordnete Rolle. Im Folgenden wird durch Detektierung der Phase ein selbsteinstellenden Filter zu designen.\par
+
+In der bisherigen Analyse des Biquad-Filters stand das Amplitudenverhalten im Vordergrund, während die Phase nur eine untergeordnete Rolle bei aufnahme der Filtercharakteristik spielte. Für die folgende Analyse des selbsteinstellenden Filters ist die Phase jedoch von zentraler Bedeutung, da sie zur automatischen Einstellung der Filterparameter verwendet wird.\par
 \medskip
-Anfangs wird dabei die Funktionsweise der einzelnen Bausteine des selfe Tuned Filters besprochen. Dabei werden die theoretisch abgeleiteten Eigenschaften der einzelnen Bauteile mittels Simualtion verifiziert und visuell durch Plots unterstützt. Zur Veranschaulichung wird anfangs auch auf den sehr ähnlich funktionierenden Phasenregelkreis (PLL) eingegangen, um später über den Voltage Controlled Filter zueinem gesamtverständnis des Systems zu gelangen.\par
+Ziel dieses Kapitels ist, die theoretischen Grundlagen und Funktionsprinzipien des Self-Tuned Filters zu erarbeiten. Dafür wird zunächst die Funktion der einzelnen Bausteine analysiert und mittels simulationen verifiziert. Anschließend werden die einzelnen Bausteine zusammengefügt und das Gesamtsystem betrachtet.\par
 \medskip
+Da der Self-Tuned Filter in seiner Struktur und seinem Wirkprinzip starke Parallelen zu einem Phasenregelkreis (Phase-Locked Loop, PLL) aufweist, wird zu Beginn auf die grundlegenden Konzepte der PLL eingegangen. Aufbauend darauf wird der analoge Multiplizierer als Phasendetektor eingeführt und dessen Verhalten sowohl analytisch als auch simulativ untersucht. Anschließend erfolgt die Betrachtung des Voltage Controlled Filters (VCF), dessen Steuerung über die detektierte Phaseninformation die Grundlage für die automatische Anpassung der Filtergrenzfrequenz bildet.\par
+\medskip
+Ein weiterer Schwerpunkt dieses Kapitels liegt auf der Sensitivitätsanalyse der beteiligten Komponenten sowie auf der Untersuchung theoretischer und praktischer Grenzen des Selbstabstimmbereichs. Abschließend wird die Fähigkeit des Gesamtsystems zur Frequenzdetektion des Eingangssignals analysiert und bewertet.\par
+\medskip
+Da zum Thema selbstabstimmender analoger Filter nur begrenzt wissenschaftliche Literatur verfügbar ist, dient der etablierte Phasenregelkreis im Verlauf dieses Kapitels wiederholt als Referenzmodell zur Einordnung und Erklärung der zugrunde liegenden Funktionsprinzipien.
+
+%In der Überprüfung des Biquad-Filters spielte die Phase nur eine untergeordnete Rolle. Im Folgenden wird durch Detektierung der Phase ein selbsteinstellenden Filter zu designen.\par
+\medskip
+%Anfangs wird dabei die Funktionsweise der einzelnen Bausteine des self-Tuned Filters besprochen. Dabei werden die theoretisch abgeleiteten Eigenschaften der einzelnen Bauteile mittels Simualtion verifiziert und visuell durch Plots unterstützt. Zur Veranschaulichung wird anfangs auch auf den sehr ähnlich funktionierenden Phasenregelkreis (PLL) eingegangen, um später über den Voltage Controlled Filter zu einem Gesamtverständnis des Systems zu gelangen.\par
+\medskip
+%Über den Self-Tuned Filter gibt es leider nicht so viel wissenschaftleiche Literatur. auch deswegen wird auf den PLL zur erklärung zurückgegiffen. 
+
 
 
 
 \section{Phasenregelkreis}
-Bei einen Phasenregelkreis, im englischen auch PLL (Phase Locked Loop) genannt, handelt es sich um eine geschlossene Rückkopplungsschleife. In dieser wird die Phase eines internen Signals wie dem Ausgang eines Voltage-Controlled Oscillators (VCO) an die Phase eines stabielen, externen Referenzsignals angepasst. Sobald die Signale synchon (locked) zu einander verlaufen besitzen internes und Referenzsignal die gleiche Frequenz. Sobald die Frequenz des Referenzsignals verändert wird, versucht die elektronische Schaltung die Synchonisation aufrecht zu erhalten. Das Ausgangssignal des VCO kann dem eingehenden Steuersignal also über einen gewissen Frequenzbereich folgen.\cite{chengCom}\par
+Bei einen Phasenregelkreis, im englischen auch PLL (Phase Locked Loop) genannt, handelt es sich um eine geschlossene Rückkopplungsschleife. In dieser wird die Phase eines internen Signals wie dem Ausgang eines Voltage-Controlled Oscillators (VCO) an die Phase eines stabilen, externen Referenzsignals angepasst. Sobald die Signale synchon (locked) zu einander verlaufen besitzen internes und Referenzsignal die gleiche Frequenz. Sobald die Frequenz des Referenzsignals verändert wird, versucht die elektronische Schaltung die Synchonisation aufrecht zu erhalten bzw wieder zu erlangen. Das Ausgangssignal des VCO kann dem eingehenden Steuersignal also über einen gewissen Frequenzbereich folgen.\cite{chengCom}\par
 \medskip
 Der einfache Aufbau eines Phasenregelkreis besteht aus einem Phasen Detektor, einem Loopfilter und einem VCO. Diese werden wie in der folgenden Abbildung dargestellt angeordnet.\par
 
@@ -21,9 +34,9 @@ Der einfache Aufbau eines Phasenregelkreis besteht aus einem Phasen Detektor, ei
   \label{fig:bsb_pll}
 \end{figure}
 
-Dabei bestimmt der Phasendetektor die Phasendifferenz zwischen dem Referenzsignal und dem Ausgangssignal des VCOs. Dieses Signal wird im darauffolgenden Loopfilter geglättet, soddass die bei der Phasendetektion enstehenden Hochfrequenzanteile unterdrückt werden. Der Anschließende VCO gibt anhand seiner Eingangsspannung eine Frequenz aus, die proportional zu seiner Eingangsspannung ist. Stimmt diese Ausgangsfrequenz nun mit der Frequenz des Referenzsignals überein ist der PLL locked.\cite{chengCom}\par
+Dabei bestimmt der Phasendetektor die Phasendifferenz zwischen dem Referenzsignal und dem Ausgangssignal des VCOs. Dieses Signal wird im darauffolgenden Loopfilter geglättet, sodass die bei der Phasendetektion enstehenden Hochfrequenzanteile unterdrückt werden. Der anschließende VCO gibt anhand seiner Eingangsspannung eine Frequenz aus, die proportional zu seiner Eingangsspannung ist. Stimmt diese Ausgangsfrequenz nun mit der Frequenz des Referenzsignals überein ist der PLL locked.\cite{chengCom}\par
 \medskip
-Im folgenden werden die ersten beiden Bausteine des PLLs genauer betrachtet. Um jedoch den Phasendetektor zu verstehen muss zuerst die Funktionsweise des analogen Multiplizierers erläutert werden.\par
+Im Folgenden werden die ersten beiden Bausteine des PLLs genauer betrachtet. Um jedoch den Phasendetektor zu verstehen muss zuerst die Funktionsweise des analogen Multiplizierers erläutert werden.\par
 
 
 
@@ -57,7 +70,7 @@ Dieser Zusammenhang wird durch folgendes Blockschaltbild verdeutlicht:\par
 \medskip
 Da der Logarithmus nicht für negative Zahlen definiert ist, können nur pssitive Eingangssignale multipliziert werden. Aus diesem Grund werden Multiplizierer dieses Typs auch Ein-Quadranten-Multiplizierer genannt. In vielen Anwendungen sollen allerdings auch negative Eingangsspannungen zu einem korrekten Ergebins führen. \par
 \medskip
-Eine Methode um dies zu erreichen ist, dass wenn ein negatives Vorzeichen auftritt, das Vorzeichen am Ein- und Ausgang des Multiplizierers umzukehren. Leider ist diese Methode als Schaltung sehr umständlich umzusetzen und eher langsam, was für höherfrequente Anwendungen unpraktisch ist. Eine weitere Methode besteht darin, zu den Eingangsspannungen konstante Gleichspannungen zu addieren, sodass die tatsächlichen Eingangsspannungen immer im positiven Bereich bleiben. Die Gleichung für die Ausgangsspannung lautet dann
+Eine Methode um negative Eingangsspannungen verarbeiten zu können funktoiniert, indem das Vorzeichen am Ein- und Ausgang des Multiplizierers umgekehrt wird. Leider ist diese Methode als Schaltung sehr umständlich umzusetzen und eher langsam, was für höherfrequente Anwendungen unpraktisch ist. In einer anderen Methode wird zu den Eingangsspannungen eine konstante Gleichspannung hihzuaddiert. Dadurch wird sichergestellt, dass das Potential an den Eingängen immer im positiven Bereich liegt. Die Gleichung für die Augangsspannung dieser Methode lautet dann\par
 
 \begin{equation}
   V_{out} = \frac{(V_x+V_{xk})(V_y+V_{yk})}{E}
@@ -90,12 +103,30 @@ Wobei sie sich für die Umsetzung als Blockschaltbild so erweitert
   V_{out} = \frac{V_xV_y}{E} = 4 \cdot \frac{\frac{1}{2}(V_x+E) \cdot \frac{1}{2}(V_y+E)}{E} - V_x -V_y - E
 \end{equation}
 
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{../Bilder/multi_erweiterung.png}
+    \caption{Vom Einquadranten- zum Vierquadranten-Multiplizierer\cite{halbleiter_4Quad}}
+    \label{fig:multi_erweiterung}
+\end{figure}
 
 \medskip
-\textbf{BSB Seite 359 in Halbleiter Schaltungstechnik }\cite{halbleiter_4Quad}
+In der Realität entstehen bei der Multiplikation zweier Singale immer kleine Abweichungen und Fehler vom idealen Verhalten. Das ALSK-PRO-Manual zeigt, wie diese Abweichungen zusammengesetzt sind\par
 
-\medskip
-Formel für den Multiplizierer in der Praxis, weiß noch nicht ob ich das brauche, kommt darauf an, ob ich hinterher erklären muss wieso die multiplikation nicht 100\% korrekt funktioniert.
+\begin{equation*}
+V_o=V_{offset}+K_x \cdot V_x + K_y \cdot V_y + K_o \cdot V_x \cdot V_y \cdot \xi
+\end{equation*}
+
+wobei
+\begin{itemize}
+  \item $V_{offset}$ den konstanten Offset beschreibt,
+  \item $K_x V_x$, $K_y V_y$ die linearen Anteile (Störgrößen) sind, die in einem idealen Multiplizierer nicht vorkommen,
+  \item $K_o V_x V_y$ den eigentlichen Multiplikationsterm darstellt,
+  \item $\xi$ der Rausch- oder Restfehler ist.
+\end{itemize}
+
+
+Nun wird allerdings erst einmal ideal weitergerechnet. Diese kleine einführung in die Ungenauigkeiten bei der Simulation wird \textbf{vielleicht} später nochmals in der Messung aufgegriffen. 
 \medskip
 
 In dieser Bachelorarbeit wird ein MPY634 von Texas Instruments verwendet. Die allgemeine Übertragungsfunktion des MPY634 ist im lautet wiefolgt
@@ -109,9 +140,10 @@ In dieser Bachelorarbeit wird ein MPY634 von Texas Instruments verwendet. Die al
 wobei
 \begin{itemize}
   \item $A$ die offene Verstärkung (open-loop gain) des internen Verstärkers darstellt (typisch \SI{85}{\decibel}),
-  \item $SF$ der Skalierungsfaktor (scale factor) ist, der ab Werk auf \SI{10}{V} lasergetrimmt ist, aber durch Anschluss eines Potentiometers zwischen Pin \emph{SF} und $-V_\mathrm{S}$ im Bereich von \SI{3}{V} bis \SI{10}{V} einstellbar bleibt,
+  \item $SF$ der Skalierungsfaktor (scale factor) ist, der ab Werk auf \SI{10}{\volt} lasergetrimmt ist, aber durch Anschluss eines Potentiometers zwischen Pin \emph{SF} und $-V_{S}$ im Bereich von \SI{3}{\volt} bis \SI{10}{\volt} einstellbar bleibt,
   \item $X$, $Y$ und $Z$ jeweils differenzielle Eingangsspannungen sind.
 \end{itemize}
+
 
 Die maximale Eingangsspannung sollte das 1,25-fache des eingestellten Skalierungsfaktors nicht überschreiten.
 
@@ -131,13 +163,11 @@ Daraus folgt die geschlossene Übertragungsfunktion
   \label{eq:datasheet_multi2}
 \end{equation}
 
-
-\medskip 
-Da in der Analyse im ASLK manual immer von der Spannung $V_r$ geredet wird, wird im Folgenden nur noch $V_r$ anstatt $SF$ verwendet. Beide beschreiben das Selbe und sind somit werksseitig auf 10V eingestellt, können aber extern verändert werden.
+Da die Analyse im ASLK-PRO-Manual immer von der Spannung $V_r$ als interne Referenz des Multiplizierers ausgeht, wird im Folgenden nur noch $V_r$ anstatt $SF$ verwendet. Beide beschreiben das Selbe, $V_r$ ist somit werksseitig auf 10V eingestellt, kann aber extern verändert werden.
 
 
 \subsection{Simulation}
-Um ein besseres Verständnis für den Multiplizerer zu gewinnen, wird dieser in KiCad mit Spice simuliert.Als erster Test für den Multiplizierer werden als Input-Quellen zwei Gleichspannungen verwendet. Diese werden mit den Pins $X_1$ und $Y_1$ verbunden. Für die spätere Funktion des Phasendetektors werden die Pins $X_2$ und $Y_2$ an Ground angeschlossen. In KiCad können die Simulationsdaten in eine .raw-Datei exportiert werden, die es möglich macht die Ergebnisse in Python zu plotten.\par
+Um ein besseres Verständnis für den Multiplizierer zu gewinnen, wird dieser in KiCad mit Spice simuliert. Als erster Test werden als Input-Quellen zwei Gleichspannungen verwendet. Diese werden mit den Pins $X_1$ und $Y_1$ verbunden. Für die spätere Funktion des Phasendetektors werden die Pins $X_2$ und $Y_2$ an Ground angeschlossen. In KiCad können die Simulationsdaten in eine .raw-Datei exportiert werden, die es möglich macht die Ergebnisse in Python zu plotten.\par
 
 \begin{figure} [H]
     \centering
@@ -178,16 +208,16 @@ wobei
 \textbf{Hinweis:} Im ASLK Manual steht hier $V_o = \frac{X Y}{2 V_r} \cdot [cos(\phi)-cos(\omega t + \phi)]$ was nicht korrekt ist.\par
 \medskip
 
-Die  Multiplikation zweier sinusförmiger Signale ergibt demnach ein Signal mit zwei Frequenzkomponenten. Eine Frequenz ist hierbei eine Gleichspannungskomponente $cos(\phi)$, die sich proportional zur Phasendifferenz verhält. Zusätzlich gibt es noch eine hochfrequente Mischkomponente, die mit der doppelten Frequenz des Eingangssignals schwingt. Wenn der Multiplizierer nicht komplett linaren Bereich opperiert werden zudem noch weitere Hochfrequenzkomponenten als vielfaches der Ausgangsfrequenz generiert. \cite{chengCom}%Buch der Chinesen: auch höhere Frequenzen (höherer Faktor der frequenz) könnenn entstehen
-
-Der zweite Block innerhalb des PLLs ist der Loopfilter. Dieser hat die Aufgabe, diese hochfrequenten Anteile der Multiplikation zu unterdrücken. So kann für den Loopfilter ein einfacher RC-Tiefpass verwendet werden. Nach der idealen Tiefpass-Filterung des Ausgangssignals reduziert sich der Ausdruck auf\par
+Die  Multiplikation zweier sinusförmiger Signale ergibt demnach ein Signal mit zwei Frequenzkomponenten. Eine Frequenz ist hierbei eine Gleichspannungskomponente $cos(\phi)$, die sich proportional zur Phasendifferenz verhält. Zusätzlich gibt es noch eine hochfrequente Mischkomponente, die mit der doppelten Frequenz des Eingangssignals schwingt. Wenn der Multiplizierer nicht komplett linaren Bereich opperiert werden zudem noch weitere Hochfrequenzkomponenten als vielfaches der Ausgangsfrequenz generiert. \cite{chengCom} \par
+\medskip
+Der zweite Block innerhalb des PLLs ist der Loopfilter. Dieser hat die Aufgabe, die hochfrequenten Anteile der Multiplikation zu unterdrücken. So kann für den Loopfilter beispielsweise ein einfacher RC-Tiefpass verwendet werden. Nach der idealen Tiefpass-Filterung des Ausgangssignals reduziert sich der Ausdruck auf\par
 
 \begin{equation}
 V_o = \frac{X Y}{2 V_r} \cdot cos(\phi)
 \label{eq:Multi_vereinfacht}
 \end{equation}
 
-Diese Gleichung zeigt die direkte Abhänigkeit von Ausgangsspannung des Multiplizierers und der Phasendifferenz der beiden Eingangssignale. Durch diese Verschaltung wird aus dem Multiplizierer ein Phasendetektor, der bei einer Phasendifferenz von $90^\circ$ eine Durchschnittsspannung von $0V$ ausgibt. %Diese Abhänigkeit kann im Folgenden dazu verwendet werden die Ausgangsspannung als Steuerspannung für den Spannungsgesteuerten Filter (VCF) zu verwenden.
+Diese Gleichung zeigt die direkte Abhänigkeit von Ausgangsspannung des Multiplizierers und Phasendifferenz zwischen den Eingangssignalen. Durch diese Verschaltung wird aus dem Multiplizierer ein Phasendetektor, der bei einer Phasendifferenz von $90^\circ$ eine Durchschnittsspannung von $0V$ ausgibt. %Diese Abhänigkeit kann im Folgenden dazu verwendet werden die Ausgangsspannung als Steuerspannung für den Spannungsgesteuerten Filter (VCF) zu verwenden.
 Die Abbildung \ref{fig:av_volt_phase} veranschaulicht die Phasencharakteristik des Multiplizierers.\par
 \medskip
 
@@ -201,10 +231,10 @@ Die Abbildung \ref{fig:av_volt_phase} veranschaulicht die Phasencharakteristik d
 \medskip
 \textbf{kann es sein das die y achse von den werten her falsch beschriftet ist? das maximum dieser kennlinie sollte doch von $\frac{max_x \cdot max_y}{V_r}$ abhängen.}
 
-Damit bleibt das Problem, dass der Detektor nur eine Phasendifferenz von genau $90^\circ$ erkennen kann. Liegt eine andere konstante Phasenverschiebung zwischen den Signalen an, kann diese zwar detektiert werden, aber nur, ob die Phasendifferenz höher oder niedriger ist als $90^\circ$. Die allgemeine Phasenverschiebung zwischen dem Referenzsignal (Eingangssignal) und internem Signal muss also zwangsläufig $90^\circ$ betragen. Dafür wird nun innerhalb des Voltage Controlled Filters (Biquad, VCF schon eingeführt?) nach einem solchen Signal gesucht.\par
+Damit bleibt das Problem, dass der Detektor nur die Phasendifferenz von genau \SI{90}{\degree} erkennen kann, da der Gleichspannungsanteil des Ausgangssignals an dieser Stelle bei \SI{0}{\volt} liegt. Einer andere konstante Phasenverschiebung kann zwar detektiert werden, jedoch nicht als Arbeitspunkt für die Regelung fungieren, sodass sich das System auf diesen Punkt einpendelt/lockt. Die Verschiebung zwischen dem Referenzsignal und dem internen Signal muss also zwangsläufig \SI{90}{\degree} betragen. Dafür wird nun innerhalb des Biquads nach einem solchen Signal gesucht.\par
 \medskip
 
-Gesucht wird also ein Signal innerhalb des Biquads, dessen Phase sich bei der Mittenfrequenz $\omega=\omega_0$ um \SI{90}{\degree} gegenüber dem Eingangssignal unterscheidet. In Frage kommen daher sowohl eine Phasenverschiebung von \SI{90}{\degree} als auch von \SI{-90}{\degree}. Da es um die Phasendifferenz zwischen dem Eingangssignal und einem internen Signal geht, kann \SI{-90}{\degree} auch als \SI{270}{\degree} interpretiert werden. Das Eingangssignal dient dabei als Bezugssignal und definiert die Referenzphase von \SI{0}{\degree}.\par
+Bei der Auswahl des internen Signals soll sich die Phase um die Mittenfrequenz $\omega=\omega_0$ um \SI{90}{\degree} gegenüber dem Eingangssignal unterscheiden. In Frage kommen daher sowohl eine Phasenverschiebung von \SI{90}{\degree} als auch von \SI{-90}{\degree}, wobei \SI{-90}{\degree} auch als \SI{270}{\degree} interpretiert werden kann. Das Eingangssignal dient dabei als Bezugssignal und definiert die Referenzphase von \SI{0}{\degree}.\par
 \medskip
 
 \begin{figure} [H]
@@ -215,7 +245,7 @@ Gesucht wird also ein Signal innerhalb des Biquads, dessen Phase sich bei der Mi
 \end{figure}
 \medskip
 
-Der Biquad besitzt vier unterschiedliche Filtertypen, deren Phasengänge sich deutlich von einander Unterscheiden. Bei genauerer Betrachtung der Phasenverläufe in Abbildung \ref{fig:phaseshift} der Filtertypen fällt auf, dass Hoch- und Tiefpass um $\omega_0$ eine Phasenverschiebung von $90^\circ$ bzw. $-90^\circ$ gegenüber dem Eingangssignal aufweisen. Der Bandpassfilter hat in dieser Umgenbung eine Phasenverschiebung von $\pm180^\circ$ und die Bandsperre hat bei $\omega_0$ einen Phasensprung.  Damit erfüllt sowohl der Tiefpass- als auch der Hochpassausgang die Bedingung einer konstanten $90^\circ$-Phasendifferenz, sodass in beiden Fällen der Phasendetektor bei richtiger Abstimmung einen Mittelwert von $0V$ am Ausgang liefern sollte.
+Der Biquad besitzt vier unterschiedliche Filtertypen deren Phasengänge sich deutlich von einander Unterscheiden. Bei genauerer Betrachtung der Phasenverläufe in Abbildung \ref{fig:phaseshift} der Filtertypen fällt auf, dass Hoch- und Tiefpass um $\omega_0$ eine Phasenverschiebung von \SI{90}{\degree} bzw. \SI{-90}{\degree} gegenüber dem Eingangssignal aufweisen. Der Bandpassfilter hat in dieser Umgenbung eine Phasenverschiebung von \SI{180}{\degree} und die Bandsperre hat einen Phasensprung. Damit erfüllt sowohl der Tiefpass- als auch der Hochpassausgang die Bedingung einer konstanten $90^\circ$-Phasendifferenz, sodass der Phasendetektor bei richtiger Abstimmung in beiden Fällen einen Mittelwert von $0V$ am Ausgang liefern sollte.
 \medskip
 
 \begin{figure}[H]
@@ -225,23 +255,31 @@ Der Biquad besitzt vier unterschiedliche Filtertypen, deren Phasengänge sich de
   \label{fig:sb_phasedetector}
 \end{figure}
 
-\textbf{Hier die sache mit VCO/VCF! im schaubild war ein VCO zusehen. wir haben allerdings einen VCF. wie kann dies miteinander verknüpft werden?}
-Hinter dem Multiplizierer befindet sich ein Integrator. Dieser soll die verbleibende hochfrequente Sinuskomponente herausfiltern, sodass eine reine DC-Spannung als Indikator für die Phasendifferenz verbleibt. Dadurch kann diese Ausgangsspannung als DC-Steuerspannung $V_c$ für die internen Multiplikatoren im VCF verwendet werden.\par
+Hinter dem Multiplizierer befindet sich, wie in Abbildung \ref{fig:sb_phasedetector} zusehen, ein Integrator. Dieser hat zum einen die Aufgabe, die hochfrequenten Anteile des Multiplizierters durch seine Tiefpasscharakteristik herauszufiltern. Zudem integriert dieser das eingehende DC-Signal, sodass die Ausgangsspannung bei langanhaltender, großer Phasendifferenz im Bezug zu \SI{\pm 90}{\degree} immer größer wird.\par
 \medskip
 
-Im Schaltplan des ASLK-PRO Manuals unter Experiment 5 befindet sich am Ausgang des Integrators noch eine zusätzliche Hilfsspannungsquelle $V_H$. Diese hat die Aufgabe, die Steuerspannung auf ein geeignetes Potential anzuheben. \textbf{Die Bedeutung dieser wird genauer im Kapitel des VCFs untersucht, ein wichtiger Bestandteil hierbei ist die Vereinfachte Darstellung des Multiplizierers wie in Gleichung \ref{eq:Multi_vereinfacht} gezeigt.}
-
+Nach dem Operationsverstärker befindet sich im Schaltplan des ALSK-PRO Manuals noch eine Teilschaltung bestehend aus Spannungsquelle $V_H$ und zwei Widerständen. Leider werden dabei weder der Zweck noch die Höhe der Hilfsspannung genauer erläutert, woduch es schwerer fällt diesen Schaltungsteil zu verstehen.\par
 \medskip
-\textbf{vielleicht sollte darauf doch besser hier eingengangen werden!}
+Zu den anfänglichen Überlegungen bezüglich der Funktion von $V_H$ gehörte die Annahme, dass die Ausgangsspannung des Integrators zur Verwendung als Steuerspannung für den VCO auf ein geeignetes Potential angehoben werden muss. Diese Vermutung begründet sich durch die Verschaltung der internen Integratoren da der Rückführungspfad dieser durch einen Multiplizierer erweitert wird. Dadurch wird aus der ursprünglichen Beziehung
+\begin{equation*}
+  V_{cap}=V_{out}
+\end{equation*}
+durch den Multiplizierer die Beziehung
+\begin{equation*}
+  V_{cap}=\frac{V_{out} \cdot V_{c}}{V_r}
+\end{equation*}
+Soll nun also der ursprüngliche Zustand wieder hergestellt werden, müsste die Steuerspannung $V_c$ \textbf{im Durchschnitt?} auf das bekannte Referenzpotential $V_r=\SI{10}{\volt}$ angehoben werden, um den Bruch zu kompensieren.\par
+\medskip
+Aus dieser Überlegung ergeben sich mehrere Probleme. Zum einen liegt die Ausgangsspannung des Integrators bei etwa \SI{2.5}{\volt}. Um diesen Wert über die gezeigte Schaltung anzuheben, müsste $V_H$ eine sehr hohe Spannung (deutlich über \SI{10}{\volt}) haben, da die Widerstände einen Spannungsteiler bilden. Zum anderen stellt sich die Frage, ob die Phaseninformation noch erhalten bleibt oder ob ein Teil des Stroms zurück in den Phasendetektor fließt und so die Ausgangsspannung beeinflusst. Um die Steuerspannung auf das gewünschte Potential anzuheben, ist diese Verschaltung daher eher ungeeignet.\par
+\medskip
+Auf die tatsächliche Funktion der Steuerspannung im VCF wird im Kapitel \ref{sec:VCF} genauer eingegangen. Der tatsächliche Nutzen der Hilfsspannungsquelle wird warscheinlich die Stromverstärkung des Kontrollsignals sein. Dabei muss $V_H$  selbst keinen hohen Wert besitzen, was besser zu der Charakteristik einer Hilfsspannungsquelle passt. Auf diese Weise können die internen Multiplizierer das Steuersignal besser verarbeiten.\par
+\medskip
+So steht im nächsten Schritt eine geeingete DC-Steuerspannung $V_c$ für die internen Multiplizierer im VCF zur Verfügung, die das Signal durch die Stromverstärkung besser erfassen können.\par
+\medskip
 
-\subsection{$V_H$}
-entweder zur stromverstärkung
-oder um das den signalfluss bei korrekter Phasendifferenz gleich aufrecht zu erhalten. 
 
 
-
-
-\subsection{Simulation}
+\subsection{Simulation von Eingangssignalen mit Phasenverschiebung}
 Im folgenden Abschnitt werden die zuvor beschriebenen Zusammenhänge durch eine Simulation überprüft. Hierfür werden dem System Wechselspannungen unterschiedlicher Phasenlage zugeführt.\par
 \medskip
 
@@ -290,7 +328,7 @@ Zusätzlich lässt sich beobachten, dass sich bei sinkender Grenzfrequenz des Ti
 %https://www.ti.com/content/dam/videos/external-videos/zh-tw/1/3816841626001/4082104055001.mp4/subassets/opamps-offset-voltage-input-bias-specifications-presentation-quiz.pdf
 
 
-\subsection{Simultation von Eingangssignalen unterschiedlicher Frequenz}
+\subsection{Simultation von Eingangssignalen mit unterschiedlichen Frequenzen}
 Ziel dieser Simulation ist, zu erkennen, wie die Steuerspannung $V_c$ auf unterschiedliche Phasendifferenzen am Eingang des Phasendetektors reagiert.\par
 \medskip
 Dafür werden zwei Signale ähnlicher Frequenz auf das System gegeben. Das Referenzsignal schwingt mit \SI{1000}{\hertz}, dazu kommt ein Eingangssignal mit %\SI{900}{\hertz} bzw.
@@ -326,8 +364,9 @@ bei betrachtung von \ref{fig:pd_out_freq} fällt auf, dass sich die durchschnitt
 Nach der Integration dieser Ausgangssignale zeigt sich eindeutig, dass $V_c$ zwischen der Phasenlage von \SI{90}{\degree} über \SI{180}{\degree} bis \SI{270}{\degree} vom Potential her steigt. (also um 180 Grad, 90 und 270 sind die Grenzwerte). Wenn sich die Phase des Eingangssignals aber zwischen \SI{270}{\degree} und \SI{90}{\degree} bewegt, sinkt die Spannung $V_c$. 
 
 \section{Aufbau und Steuerung des Voltage Controlled Filters}
+\label{sec:VCF}
 
-\textbf{Was ist ein VCF}
+
 
 
 \subsection{Abbinder zu PLLs}
@@ -339,7 +378,9 @@ Zusammengefasst ist der Unterschied, dass das Filterverhalten und nicht die Freq
 
 
 \subsection{Voltage Controlled Filter}
+\textbf{Was ist ein VCF}
 
+Der spannungsgesteuerte Filter ist ein Filter, bei dem sich die Grenzfrequenz oder andere Filterparameter über eine Steuerspannung verändern lassen. Dadurch ist es möglich, besonders schnell und flexibel auf unterschiedliche Eingangssignale zu reagieren. In der Audiotechnik werden solche Filter häufig in Synthesizern verwendet, um den Klangcharakter von Signalen dynamisch zu verändern.\textbf{Wikipedia englisch}\par
 
 Der Voltage Controlled Filter basiert auf dem Biquad aus vergangendem Semester. Neben dem im vergangenen Kapitel besprochenen Phasendetektor wurde die Biquad-Schaltung noch so verändert, dass sich die Grenzfrequenz über die Steuerspannung $V_c$ verändern lässt. Dazu wurde der Schaltplan um die Frequenzgebenden Integratoren verändert.
 
@@ -521,21 +562,21 @@ Gut zu erkennen ist dieses Verhalten bei betrachung der ersten und dritten turki
 \begin{figure} [H]
     \centering
     \includegraphics[width=1\linewidth]{../Bilder/phase2omega2.png}
-    \caption{Ungedämpfte Schwingung der Frequenz und Phasenlage}
+    \caption{Frequenz- und Phasendifferenzverlauf des Algoritmus mit Stufenregelung}
     \label{fig:phase2omega2}
 \end{figure}
 
-Aus Abbildung~\ref{fig:phase2omega2} ist deutlich zu erkennen, dass sowohl die Frequenz als auch die Phasenlage ungedämpft schwingen. Dieses Verhalten lässt sich durch die Form der Phasenkennlinie des Systems (vgl. Abbildung~\ref{fig:op_out_freq}) erklären. Die Steuerspannung reagiert besonders empfindlich auf Phasenänderungen im Bereich um \SI{180}{\degree}, da dort die Steigung der Kennlinie am größten ist. Schon kleine Abweichungen führen in diesem Bereich zu starken Änderungen der Grenzfrequenz, was das System zusätzlich antreibt und damit die ungedämpfte Schwingung begünstigt.
-
-An den beiden Extremstellen der Kennlinie – bei \SI{90}{\degree} und \SI{270}{\degree} – ist die Steigung hingegen nahezu null. Diese Punkte bilden die beiden Gleichgewichtspunkte des Systems. Der Punkt bei \SI{90}{\degree} entspricht einem stabilen Arbeitspunkt, da kleine Phasenabweichungen nur geringe und ausgleichende Änderungen an der Grenzfrequenz bewirken. Der Punkt bei \SI{270}{\degree} stellt dagegen einen instabilen Arbeitspunkt dar: Bereits geringe Abweichungen führen zu Verstärkungen in die falsche Richtung, weshalb das System diesen Zustand nicht halten kann und sich davon wegbewegt.
-
+Aus Abbildung~\ref{fig:phase2omega2} ist deutlich zu erkennen, dass sowohl die Frequenz als auch die Phasenlage ungedämpft schwingen. Dieses Verhalten lässt sich durch die Form der Phasenkennlinie des Systems (vgl. Abbildung~\ref{fig:op_out_freq}) erklären. Die Steuerspannung reagiert besonders empfindlich auf Phasenänderungen im Bereich um \SI{180}{\degree}, da dort die Steigung der Kennlinie am größten ist. Schon kleine Abweichungen führen in diesem Bereich zu starken Änderungen der Grenzfrequenz, was das System zusätzlich antreibt und damit die ungedämpfte Schwingung begünstigt.\par
+\medskip
+An den beiden Extremstellen der Kennlinie, bei \SI{90}{\degree} und \SI{270}{\degree}, ist die Steigung hingegen nahezu null. Diese Punkte bilden die beiden Gleichgewichtspunkte des Systems. Der Punkt bei \SI{90}{\degree} entspricht einem stabilen Arbeitspunkt, da kleine Phasenabweichungen nur geringe und ausgleichende Änderungen an der Grenzfrequenz bewirken. Der Punkt bei \SI{270}{\degree} stellt dagegen einen instabilen Arbeitspunkt dar: Bereits geringe Abweichungen führen zu Verstärkungen in die falsche Richtung, weshalb das System diesen Zustand nicht halten kann und sich davon wegbewegt.\par
+\medskip
 Um das Regelverhalten zu verbessern wird die Frequenz proportional zur Phasenänderung korregiert. Bei großen Phasenabweichungen im Bezug auf die Gleichgewichtspunkte folgt eine starke Korrektur der Frequenz, kleine Abweichungen führen zu kleinen Korrekturen. Diese proporionale Regelung wird ebenfalls in den Code übernommen. Zu vereinfachungszweken wird die Phasencharakteristik des Phasendetektors nicht Sinusförimg abgebildet, sondern nur angehähert stufenförmig. So erfolgt beu großer Phasendiffernz eine große Korrektur der Frequenz und bei kleiner eine geringe.\par
 
 \begin{figure} [H]
     \centering
     \includegraphics[width=1\linewidth]{../Bilder/phase2omega3.png}
-    \caption{Ungedämpfte Schwingung der Frequenz und Phasenlage}
-    \label{fig:phase2omega2}
+    \caption{Frequenz- und Phasendifferenzverlauf des Algoritmus mit proportionaler Regelung}
+    \label{fig:phase2omega3}
 \end{figure}
 
 
@@ -543,7 +584,7 @@ Leider ergbt sich durch das proportionale Frequenzanpassung nicht der gewünscht
 \medskip
 
 \textbf{ich bekomme den algorithmus nicht mit dämpfung (TP) zum laufen. falls das noch passiert, hier die geschichte mit der Fallhöhe:}
-Code wird nicht Stabiel. Frequenz des Systems haut immer nach 970 bzw 1030 Hz und weiter ab. 
+Code wird nicht Stabil. Frequenz des Systems haut immer nach 970 bzw 1030 Hz und weiter ab. 
 
 
 Abbildung PIT Regler\par
@@ -589,27 +630,47 @@ In diesem Bild ist zu erkennen, dass die Phase stets die größte Steigung an de
 \section{Einfluss des VCF auf die Filterfrequenz und praktische Parametersteuerung}
 
 \section{Sensitivitätsanalyse von Filter und Detektor}
-
 Was zeigt die Sensitivität im allgemeinen
 
-\subsection{Sensitivität des Phasendetektors}
+Im Allgemeinen beschreibt die Sensitivität die Änderung einer Ausgangsgröße im Bezug auf die Änderung einer Eingangsgröße. Bei dem schon bekannten VCO beschreibt die Sensitivität beispielsweise, wie stark die Freqeunz auf eine Änderung der Steuerspannung reagiert. Dabei vergrößert eine hohe Sensitivität die Tuningrange und Genauigkeit des Oszillators, jedoch wird dieser auch schwierger zu kontrollieren, da kleine Änderungen der Steuerspannung große Änderungen der Frequenz bewirken und Rauschen leichter eingefangen werden kann. Eine geringere Sensitivität verbessert die Stabilität des Systems. \par
+%https://www.minicircuits.com/appdoc/AN95-005.html
 
+
+\subsection{Sensitivität des Phasendetektors}
 Die Sensitivität des Phasendetektors $K_{pd}$ kann durch folgende Geichung beschrieben werden:
 
 \begin{equation*}
 K_{pd} = \frac{dV_{av}}{d \phi} \left[ \frac{V}{rad}\right]
 \end{equation*}
 
-Wobei $V_{av}$ den duchschnittlichen Spannungswert des Ausgangs $V_o$? beschreibt.
-Die Ableitung des Ausgangssignals im Duchschnitt nach der Phasendifferenz gibt an, wie stark sich die Ausgangsspannung bei Änderung der Phasendifferenz verändert. Für $\phi = 90^\circ$ hat $V_{av}$ einen Wert von 0 Volt.\par
+Wobei $V_{av}$ den durchschnittlichen Spannungswert des Ausgangs des Detektors $V_o$? \textbf{(Müsste $V_c$ sein!)} beschreibt.
+Die Ableitung des Ausgangssignals im Duchschnitt nach der Phasendifferenz gibt an, wie stark sich die Ausgangsspannung bei Änderung der Phasendifferenz verändert. Für $\phi = \SI{90}{\degree}$ hat $V_{av}$ einen Wert von 0 Volt.\cite{Lab_Kit_PRO}\par
 \medskip
+In Anlehnung an den Abhängigkeits/Sensitivitäst-Verlauf aus Abbildung \ref{fig:op_out_freq} wird der Verlauf vereinfacht als Sinusfunktion dargestellt. Darauf wird die Funktion nach $\phi$ abgeleitet um die Sensitivität zu ermitteln.\par
+\medskip
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{../Bilder/sensitivität1.png}
+    \caption{xxx}
+    \label{fig:sens1}
+\end{figure}
+
+Diese vereinfachte Simulation stimmt an den durch das Manual bekannten Punken ($\SI{90}{\degree}$ und $\SI{270}{\degree}$) überein. Die Amplitude der Funktion ist allerdings deutlich größer als gedacht. Mit einem Maximalwert von \SI{2000}{\volt} würde die Regelung sehr früh um den Arbeitspunkt stagnieren, da die Verstärker nur bis zu \SI{15}{\volt} ausgeben können.
+
+Diese Amplitude ergibt sich in diesem Fall durch die hableitung der Hohen frequenz. In diesem Fall ändert die Frequenz also die Sensitivität des Phasendetektors. eine geringere Frequenz führt über die Ableitung zu einer geringeren Amplitunde und somit zu einer gerinegeren Sensitivität. \par
+
+
+
 
 
 \textbf{Kann man hier noch irgendwas rechnen? z.B. für eine Bestimmte frequenz? oder ist das immer 20V/pi wie in der Abbildung weiter oben?}
 was sagt die sensitivität in diesem Fall aus? kann dazu noch etwas gemessen/ simuliert werden?
 
 \subsection{Sensitivität des VCFs}
-Bei Ableitung der Gleichung für die Grenzfrequenz \eqref{eq:freq-vcf}  nach der Steuerspannung $V_c$ ist zu erkennen, wei empfindlich die Filterfrequenz auf die anliegende Steuerspannung reagiert.
+\textbf{Achtung: Dieser Teil wird über die im Buch beschribene Formel der Grenzfrequenz bestimmt}
+
+Bei Ableitung der Gleichung für die Grenzfrequenz \eqref{eq:freq-vcf} nach der Steuerspannung $V_c$ ist zu erkennen, wie empfindlich die Filterfrequenz auf die anliegende Steuerspannung reagiert.
 
 \begin{equation*}
 \frac{d \omega_0}{d V_c} = \frac{1}{V_r \cdot RC}
@@ -621,7 +682,7 @@ Durch einfaches Umstellen der selben Gleichung \eqref{eq:freq-vcf} ergibt sich
 \frac{\omega_0}{V_c} = \frac{1}{V_r \cdot RC}
 \end{equation*}
 
-So ergibt sich ein Gesammtzusammenhang, der die Empindlichkeit der Filterfrequenz gegenüber der Änderung der Steuerspannung beschreibt.
+So ergibt sich ein Gesammtzusammenhang, der die Empfindlichkeit der Filterfrequenz gegenüber der Änderung der Steuerspannung beschreibt.
 
 \begin{equation}
 \frac{d \omega_0}{d V_c} =  \frac{\omega_0}{V_c} \label{eq:empf_w0-Vc}
@@ -689,6 +750,10 @@ Eingesetzt in die Gleichung \eqref{eq:ges-sensitivität} ergibt sich daraus die 
 
 
 \textbf{schreiben was das genau besagt, damit man das vielleicht später in einer messung validieren kann}
+
+Im enteffekt beschreibt die Sensitivität des self-Tuned Filters also, wie stark sich die Phasenabweichung $\phi$ bei varierung der Steuerspannung $V_c$ ändert. Dabei ist zu sehen, dass die Sensitivität direkt Porportional zur Güte $Q$ des Filters ist. Je höer die Güte, desto empfindlicher reagiert das System auf die Eingangssteuergröße. 
+
+
 
 
 

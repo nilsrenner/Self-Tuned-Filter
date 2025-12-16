@@ -35,18 +35,18 @@
           "trace_type": 257
         },
         {
-          "color": "rgb(77, 175, 74)",
-          "signal": "V(mult_out_0)",
+          "color": "rgb(228, 26, 28)",
+          "signal": "V(in_0)",
           "trace_type": 257
         },
         {
-          "color": "rgb(152, 78, 163)",
-          "signal": "V(mult_out_mHz)",
+          "color": "rgb(247, 129, 191)",
+          "signal": "V(mHz)",
           "trace_type": 257
         },
         {
-          "color": "rgb(55, 126, 184)",
-          "signal": "V(mult_out_pHz)",
+          "color": "rgb(102, 194, 165)",
+          "signal": "V(pHz)",
           "trace_type": 257
         }
       ]
@@ -68,7 +68,13 @@
       },
       "measurements": [],
       "showGrid": true,
-      "traces": []
+      "traces": [
+        {
+          "color": "rgb(228, 26, 28)",
+          "signal": "V(detec_out_pHz) (gain)",
+          "trace_type": 9
+        }
+      ]
     }
   ],
   "user_defined_signals": [],

@@ -391,3 +391,38 @@ plt.show()
 
 
 #Simtime= 10ms
+
+#%%
+
+t = np.linspace(0, 1e-3, 1000)   
+f = 1000                           
+u = -0.32 * np.sin(2 * np.pi * f * t) + 2.527 
+u_ = -0.32 * 2 * np.pi * f * np.cos(2 * np.pi * f * t)
+
+
+xticks_pos = [0, 2.5, 5.0, 7.5, 10.0]  
+xtick_labels = [r'$0$', r'$\frac{\pi}{2}$', r'$\pi$', r'$\frac{3\pi}{2}$', r'$2\pi$']
+
+plt.figure(11,figsize=(10,5), dpi=150)
+plt.subplot(211)
+plt.plot(time, op2, color=my_green, label=r'simulierter Verlauf',ls='-')
+plt.plot(t * 1e4,u, color=my_red,label=r'vereinfachter Verlauf',ls='-')  # deine Skalierung bleibt!
+plt.xticks(xticks_pos, xtick_labels)
+plt.title(r'Vereinfachung der Abhänigkeit zwischen Steuerspannung und Phasendifferenz')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.legend(loc='lower right')
+plt.grid(True, which='both', ls='--', lw=0.5)
+
+
+
+plt.subplot(212)
+plt.plot(t * 1e4,u_,color=my_red,ls='-') 
+plt.xticks(xticks_pos, xtick_labels)
+plt.title(r'Differenzierung der vereinfachten Abhängigkeit')
+plt.xlabel("Zeit [ms]")
+plt.ylabel("Spannung [V]")
+plt.grid(True, which='both', ls='--', lw=0.5)
+plt.tight_layout()
+plt.show()
+
