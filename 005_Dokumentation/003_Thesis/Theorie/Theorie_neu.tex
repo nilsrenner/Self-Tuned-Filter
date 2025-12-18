@@ -363,11 +363,12 @@ bei betrachtung von \ref{fig:pd_out_freq} fällt auf, dass sich die durchschnitt
 
 Nach der Integration dieser Ausgangssignale zeigt sich eindeutig, dass $V_c$ zwischen der Phasenlage von \SI{90}{\degree} über \SI{180}{\degree} bis \SI{270}{\degree} vom Potential her steigt. (also um 180 Grad, 90 und 270 sind die Grenzwerte). Wenn sich die Phase des Eingangssignals aber zwischen \SI{270}{\degree} und \SI{90}{\degree} bewegt, sinkt die Spannung $V_c$. 
 
+
+
+
+
 \section{Aufbau und Steuerung des Voltage Controlled Filters}
 \label{sec:VCF}
-
-
-
 
 \subsection{Abbinder zu PLLs}
 \textbf{weiß noch nicht wo das hinsoll}
@@ -382,7 +383,7 @@ Zusammengefasst ist der Unterschied, dass das Filterverhalten und nicht die Freq
 
 Der spannungsgesteuerte Filter ist ein Filter, bei dem sich die Grenzfrequenz oder andere Filterparameter über eine Steuerspannung verändern lassen. Dadurch ist es möglich, besonders schnell und flexibel auf unterschiedliche Eingangssignale zu reagieren. In der Audiotechnik werden solche Filter häufig in Synthesizern verwendet, um den Klangcharakter von Signalen dynamisch zu verändern.\textbf{Wikipedia englisch}\par
 
-Der Voltage Controlled Filter basiert auf dem Biquad aus vergangendem Semester. Neben dem im vergangenen Kapitel besprochenen Phasendetektor wurde die Biquad-Schaltung noch so verändert, dass sich die Grenzfrequenz über die Steuerspannung $V_c$ verändern lässt. Dazu wurde der Schaltplan um die Frequenzgebenden Integratoren verändert.
+Der Voltage Controlled Filter basiert auf dem Biquad aus Kapitel \ref{sec:theorie1}, zusehen in Abbildung \ref{fig:Multiple-Feetback-Biquad}. Neben dem im vergangenen Kapitel besprochenen Phasendetektor wurde die Biquad-Schaltung so verändert, dass sich die Grenzfrequenz über die Steuerspannung $V_c$ verändern lässt. Dazu wurde der Schaltplan um die frequenzgebenden Integratoren verändert.
 
 \begin{figure}[!h]
   \centering
@@ -391,34 +392,34 @@ Der Voltage Controlled Filter basiert auf dem Biquad aus vergangendem Semester. 
   \label{fig:sb_vci}
 \end{figure}
 
-Wie schon in bei der Standard-Integratorschaltung wird auch für diese Schaltung die Übertragungsfunktion hergeleitet. Da der Strom durch den Widerstand vollständig durch den Kondensator in der Rückführungsschleife fließen muss, ergibt sich folgender Zusammenhang:
+Im Rückführungspfad der Integratoren wird jeweils ein Multiplizierer eingefügt, der die Ausgangsspannung des OPs mit der Steuerspannung $V_c$ multipliziert. Wie schon in bei der Standard-Integratorschaltung wird auch für diese Schaltung die Übertragungsfunktion hergeleitet. Da der Strom durch den Widerstand vollständig durch den Kondensator in der Rückführungsschleife fließen muss, ergibt sich folgender Zusammenhang
 
 \begin{equation}
 I_R = \frac{V_{in}}{R} = -I_C = -C \cdot \frac{dV_{cap}}{dt}
 \label{eq:integrator_current}
 \end{equation}
 
-Daraus folgt:
+Daraus folgt
 
 \begin{equation}
 \frac{V_{in}}{R} = -C \cdot \frac{dV_{cap}}{dt}
 \label{eq:integrator_relation}
 \end{equation}
 
-Mit $V_{cap} = \frac{V_{out} \cdot V_c}{V_r}$ ergibt sich:
+Mit $V_{cap} = \frac{V_{out} \cdot V_c}{V_r}$ ergibt sich
 
 \begin{equation}
 \frac{V_{in}}{R} = -C \cdot \frac{d}{dt}\left(\frac{V_{out} \cdot V_c}{V_r}\right)
 \end{equation}
 
-Durch Integration erhält man den Zusammenhang im Zeitbereich:
+Durch Integration erhält man den Zusammenhang im Zeitbereich
 
 \begin{equation}
 V_{out}(t) = -\frac{V_r}{V_c} \cdot \frac{1}{RC} \int V_{in}(t) \, dt
 \label{eq:integrator_time}
 \end{equation}
 
-Im Laplace-Bereich ergibt sich entsprechend:
+Im Laplace-Bereich ergibt sich entsprechend
 
 \begin{equation}
 V_{out}(s) = -\frac{V_r}{V_cRCs} \, V_{in}(s)
@@ -428,13 +429,14 @@ V_{out}(s) = -\frac{V_r}{V_cRCs} \, V_{in}(s)
 Somit zeigt die Schaltung das Verhalten eines invertierenden Integrators mit einem Verstärkungsfaktor von $-\frac{V_r}{V_cRC}$. Wegen des zusätzlichen Faktors $V_r/V_c$ mit der variablen Spannung $V_c$ wird ein Aufbau wie dieser auch Voltage Controlled Integrator (VCI) genannt.
 
 
-was passiert bei hoher $V_c$ und was bei geringer? kann man den mulit als R oder spannungsquelle oder so auffassen?
+%was passiert bei hoher $V_c$ und was bei geringer? kann man den mulit als R oder spannungsquelle oder so auffassen?
 
-Das ding alleine sollte alle Frequenzen gleich integrieren, da es parallel zum Kondensator keinen Widerstand hat. 
+%Das ding alleine sollte alle Frequenzen gleich integrieren, da es parallel zum Kondensator keinen Widerstand hat. 
 
 
 \subsection{Grenzfrequenzbestimmung des VCF}
-Die Grenzfrequenz, auch Cutoff-Frequenz oder Mittenfrequenz genannt, ist einer der wichtigsten Parameter zur Bestimmung von Filtern. Sie zeigt an, wo sich im Spektrum der Übergangsbereich befindet, der den Durchlassbereich(Passband) von Sperrbereich(Stopband) trennt. So gibt dieser Parameter Auskunft darüber, welche Frequenzen verstärkt oder gedämpft werden, was die wichtigste Eingenschaft eines Filters ist.\par
+%Die Grenzfrequenz, auch Cutoff-Frequenz (\textbf{$\omega_0$ ist die Mittenfrequenz!}) genannt, ist einer der wichtigsten Parameter zur Bestimmung von Filtern. Sie zeigt an, wo sich im Spektrum der Übergangsbereich befindet, der den Durchlassbereich(Passband) von Sperrbereich(Stopband) trennt. So gibt dieser Parameter Auskunft darüber, welche Frequenzen verstärkt oder gedämpft werden, was die wichtigste Eingenschaft eines Filters ist.\par
+Die Mittenfrequenz ist ein wichtiger Parameter zur Charakterisierung von Filtern. Sie gibt im Bandpass an, an welcher Stelle im Frequenzspektrum sich der Durchlassbereich zentriert und entspricht der Resonanzfrequenz des Filters. Sie beschreibt somit, bei welcher Frequenz das Filter seine maximale Übertragung aufweist, was eine zentrale Eigenschaft eines Bandpassfilters darstellt.\par
 \medskip
 Aus der im letzten Abschnitt hergeleiteten Übertragungsfunktion im Laplace-Bereich \eqref{eq:integrator_laplace} kann nun über die systemtheoretische Betrachtung des Filters auf die Gesammtübertragungsfunktion geschlossen werden. Aus den Übertragungsfunktionen der einzelnen OpAmps lässt sich das in Abbildung \ref{fig:sb_sys_vcf} zusehende Blockschaltbild erschließen.
 
@@ -461,7 +463,7 @@ Die Übertragungsfunktion des einfachen Biquads in der Standardform lautet
 
 mit $\omega_0 = \frac{1}{RC}$
 
-Um nun auf die Gleichung für die Grenzfrequenz zu kommen muss die Übertragungsfunktion so normiert werden, dass der Nenner dieser dem Nenner der Standardform entspricht. Bei Gleichsetzung der beiden höchsten Exponenten ergibt sich
+Um nun auf die Gleichung für die Mittenfrequenz zu kommen muss die Übertragungsfunktion so normiert werden, dass der Nenner dem Nenner der Standardform entspricht. Bei Gleichsetzung der beiden höchsten Exponenten ergibt sich
 
 \begin{equation*}
 \left(\frac{s}{\omega_0}\right)^{2} = \left(sRC\frac{V_c}{V_r}\right)^{2}
@@ -482,7 +484,7 @@ Im letzten Unterkapitel wurde die Beziehung zwischen der Phasendifferenz $\phi$ 
 
 \medskip
 \textbf{Berechnung der Grenzfrequenz aus dem Video}\par
-Laut ASLK-PRO Manual müssten $V_c$ und $V_r$ getauscht sein. Jedoch ist die Grenzfrequenz eine physikalische Größe, die nicht von der Normierung abhängig sein darf. So kann davon ausgegangen werden, dass die im Manual vorgeschlagene Lösung entweder nicht korrekt ist, oder anders Normiert bzw eine andere Konvention verwendent wurde. (zweiteres ist unwahrscheinlicher, da der Rechenweg dadurch deutlich komplizierter zu sein scheint) YT vid  \cite{YT_stf_lab5}  sagt aber auch was anderes!!!\par
+Laut ASLK-PRO Manual müssten $V_c$ und $V_r$ getauscht sein. Jedoch ist die Mittenfrequenz eine physikalische Größe, die nicht von der Normierung abhängig sein darf. So kann davon ausgegangen werden, dass die im Manual vorgeschlagene Lösung entweder nicht korrekt ist, oder anders Normiert bzw eine andere Konvention verwendent wurde. (zweiteres ist unwahrscheinlicher, da der Rechenweg dadurch deutlich komplizierter zu sein scheint) YT vid  \cite{YT_stf_lab5}  sagt aber auch was anderes!!!\par
 \medskip
 
 
@@ -493,7 +495,7 @@ Laut ASLK-PRO Manual müssten $V_c$ und $V_r$ getauscht sein. Jedoch ist die Gre
   \label{fig:bsb_w0}
 \end{figure}
 
-Laut Quelle (begleitendem YouTube Video zu diesem Experiment) \cite{YT_stf_lab5} kann die Formel für die Grenzfrequenz anhand dieser vereinfachten Schaltung abgeleitet werden. Die bekannte Formel für den Integrator lautet
+Laut Quelle (begleitendem YouTube Video zu diesem Experiment) \cite{YT_stf_lab5} kann die Formel für die Mittenfrequenz anhand dieser vereinfachten Schaltung abgeleitet werden. Die bekannte Formel für den Integrator lautet
 
 \begin{equation}
 V_{out} = -\frac{V_{i}}{sCR} \label{eq:integrator}
@@ -517,7 +519,7 @@ Um die Übertragungsfunktion zu erlangen muss nun durch $V_{in}$ geteilt werden
 \frac{V_{out}}{V_{in}} = -\frac{V_c}{V_r \cdot sRC} = - \frac{V_c}{V_r} \cdot \frac{1}{sRC}
 \end{equation*}
 
-Aus dem Therm $\frac{1}{sRC}$ ergibt sich die Standartform $\omega_0 = \frac{1}{RC}$ mit einem zusätzlichen Faktor von $\frac{V_c}{V_r}$ sodass sich die Grenzfrequenz wiefolgt ergibt
+Aus dem Therm $\frac{1}{sRC}$ ergibt sich die Standartform $\omega_0 = \frac{1}{RC}$ mit einem zusätzlichen Faktor von $\frac{V_c}{V_r}$ sodass sich die Mittenfrequenz wiefolgt ergibt
 
 \begin{equation}
 \omega_0 = \frac{V_c}{V_r \cdot RC} \label{eq:freq-vcf}
@@ -759,11 +761,11 @@ Im enteffekt beschreibt die Sensitivität des self-Tuned Filters also, wie stark
 
 \section{Theoretische und praktische Begrenzungen des Self-Tuning-Bereichs eines aktiven Filters}
 
-\subsection{Bestimmung der Maximalen Grenzfrequenz eines aktiven Filters}
+\subsection{Bestimmung der maximalen Grenzfrequenz eines aktiven Filters}
 
 Wie zuvor schon besprochen lässt sich die bauteilbedingte Grenzfrequenz eines aktiven Filters über die Gleichung $\omega_0 = \frac{1}{RC}$ beschreiben. Durch Variation der Werte von $R$ und $C$ lässt sich die Grenzfrequenz in der Theorie beliebig verändern. In der Praxis können parasitäre Kapazitäten sowie weitere nichtideale Bauteileigenschaften das Filterverhalten beeinflussen, besonders wenn Standardbauteile mit größeren Toleranzen verwendet werden.\par
 \medskip
-Auch die Wahl des verwendeten Operationsverstärkers spielt für die maximal erreichbare Grenzfrequenz eine wichtige Rolle. So sind vor allem die Parameter für das Verstärkungs-Bandbreite-Produkt (eng. Gain-Bandwidth-Product, GBW) und die Slew-Rate (SR) entscheidend. Das GBW gibt an, bis zu welcher Frequenz der OpAmp eine Verstärkung von 1 stabil liefern kann. Die Slew-Rate beschreibt die maximale Anstiegsrate der Ausgangsspannung (maximale Änderungsrate der Ausgangsspannung) des OpAmps. \par\cite{halbleiter_4Quad}\par
+Auch die Wahl des verwendeten Operationsverstärkers spielt für die maximal erreichbare Grenzfrequenz eine wichtige Rolle. So sind vor allem die Parameter für das Verstärkungs-Bandbreite-Produkt (eng. Gain-Bandwidth-Product, GBW) und die Slew-Rate (SR) entscheidend. Das GBW gibt an, bis zu welcher Frequenz der OpAmp eine Verstärkung von 1 stabil liefern kann. Die Slew-Rate beschreibt die maximale Anstiegsrate der Ausgangsspannung (maximale Änderungsrate der Ausgangsspannung) des OpAmps.\cite{halbleiter_4Quad}\par
 \medskip
 Zusätzlich beeinflusst die gewählte Filtertopologie die maximal erreichbare  Frequenz. Höhere Filterordnungen oder Kaskaden mehrerer Stufen beanspruchen jeweils einen Teil der verfügbaren Verstärkungsbandbreite, sodass die Grenzfrequenz insgesamt weiter sinkt.\par
 \medskip
@@ -776,8 +778,8 @@ In der Praxis wird zunächst die benötigte maximale Grenzfrequenz des Filters b
 
 Eine weitere interessante Frage ist, über welchen Bereich die Mittenfrequenz des Filters durch die self-Tune-Funktion verstellt werden kann, ohne die physischen Bauelemente zu verändern. (Zudem ist wichtig herauszufinden wie ich das Messen kann)\par
 \medskip
-Die Mindestanforderung an den Tune-Bereich ist, die entstehenden Bauteiltolleranzen auszugleichen. Standardbauteile besitzen meist eine Toleranz von etwa \SI{5}{\percent}. Da sowohl $R$ also auch $C$ diese Abweichungen besitzen können, kann die Mittenfrequenz $\omega_0$ allein schon durch diese um bis zu \SI{10}{\percent} variieren. Der designte Self-Tuned Filter muss also mindestens diesen Bereich vollständig abdecken können. 
-
+Die Mindestanforderung an den Tune-Bereich ist, die entstehenden Bauteiltolleranzen auszugleichen. Standardbauteile besitzen meist eine Toleranz von etwa \SI{5}{\percent}. Da sowohl $R$ also auch $C$ diese Abweichungen besitzen können, kann die Mittenfrequenz $\omega_0$ allein schon durch diese um bis zu \SI{10}{\percent} variieren. Der designte Self-Tuned Filter sollte also mindestens diesen Bereich vollständig abdecken können. \par
+\medskip
 Der Tune-Berich liegt also bei mindestens $\pm \SI{10}{\percent}$ um die Bauteilbedingte Mittenfrequenz. Andernfalls wäre der Filter nicht in der Lage, allein die üblichen Fertigungs- und Bauteiltoleranzen auszugleichen.\par
 \medskip
 In der Literatur finden sich nur wenige direkte Angaben zum real erreichbaren Tune-Bereich self-tuned aktiver Filter. Daher sollte dies besser durch eine Simulation oder Messung ermittelt werden. \par
@@ -794,17 +796,14 @@ In der Literatur finden sich nur wenige direkte Angaben zum real erreichbaren Tu
 
 \section{Frequenzdetektion des Eingangssignals}
 
-Wie im oberen Teil beschrieben kann ein Selfe-Tuned Filter genau auf die Frequenz des empfangende Signals peilen. Aus diesem Grund dachte ich mir das eine Frequenzbestimmung über dden Microcontroller eine sinnvolle Sache wäre, um festzustellen (ohne Bode-Plot und RedPitaya) auf welche Frequenz der Filter gerade eigestellt ist.\par
+Wie im oberen Teil beschrieben, kann ein Self-Tuned Filter präzise auf die Frequenz des empfangenden Signals abgestimmt werden. Daher bietet es sich an, die eingehende Frequenz über den Mikrocontroller auszuwerten, um ohne Messgeräte wie dem RedPitaya die eingestellte Mittenfrequenz des Filters zu bestimmen. DAbei wird davon ausgegangen dass das self-tuning funktioniert und der Filter die Eingangsfrequenz als mittenfrequenz angenommen hat.\par
 \medskip
-
-Die Umsetzung der Frequenzmessung lässt sich analog oder digital beschreiben. Als analoge Option könnte ein Frequenz-Spannungs-Wandler (F/V-Converter) verwendet werden, der die Frequenz des Eingangssingals in eine proportionale Gleichspannung umwandelt. Diese kann im anschluss über einen ADC am µC ausgelesen werden. Der große Vorteil hierbei ist, das die Reaktion der Detektion sehr schnell ist, Nachteilig ist, dass das eingangssignal noch Vorverarbeitet werden muss um einem Rechteksignal zu entsprechen. Zudem ist der Dynamikbereich begrenzt , da sehr hohe oder nidirge Frequenzen spetzielle anpassungen erfordern. Für eine Umsetzung dieses Verfahrens bräuchte man also viele Externe Komponenten, die einmal installiert zu einschränkungen in der Flexibilität führen, da diese nicht mehr so leicht verändert werden können.\par
+Die Umsetzung der Frequenzmessung kann analog oder digital erfolgen. Als  analoge Option könnte ein Frequenz-Spannungs-Wandler (F/V-Converter) verwendet werden, der die Frequenz des Eingangssingals in eine proportionale Gleichspannung umwandelt. Diese Spannung kann anschließend über einen ADC am Mikrocontroller ausgelesen werden. Der große Vorteil liegt hierbei in der schnellen Reaktionszeit. Nachteilig ist, dass das Eingangssignal vorverarbeitet werden muss, um einem Rechtecksignal zu entsprechen. Zudem ist der Dynamikbereich begrenzt, da sehr hohe oder niedrige Frequenzen spezielle Anpassungen erfordern. Für die Realisierung dieses Verfahrens wären daher mehrere externe Komponenten notwendig. Diese führen nach der Installation zu Einschränkungen in der Flexibilität, da sie nicht mehr so leicht verändert werden können.\par
 \medskip
-
-Im Vergleich dazu spricht für den digitalen ansatz, dass deutlich weniger exterene Bauteile von nöten sind und durch die Programmierung des Zählers eine größerer Flexibilität geboten wird. So kann die Frequenz beispielsweise mit einem Nulldurchgangszähler ermittelt werden. Dieser Zählt wie der Name schon sagt, die Anzahl der Nulldurchgänge oder Pulse Pro Sekunde, teilt diese Zahl durch 2, sodass als ergebnis die Frequenz in Hz herauskommt. Der begrenzende Faktor bei dieser Umsetzung ist das die MEssfrequnez auf die Zeitbasis des µc limitiert ist. Da der µC Rechteck- bzw Tacktsignale erwartet, müüssen analoge Signale wie Sinus, Dreieck und Sägezahn auch hier vorverarbeitet werden. So kann ein Komparator diese Signale effektiv in saubere Rechteckimpulse umwandeln, sodass auch bei kleineren Pegeln sauber gearbeitet werden kann. Zudem schadet auch hier keine Vorverarbeitung, sodass mit einer Rechteckspannung gerechnet werden kann.\par
+Demgegenüber spricht der digitale Ansatz dafür, dass deutlich weniger externe Bauteile erforderlich sind und durch die Softwareprogrammierung eine höhere Flexibilität gegeben ist. So kann die Frequenz beispielsweise mit einem Nulldurchgangszähler ermittelt werden. Dieser zählt die Anzahl der Nulldurchgänge oder Pulse pro Sekunde und teilt diesen Wert durch 2, sodass die Frequenz in Hertz ermittelt werden kann. Der begrenzende Faktor ist hierbei die Abtastrate des Mikrocontrollers. Da der µC Rechteck- bzw Tacktsignale erwartet, müssen analoge Signale wie Sinus, Dreieck und Sägezahn zuvor ebenfalls vorverarbeitet werden. Dafür eignet sich beispielsweise ein Komparator, der die analogen Signale in saubere Rechteckimpulse umwandelt und auch bei kleinen Pegeln zuverlässig arbeitet. Eine zusätzliche Vorverarbeitung kann auch bei diesem Verfahren dazu verwendet werden, stabilere Messergebnisse zu erhalten. \par
 \medskip
-
-Num bleibt nur noch das Problem, dass immernoch keine Mischsignale aus mehreren Frequenzen erkannt werden können. Für diesen Fall gibt es die FFT ... 
-
+Ein verbleibendes Problem besteht darin, dass diese Methode keine Mischsignale mit mehreren Frequenzanteilen analysieren kann. In solchen Fällen bietet sich die Verwendung einer schnellen Fourier-Transformation (FFT) an, um das Spektrum des Eingangssignals auszuwerten und die einzelnen Frequenzkomponenten zu identifizieren.\par
+\medskip
 Brauche ich das Überhaupt? kommen überhaupt mischsignale auf mein system drauf? Wie verhält sich das system wenn mischsignale auf dieses gebracht werden?
 
 
