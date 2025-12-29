@@ -64,7 +64,7 @@ Zur mathematischen Beschreibung des Systems werden die Übertragungsfunkionen de
   V_{out}(s) = -\frac{V_{in}(s)}{sRC}
 \end{equation}
 
-Und für den invertierenden Addierer:(\textbf{erst noch den inv. Verstärker?})
+Und für den invertierenden Addierer:
 
 
 \begin{figure}[!h]
@@ -160,19 +160,22 @@ Werden diese Gleichungen nun so ineinander eingesetzt, dass sie dem Schaltbild d
 
 Gut zu erkennen ist hierbei, dass alle Übertragungsfunktionen den gleichen Nenner besitzen. Der Zähler unsterscheidet sich je nach Filterart.
 
+%satz was das durch gegeben ist. polstellen immer gleich. nullstellen unterschiedlich. was bedeutet das für die filter?
+
 
 \section{Einfluss der Bauteilgrößen und Parameter auf das Filterverhalten}
 
-Die Werte der im Biquad eingesetzten Widerstände und Kondensatoren bestimmen die charakteristischen Größen des Filters. Insbesondere beeinflussen sie die Grenzfrequenz $\omega_0$, die Filtergüte $Q$ und die maximale Verstärkung $H_0$. Durch die gezielte Auswahl der Bauteilwerte lässt sich das Filterverhalten auf die spezifischen Anforderungen einer Anwendung abstimmen.\par
+Die Werte der im Biquad eingesetzten Widerstände und Kondensatoren bestimmen die charakteristischen Größen des Filters. Insbesondere beeinflussen sie die Mittenfrequenz $\omega_0$, die Filtergüte $Q$ und die maximale Verstärkung $H_0$. Durch die gezielte Auswahl der Bauteilwerte lässt sich das Filterverhalten auf die spezifischen Anforderungen einer Anwendung abstimmen.\par
 \medskip
-Die Grenzfrequenz $\omega_0$ ergibt sich bei idealieserten Schaltungen nach folgender Formel:
+Die Mittenfrequenz $\omega_0$ ergibt sich bei idealieserten Schaltungen nach folgender Formel:
 
 \begin{equation}
-    \omega_0 = \frac{1}{RC} \label{eq:w_0}
+    \omega_0 = \frac{1}{RC} 
+    \label{eq:w_0}
 \end{equation}
 
 
-Durch genauere Betrachtung in der Vorbereitungsphase auf diese Thesis fiel auf, dass $R$ sich nur durch den Wert der beiden Vorwiederstände der Integratoren ergibt, nicht aber durch die Widerstände der Addierer. Dieser Zusammenhang war vorher nicht klar, wesswegen im damaligen Schaltungsdesign die Kondensatoren geändert wurden (Anstatt 8 Widerstände)um die Grenzfrequenz zu verschieben. $C$ beschreibt die Kapazität der beiden Kondensatoren in den Integratoren. Der durch die Gleichung \ref{eq:w_0} gezeigte Zusammenhang kann nun dafür verwendet werden, die Grenzfrequenz auf den gewünschten Wert einzustellen.\par
+Durch genauere Betrachtung in der Vorbereitungsphase auf diese Thesis fiel auf, dass $R$ sich nur durch den Wert der beiden Vorwiederstände der Integratoren ergibt, nicht aber durch die Widerstände der Addierer. Dieser Zusammenhang war vorher nicht klar, wesswegen im damaligen Schaltungsdesign die Kondensatoren geändert wurden (Anstatt \num{8} Widerstände)um die Mittenfrequenz zu verschieben. $C$ beschreibt die Kapazität der beiden Kondensatoren in den Integratoren. Der durch die Gleichung \ref{eq:w_0} gezeigte Zusammenhang kann nun dafür verwendet werden, die Mittenfrequenz auf den gewünschten Wert einzustellen.\par
 \medskip
  
 
@@ -204,17 +207,17 @@ s_{1,2} = -\frac{\omega_0}{2Q} \pm \omega_0\sqrt{\frac{1}{4Q^2} - 1}
 
 Die Filtergüte $Q$ beeinflusst ebenfalls das Frequenzverhalten des Filters. Für die Gute unterscheidet sich der Zusammenhang zwischen Güte und Bandbreite je nach Filtertyp.
 
-Bei Hoch- und Tiefpassfiltern charakterisiert $Q$ die Flankensteilheit im Übergangsbereich um die Grenzfrequenz. Eine Erhöhung des Gütefaktors führt zu einer steileren Filterflanke und zu einer stärkeren Dämpfung außerhalb des Durchlassbereichs. Zudem ergibt sich ab einer Güte von $Q > 0,707$ eine Resonanzüberhöhung (Überschwinger) nahe der Grenzfrequenz. \par
+Bei Hoch- und Tiefpassfiltern charakterisiert $Q$ die Flankensteilheit im Übergangsbereich um die Grenzfrequenz $\omega_c$. Eine Erhöhung des Gütefaktors führt zu einer steileren Filterflanke und zu einer stärkeren Dämpfung außerhalb des Durchlassbereichs. Zudem ergibt sich ab einer Güte von $Q > \frac{1}{\sqrt{2}}$ eine Resonanzüberhöhung (Überschwinger) an der Mittenfrequenz. \par
 \medskip
 
-Im Gegensatz dazu verfügen Bandpass- und Bandsperrfilter über eine deutlich ausgeprägte Mittenfrequenz $\omega_0$, welche das Zentrum des Durchlass- bzw. Sperrbereichs markiert. Die Bandbreite $\Delta\omega$ beschreibt den Abstand zwischen den beiden -3\,dB-Grenzfrequenzen. Die folgende Gleichung  beschreibt den Zusammenhang zwischen Güte, Bandbreite und Mittenfrequenz.\cite{schaumanndesign}
+Im Gegensatz dazu verfügen Bandpass- und Bandsperrfilter über eine deutlich ausgeprägte Mittenfrequenz $\omega_0$, welche das Zentrum des Durchlass- bzw. Sperrbereichs markiert. Die Bandbreite $\Delta\omega$ beschreibt den Abstand zwischen den beiden \SI{-3}{\decibel}-Grenzfrequenzen. Die folgende Gleichung  beschreibt den Zusammenhang zwischen Güte, Bandbreite und Mittenfrequenz.\cite{schaumanndesign}
 
 \begin{equation}
 \Delta\omega = \frac{\omega_0}{Q}
 \label{VerkleinerungBandbreite}
 \end{equation}
 
-Eine größere Güte $Q$ fürht also zu einer schmaleren Bandbreite und zu einer stärker ausgeprägten Verstärkung bzw. Dämpfung um die Mittenfrequenz. \par
+Eine größere Güte $Q$ führt also zu einer schmaleren Bandbreite und zu einer stärker ausgeprägten Verstärkung bzw. Dämpfung um die Mittenfrequenz. \par
 \medskip
 \textbf{hier könnte noch eine schöne überleitung zur NS und PS in der s-Ebene hinein. -> gehe ich darauf später noch mal ein?}
 
@@ -233,7 +236,7 @@ sollte warscheinlich vor dem anderen Kapitel stehen. \par
 
 Da in der Vorbereitungsphasen zu dieser Thesis aufgefallen ist, dass die Begriffe Grenzfrequenz $\omega_c$ und Mittenfrequenz $\omega_0$ in der Vorarbeit aus dem letzten Semester nicht immer eindeutig verwendet wurden, wird im Folgenden kurz auf deren Definition eingegangen.\par
 
-Da in den im ALSK-Pro-Manual zusehenden Übertragungsfunktionen immer die Kreisfrequenzen verwendet werden, werden auch in dieser Arbeit hauptsächlich Kreisfrequenzen verwendet. Die Grenzfrequenz $\omega_c$ beschreibt dabei die Kreisfrequenz, bei der der Betrag der Übertragungsfunktion eines Filters auf $\frac{1}{\sqrt{2}}$ bezogen auf den Maximalwert abgefallen ist und entspricht damit dem -3dB Punkt des Amplitudengangs.\par 
+Da in den im ALSK-Pro-Manual zusehenden Übertragungsfunktionen immer die Kreisfrequenzen verwendet werden, werden auch in dieser Arbeit hauptsächlich Kreisfrequenzen verwendet. Die Grenzfrequenz $\omega_c$ beschreibt dabei die Kreisfrequenz, bei der der Betrag der Übertragungsfunktion eines Filters auf $\frac{1}{\sqrt{2}}$ bezogen auf den Maximalwert abgefallen ist und entspricht damit dem \SI{-3}{\decibel}-Punkt des Amplitudengangs.\par 
 \medskip
 Die Mittenfrequenz $\omega_0$ entspricht der Resonanzfrequenz des Filters. Bei Bandpass- und Bandsperrfiltern enspricht diese Frequenz dem Maximum bzw. Minimum des Amplitudengangs. Bei Hoch- und Tiefpässen sind Grenz- und Mittenfrequenz im Allgemeinen nicht identisch. Die Außnahme stellt dabei der Butterworth-Filter da, für diesen gilt $\omega_0=\omega_c$.\par
 \medskip
