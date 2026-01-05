@@ -35,7 +35,10 @@
 \usepackage{csquotes}                           % saubere Anführungszeichen
 \usepackage[backend=biber, style=ieee]{biblatex} % IEEE-Stil mit Biber
 \addbibresource{Literaturverzeichnis.bib}       % Literaturdatenbank einbinden
-
+\usepackage[acronym]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}
+\input{acronyms.tex}
+\makeglossaries
 
 % Zusatzfunktionen
 \usepackage{lastpage}    % für "Seite X von Y"
@@ -77,38 +80,132 @@
 \fancyhf{}
 \lhead{\raisebox{-0.2cm}{\includegraphics[height=1cm]{Bilder/hsb_logo2.png}}}
 \chead{Bachelorthesis\par Nils Renner}
-\rhead{\raisebox{-0.2cm}{\includegraphics[height=1.5cm]{Bilder/hsb_logo1.png}}}
+\rhead{\raisebox{-0.2cm}{\includegraphics[height=1.3cm]{Bilder/hsb_logo1.png}}}
 \cfoot{Seite \thepage\ von \pageref{LastPage}}
 
 
 % Dokumentbeginn
 \begin{document}
 
+\frontmatter
+\pagenumbering{roman}
+\setcounter{page}{1}
+
 % Titelseite
 \begin{titlepage}
-    \centering
+    \begin{center}
     \includegraphics[width=0.6\textwidth]{Bilder/Logo_HSB_Hochschule_Bremen.png}\\[1cm]
-    {\scshape\LARGE Hochschule Bremen\\}
-    {\scshape\Large Fakultät 4: Elektrotechnik und Informatik\\[1.5cm]}
-    {\huge\bfseries Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters\\[0.5cm]}
-    {\Large\bfseries Nils Renner (5197659)\\[2cm]}
-    {\Large\bfseries Prüfer\\[0.5cm]}
-    \begin{tabular}{l}
-      Prof. Dr.-Ing. Mirco Meiners \\
-      Prof. Dr. Sören Peik
-    \end{tabular} \\[2cm]
+    \vspace{0.5cm}
+    {\huge\bfseries Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters\par}
+    \vspace{1.5cm}
+    {\large\bfseries Implementation of a Self-Tuned Filter Based on a Voltage-Controlled Biquad Filter\par}
+    \end{center}
+    \vspace{1.5cm}
+    {\Large\bfseries Bachelor Thesis\par}
+    Presented for Attainment of the Academic Degree of \par
+    Bachelor of Engineering at the City University of Applied Sciences Bremen\par
+    \vspace{2.5cm}
+
+    \begin{tabular}{l l}
+            \textbf{Author:} & Nils Renner, Wulfhoopstraße 34a, 28201 Bremen\\
+            \textbf{Matr. Nr.:} & 5197659\\
+            \textbf{Abgabetermin:} & 2. März, 2026 \\ \\ \\
+            \textbf{Prüfer:} & Prof. Dr.-Ing. Mirco Meiners,\\ & \small{Hochschule Bremen,}\\ & \small{Concept Engineering SoCs and IC Design}\\ \\
+            \textbf{} & Prof. Dr. Sören Peik,\\ & \small{Hochschule Bremen,}\\ & \small{Microwave Technology and Satellite Communications} \\
+    \end{tabular}
+
+
+
+%    {\scshape\LARGE Hochschule Bremen\\}
+%    {\scshape\Large Fakultät 4: Elektrotechnik und Informatik\\[1.5cm]}
+%    {\huge\bfseries Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters\\[0.5cm]}
+%    {\Large\bfseries Nils Renner (5197659)\\[2cm]}
+%    {\Large\bfseries Prüfer\\[0.5cm]}
+%    \begin{tabular}{l}
+ %     Prof. Dr.-Ing. Mirco Meiners \\
+  %    Prof. Dr. Sören Peik
+   % \end{tabular} \\[2cm]
     \vfill
 \end{titlepage}
 
-\frontmatter
-% \maketitle
+\newpage
+\null
+\thispagestyle{empty}
 
+% -------------------------------------------------
+% Erklärung zur selbstständigen Arbeit
+% -------------------------------------------------
+\chapter*{Erklärung zur selbstständigen Arbeit}
+\addcontentsline{toc}{chapter}{Erklärung zur selbstständigen Arbeit}
+
+
+
+\newpage
+\null
+\thispagestyle{empty}
+
+% -------------------------------------------------
+% Acknowledgements / Danksagung
+% -------------------------------------------------
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+Danksagung
+
+\newpage
+\null
+\thispagestyle{empty}
+
+% -------------------------------------------------
+% Abstract
+% -------------------------------------------------
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+englisches Abstract
+
+\newpage
+\null
+\thispagestyle{empty}
+
+% -------------------------------------------------
 % Inhaltsverzeichnis
-% \newpage
-% \pagenumbering{gobble} % keine Seitenzahl auf Inhaltsverzeichnis
+% -------------------------------------------------
 \tableofcontents
 
+\newpage
+\null
+\thispagestyle{empty}
+
+% -------------------------------------------------
+% Abbildungsverzeichnis
+% -------------------------------------------------
 \listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+\newpage
+\null
+\thispagestyle{empty}
+
+% -------------------------------------------------
+% Tabellenverzeichnis (optional, empfohlen)
+% -------------------------------------------------
+%\listoftables
+%\addcontentsline{toc}{chapter}{List of Tables}
+
+%\newpage
+%\null
+%\thispagestyle{empty}
+
+% -------------------------------------------------
+% Abkürzungsverzeichnis
+% -------------------------------------------------
+\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, nonumberlist]
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+
+\newpage
+\null
+\thispagestyle{empty}
 
 
 \mainmatter

@@ -17,7 +17,7 @@ Da zum Thema selbstabstimmender analoger Filter nur begrenzt wissenschaftliche L
 \medskip
 %Anfangs wird dabei die Funktionsweise der einzelnen Bausteine des self-Tuned Filters besprochen. Dabei werden die theoretisch abgeleiteten Eigenschaften der einzelnen Bauteile mittels Simualtion verifiziert und visuell durch Plots unterstützt. Zur Veranschaulichung wird anfangs auch auf den sehr ähnlich funktionierenden Phasenregelkreis (PLL) eingegangen, um später über den Voltage Controlled Filter zu einem Gesamtverständnis des Systems zu gelangen.\par
 \medskip
-%Über den Self-Tuned Filter gibt es leider nicht so viel wissenschaftleiche Literatur. auch deswegen wird auf den PLL zur erklärung zurückgegiffen. Grenzfrequenz
+%Über den Self-Tuned Filter gibt es leider nicht so viel wissenschaftleiche Literatur. auch deswegen wird auf den PLL zur erklärung zurückgegiffen.
 
 
 
@@ -52,7 +52,7 @@ Wie der Name schon verrät bildet ein Analogmultiplizierer das Produkt aus zwei 
   \label{fig:bsb_einfacher_multi}
 \end{figure}
 
-Wie bereits durch das bisherige Studium bekannt ist, können arithmetische Operationen wie Addition, Subtraktion und Integration mittels Operationsverstäkern mit entsprechender Verschaltung durchgeführt werden. Die Multiplikation zweier Signale lässt sich hingegen nicht so einfach über eine einfache analoge Schaltung realisieren. Eine mögliche Lösung dieses Problems ist der Umweg über den natürlichen Logarithmus und die Exponentialfunktion $e^x$. Über diesen Umweg kann die Multiplikation als einfache Addition durchgeführt werden.\par
+Wie bereits durch das bisherige Studium bekannt ist, können arithmetische Operationen wie Addition, Subtraktion und Integration über einen \gls{opv} mit entsprechender Verschaltung durchgeführt werden. Die Multiplikation zweier Signale lässt sich hingegen nicht so einfach über eine einfache analoge Schaltung realisieren. Eine mögliche Lösung dieses Problems ist der Umweg über den natürlichen Logarithmus und die Exponentialfunktion $e^x$. Über diesen Umweg kann die Multiplikation als einfache Addition durchgeführt werden.\par
 
 \begin{equation*}
 V_{out}=V_x \cdot V_y = e^{ln(V_x \cdot V_y)} = e^{ln(V_x) + ln(V_Y)}
@@ -259,7 +259,7 @@ Der Biquad besitzt vier unterschiedliche Filtertypen deren Phasengänge sich deu
 Hinter dem Multiplizierer befindet sich, wie in Abbildung~\ref{fig:sb_phasedetector} zusehen, ein Integrator. Dieser hat zum einen die Aufgabe, die hochfrequenten Anteile des Multiplizierters durch seine Tiefpasscharakteristik herauszufiltern. Zum anderen integriert dieser das eingehende DC-Signal, sodass die Ausgangsspannung bei langanhaltender, großer Phasendifferenz im Bezug zu \SI{\pm 90}{\degree} immer größer wird.\par
 \medskip
 
-Nach dem Operationsverstärker befindet sich im Schaltplan des ALSK-PRO Manuals noch eine Teilschaltung bestehend aus Spannungsquelle $V_H$ und zwei Widerständen. Leider werden dabei weder der Zweck noch die Höhe der Hilfsspannung genauer erläutert, woduch es schwerer fällt diesen Schaltungsteil zu verstehen.\par
+Nach dem \gls{opv} befindet sich im Schaltplan des ALSK-PRO Manuals noch eine Teilschaltung bestehend aus Spannungsquelle $V_H$ und zwei Widerständen. Leider werden dabei weder der Zweck noch die Höhe der Hilfsspannung genauer erläutert, woduch es schwerer fällt diesen Schaltungsteil zu verstehen.\par
 \medskip
 Zu den anfänglichen Überlegungen bezüglich der Funktion von $V_H$ gehörte die Annahme, dass die Ausgangsspannung des Integrators zur Verwendung als Steuerspannung für den VCO auf ein geeignetes Potential angehoben werden muss. Diese Vermutung begründet sich durch die Verschaltung der internen Integratoren da der Rückführungspfad dieser durch einen Multiplizierer erweitert wird. Dadurch wird aus der ursprünglichen Beziehung
 
@@ -291,7 +291,8 @@ Im folgenden Abschnitt werden die zuvor beschriebenen Zusammenhänge durch eine 
 Am Eingang $Y_1$ liegt immer ein Sinussignal an. Am Eingang $X_1$ wird das gleiche Signal mit einer veränderten Phase eingespeißt. Im ersten Fall bleibt die Phase unverändert ($\phi = \SI{0}{\degree}$), im zweiten Fall wird sie um \SI{90}{\degree} und im dritten Fall um \SI{180}{\degree} verschoben. Da der Arbeitsbereich der Schaltung bei einem Phasenversatz von \SI{90}{\degree} liegt und das Sinussignal periodisch ist, stellen Verschiebungen um \SI{0}{\degree} und \SI{180}{\degree} die maximal möglichen Abweichungen der Phase dar, während bei $\phi = \SI{90}{\degree}$ der Idealwert erreicht wird. Die real auftretenden Werte sollten daher zwischen oder auf diesen Extrempunkten liegen.\par
 \medskip
 
-Im linken Teil der Abbildung~\ref{fig:ac_multi_pd} sind die drei untersuchten Eingangssignale als Zeitverläufe dargestellt. Der rechten Teil zeigt die dazugehörigen Ausgangssignale des Multiplizierers.
+Im linken Teil der Abbildung~\ref{fig:ac_multi_pd} sind die drei untersuchten Eingangssignale als Zeitverläufe dargestellt. Der rechten Teil zeigt die dazugehörigen Ausgangssignale des Multiplizierers.\par
+\medskip
 
 \begin{figure} [H]
     \centering
@@ -303,12 +304,13 @@ Im linken Teil der Abbildung~\ref{fig:ac_multi_pd} sind die drei untersuchten Ei
 Wie erwartet besitzt das Signal mit der Phasenverschiebung von \SI{90}{\degree} nach der Multiplikation einen Mittelwert von \SI{0}{\volt}. Das unverschobene Signal besitzt einen Offset von etwa \SI{0.2}{\volt}, während das um \SI{180}{\degree} verschobene Signal einen Offset von \SI{-0.2}{\volt} zeigt. Die in der Quelle \textbf{(8)} gezeigte kennlinie kann also von der allgemeinen Form her bestätigt werden. Bei allen drei Signalen enthält das Ausgangssignal einen hochfrequenten Anteil mit der doppelten Frequenz des Eingangssignals.\par
 \medskip
 
-Laut Datenblatt des MPY634 ergibt sich eine Phasendetektorschaltung, wenn am Ausgang des Multiplizierers ein einfacher RC-Tiefpass nachgeschaltet wird. In anderen Aufbauten wird am Multipliziererausgang ein Tiefpass mit anschließendem OP in Komaparatorschaltung verwendet.(\textbf{bewirkt das das gleiche? LAUT VID JA  => simulation!})
+Laut Datenblatt des MPY634 ergibt sich eine Phasendetektorschaltung, wenn am Ausgang des Multiplizierers ein einfacher RC-Tiefpass nachgeschaltet wird. In anderen Aufbauten wird am Multipliziererausgang ein Tiefpass mit anschließendem OP in Komaparatorschaltung verwendet.(\textbf{bewirkt das das gleiche? LAUT VID JA  => simulation!})\par
 \medskip
 
-Der Schaltungsaufbau im ALSK-Manual sieht hingegen vor, dass am Ausgang des Multiplizierers ein Integrator nachgeschaltet wird, der die PLL-Funktion vervollständigt. Dieser verhält sich ebenfalls wie ein Tiefpass. So entstehen aus den in Abbildung~\ref{fig:ac_multi_pd} sichtbaren Signalen nach der Integration die in Abbildung~\ref{fig:pd_op_out} dargestellten Signalverläufe.
+Der Schaltungsaufbau im ALSK-Manual sieht hingegen vor, dass am Ausgang des Multiplizierers ein Integrator nachgeschaltet wird, der die PLL-Funktion vervollständigt. Dieser verhält sich ebenfalls wie ein Tiefpass. So entstehen aus den in Abbildung~\ref{fig:ac_multi_pd} sichtbaren Signalen nach der Integration die in Abbildung~\ref{fig:pd_op_out} dargestellten Signalverläufe.\par
+\medskip
 
-\begin{figure} [H]
+\begin{figure} [h!]
     \centering
     \includegraphics[width=1\linewidth]{../Bilder/pd_op_out.png}
     \caption{Singalverhalten bei unterschiedlicher Verschaltung des Integrators}
@@ -318,16 +320,16 @@ Der Schaltungsaufbau im ALSK-Manual sieht hingegen vor, dass am Ausgang des Mult
 Die Abbildung~\ref{fig:pd_op_out} zeigt den zeitlichen Verlauf des Integratorausgangs für die verschiedenen Phasenverschiebungen. Zu beachten ist hierbei, dass die Phasenlage der Eingangssignale unter realen Bedinungen nicht über längere Zeit auf den Maximalwerten $\phi = \SI{0}{\degree}$ bzw.~$\phi = \SI{180}{\degree}$  bleibt, sondern sich dynamisch verändert. Für $\phi = \SI{90}{\degree}$ wird die Amplitude der hochfrequenten Komponente nach der Integration deutlich gedämpft, dennoch bleibt eine Restschwingung sichtbar. Die Mittelwertspannung bleibt in diesem Fall über die Zeit gleich, da die Summation der positiven und negativen Halbwellen des Eingangssignals zu 0 verläuft. Auffällig ist, dass dem Signal eine Gleichspannungskomponente von etwa \SI{2.51}{\volt} hinzugefügt wurde. Dies ist auf das Integrationsverhalten und die Verschaltung des Integrators zurückzuführen.\par
 \medskip
 
-Diese Gleichspannungskomponente kann auf verschiedene Sachen zurückgeführt werden. Beispielsweise enthält das Simmulationsmodell des TL082 Starbedingungen (Initial Bias), die an internen Transistorknoten VC und VE ein Potential von \SI{2.2}{\volt} als Startwert definiert. So könnte schon ein großer Teil dieses Offsets erklärt werden. Die restlichen \SI{0.3}{\volt} könnten von einer Standard-Eingangsoffsetspannung kommen. Diese wird sofort in der Integration berücksichtigt und führt zu einer Gleichspannung am Ausgang, obwohl rein mathematisch kein Offset vorhanden sein sollte. \textbf{Eine Simulation mit einem idealen OPV würde diese zusätzliche Verstärkung nicht zeigen.}
+Diese Gleichspannungskomponente kann auf verschiedene Sachen zurückgeführt werden. Beispielsweise enthält das Simmulationsmodell des TL082 Starbedingungen (Initial Bias), die an internen Transistorknoten VC und VE ein Potential von \SI{2.2}{\volt} als Startwert definiert. So könnte schon ein großer Teil dieses Offsets erklärt werden. Die restlichen \SI{0.3}{\volt} könnten von einer Standard-Eingangsoffsetspannung kommen. Diese wird sofort in der Integration berücksichtigt und führt zu einer Gleichspannung am Ausgang, obwohl rein mathematisch kein Offset vorhanden sein sollte. Die Simulation mit einem idealen OPV sollte diese zusätzliche Verstärkung also nicht zeigen.
 \medskip
 
 Bei den Extremwerten der Phasenverschiebung $\phi = \SI{0}{\degree}$ und  $\phi = \SI{180}{\degree}$ zeigt sich ebenfalls eine Erhöhung des DC-Anteils und eine gedämpfte Amplitude der AC-Komponente. Da das Sinussignal für beide Fälle nicht mehr um \SI{0}{\volt} zentriert ist, summieren sich die Schwingungen beim integrieren immer weiter auf. Für  $\phi = \SI{0}{\degree}$ steigt das Ausgangssignal linear mit einer Steigung von \SI{0.2}{\volt\per\milli\second} an, für $\phi = \SI{180}{\degree}$ fällt die Spannung mit gleicher negativer Steigung ab.\par
 \medskip
 
-Ausgehend davon, dass die AC-Komponente noch deutlich sichtbar ist, kann durch Reduzierung der Filter-Grenzfrequenz mittels Vorwiderstand die Amplitude weiter verringert werden. Dies führt, wie im rechten Bild zusehen, zu einer weiteren Reduktion der Restwelligkeit. Bei genauer Betrachtung ist jedoch zu erkennen, dass immernoch eine gewisse Restwelligkeit vorhanden ist. Außerdem fällt auf, dass die Steigung bei niedriger Grenzfrequenz des Filters deutlich geringer ausfällt als bei hoher Grenzfrequenz. Diese liegt mit \SI{0.04}{\volt\per\milli\second} genau um den Faktor~\num{5} geringer als die vorherige Ausgangsspannung. \textbf{(R um 5 vergrößert, Steigung um 5 verkleinert, Was passiert mit der welligkeit des signals? auf irgendwas um 5?)} Damit bestimmt die Grenzfrequenz des Integrators maßgeblich die Genauigkeit (Sensitivität) des Phasendetektors mit. \textbf{Auf diesen Zusammenhang wird später in Kapitel Sensitivität noch einmal genauer eingegangen}\par
+Ausgehend davon, dass die AC-Komponente noch deutlich sichtbar ist, kann die Amplitude durch Reduzierung der Filter-Mittenfrequenz über den Vorwiderstand weiter verringert werden. Dies führt, wie im rechten Bild zusehen, zu einer weiteren Reduktion der Restwelligkeit. Bei genauer Betrachtung ist jedoch zu erkennen, dass immernoch eine gewisse Restwelligkeit vorhanden ist.Eine kurze Berechung in Python bestätigt, dass die Restwelligkeit des Signals um einen Faktor von \num{4.97} reduziert wird. Außerdem fällt auf, dass die Steigung bei niedriger Mittenfrequenz des Filters deutlich geringer ausfällt als bei hoher Mittenfrequenz. Diese liegt mit \SI{0.04}{\volt\per\milli\second} genau um den Faktor~\num{5} geringer als die Vergleichs-Ausgangsspannung. Damit bestimmt die Mittenfrequenz des Integrators maßgeblich die Genauigkeit (Sensitivität) des Phasendetektors mit.\par
 \medskip
 
-Zusätzlich lässt sich beobachten, dass sich bei sinkender Grenzfrequenz des Tiefpassfilters auch die zuvor erwähnte Gleichspannungs-Komponente ändert. In den vorliegenden Messungen steigt dieser Wert leicht auf \SI{2,565}{\volt}. \textbf{Dieser Effekt ist so zu beschreiben. Der Spannungsabfall über den Vorwiderstand ist mit $V=I_{Bias} \cdot R$ zu beschreiben. Dabei ist der Eingangsbiasstrom vom OPV abhänig und immer gleich groß. Je größer also der Vorwiderstand R wird, desto größer ist der Spannungsabfall über diesen, was ebenfalls zu einem höheren Offset am ausgang führt. Zudem ist die Gesammtverstärkung des OPVs $\frac{1}{RC}$, wenn $R$ nun größer wird, wird der Offset größer??? }
+Zusätzlich lässt sich beobachten, dass sich bei sinkender Mittenfrequenz des Tiefpassfilters auch die zuvor erwähnte Gleichspannungs-Komponente ändert. In den vorliegenden Messungen steigt dieser Wert leicht auf \SI{2,565}{\volt}. \textbf{Dieser Effekt ist so zu beschreiben. Der Spannungsabfall über den Vorwiderstand ist mit $V=I_{Bias} \cdot R$ zu beschreiben. Dabei ist der Eingangsbiasstrom vom OPV abhänig und immer gleich groß. Je größer also der Vorwiderstand R wird, desto größer ist der Spannungsabfall über diesen, was ebenfalls zu einem höheren Offset am ausgang führt. Zudem ist die Gesammtverstärkung des OPVs $\frac{1}{RC}$, wenn $R$ nun größer wird, wird der Offset größer??? }
 
 \medskip
 %https://www.ti.com/content/dam/videos/external-videos/zh-tw/1/3816841626001/4082104055001.mp4/subassets/opamps-offset-voltage-input-bias-specifications-presentation-quiz.pdf
@@ -386,7 +388,7 @@ Zusammengefasst ist der Unterschied, dass das Filterverhalten und nicht die Freq
 
 Der spannungsgesteuerte Filter ist ein Filter, bei dem sich die Grenzfrequenz oder andere Filterparameter über eine Steuerspannung verändern lassen. Dadurch ist es möglich, besonders schnell und flexibel auf unterschiedliche Eingangssignale zu reagieren. In der Audiotechnik werden solche Filter häufig in Synthesizern verwendet, um den Klangcharakter von Signalen dynamisch zu verändern.\textbf{Wikipedia englisch}\par
 \medskip
-Der Voltage Controlled Filter basiert auf dem Biquad aus Kapitel~\ref{sec:theorie1}, zusehen in Abbildung~\ref{fig:Multiple-Feetback-Biquad}. Neben dem im vergangenen Unterkapitel besprochenen Phasendetektor wird die Biquad-Schaltung so verändert, dass sich die Grenzfrequenz über die Steuerspannung $V_c$ verändern lässt. Dazu wurde der Schaltplan um die frequenzgebenden Integratoren verändert.
+Der Voltage Controlled Filter basiert auf dem Biquad aus Kapitel~\ref{sec:theorie1}, zusehen in Abbildung~\ref{fig:Multiple-Feetback-Biquad}. Neben dem im vergangenen Unterkapitel besprochenen Phasendetektor wird die Biquad-Schaltung so verändert, dass sich die Grenzfrequenz (eigendlich die Mittenfrequenz und darüber die Grenzfrequenz oder?) über die Steuerspannung $V_c$ verändern lässt. Dazu wurde der Schaltplan um die frequenzgebenden Integratoren verändert.
 
 \begin{figure}[!h]
   \centering
@@ -548,9 +550,9 @@ wobei
 \medskip
 Im letzten Unterkapitel wurde die Beziehung zwischen der Phasendifferenz $\phi$ und der Steuerspannung $V_c$ hergeleitet. Nun ist von Interesse, welche Funktion diese Steuerpannung innerhalb des VCFs übernimmt und auf welche Weise die Phasendifferenz das Systemverhalten beeinflusst.\par
 \medskip
-Aus Abbildung~\ref{fig:op_out_freq} geht hervor, dass bei einer Phasenverschiebung zwischen \SI{90}{\degree} und \SI{270}{\degree} die DC-Ausgangsspannung des Multiplizierers negativ wird. Dadurch steigt die Steuerspannung $V_c$ nach der Integration mit positivem Vorzeichen an. Über die hergleitete Gleichung \ref{eq:filtergrenzfrequenz} lässt sich ein Zusammenhang zwischen $V_c$ und der Grenzfrequenz des Filters herstellen.\par
+Aus Abbildung~\ref{fig:op_out_freq} geht hervor, dass bei einer Phasenverschiebung zwischen \SI{90}{\degree} und \SI{270}{\degree} die DC-Ausgangsspannung des Multiplizierers negativ wird. Dadurch steigt die Steuerspannung $V_c$ nach der Integration mit positivem Vorzeichen an. Über die hergleitete Gleichung \ref{eq:filtergrenzfrequenz} lässt sich ein Zusammenhang zwischen $V_c$ und der Mittenfrequenz des Filters herstellen.\par
 \medskip
-Wird der ansteigende Wert für $V_c$ in Gleichung $\omega_0 = \frac{V_r}{V_cRC}$ eingesetzt, wird deutlich, dass die Zunahme von $V_c$ zu einer Verringerung von $\omega_0$ führt. Somit bewirken alle Phasenverschiebungen im Bereich von \SI{90}{\degree} bis \SI{270}{\degree} eine Verringerung der Grenzfrequenz. Für Phasendifferenzen in der Umgebung von \SI{0}{\degree} tritt der umgekerte Effekt ein: Das Potential von $V_c$ sinkt, wodurch die Grenzfrequenz des Systems ansteigt.\par 
+Wird der ansteigende Wert für $V_c$ in Gleichung $\omega_0 = \frac{V_r}{V_cRC}$ eingesetzt, wird deutlich, dass die Zunahme von $V_c$ zu einer Verringerung von $\omega_0$ führt. Somit bewirken alle Phasenverschiebungen im Bereich von \SI{90}{\degree} bis \SI{270}{\degree} eine Verringerung der Mittenfrequenz. Für Phasendifferenzen in der Umgebung von \SI{0}{\degree} tritt der umgekerte Effekt ein: Das Potential von $V_c$ sinkt, wodurch die Mittenfrequenz des Systems ansteigt.\par 
 \medskip
 Um das resultierende Verhalten anschaulich zu Untersuchen, wird der analytische Zusammenhang des Systems in Python umgesetzt. Die Phasendifferenz wird dabei nur am Nulldurchgang des internen Signal ermittelt um daraufhin die Frequenz des Signals um jeweils einen festen Betrag zu korregieren. Bei Betrachtung der Simulation in Abbildung~\ref{fig:phase2omega1} fällt auf, dass dieses vereinfachte System niemals eine Anpassung über nur ein paar Perioden erreicht, unabhängig von den Startwerten. Zudem kommt es so vor, dass diese Anpassungen nicht dafür sorgen, dass die Frequenz auf den Referenzwert konvergiert, noch dass sich die die Phasenlage dem stabilen Arbeitspunkt von \SI{90}{\degree} annähert. \par
 
@@ -571,9 +573,9 @@ Gut zu erkennen ist dieses Verhalten bei Betrachung der ersten und dritten türk
     \label{fig:phase2omega2}
 \end{figure}
 
-Aus Abbildung~\ref{fig:phase2omega2} ist deutlich zu erkennen, dass sowohl die Frequenz als auch die Phasenlage ungedämpft schwingen. Dieses Verhalten lässt sich durch die Form der Phasenkennlinie des Systems (vgl.~Abbildung~\ref{fig:op_out_freq}) erklären. Die Steuerspannung reagiert besonders empfindlich auf Phasenänderungen im Bereich um \SI{180}{\degree}, da dort die Steigung der Kennlinie am größten ist. Schon kleine Abweichungen führen in diesem Bereich zu starken Änderungen der Grenzfrequenz, was das System zusätzlich antreibt und damit die ungedämpfte Schwingung begünstigt.\par
+Aus Abbildung~\ref{fig:phase2omega2} ist deutlich zu erkennen, dass sowohl die Frequenz als auch die Phasenlage ungedämpft schwingen. Dieses Verhalten lässt sich durch die Form der Phasenkennlinie des Systems (vgl.~Abbildung~\ref{fig:op_out_freq}) erklären. Die Steuerspannung reagiert besonders empfindlich auf Phasenänderungen im Bereich um \SI{180}{\degree}, da dort die Steigung der Kennlinie am größten ist. Schon kleine Abweichungen führen in diesem Bereich zu starken Änderungen der Mittenfrequenz, (was das System zusätzlich antreibt und damit die ungedämpfte Schwingung begünstigt.) textbf{gefällt mir noch nicht}\par
 \medskip
-An den beiden Extremstellen der Kennlinie, bei \SI{90}{\degree} und \SI{270}{\degree}, ist die Steigung hingegen nahezu null. Diese Punkte bilden die beiden Gleichgewichtspunkte des Systems. Der Punkt bei \SI{90}{\degree} entspricht einem stabilen Arbeitspunkt, da kleine Phasenabweichungen nur geringe und ausgleichende Änderungen an der Grenzfrequenz bewirken. Der Punkt bei \SI{270}{\degree} stellt dagegen einen instabilen Arbeitspunkt dar: Bereits geringe Abweichungen führen zu Verstärkungen in die falsche Richtung, weshalb das System diesen Zustand nicht halten kann und sich davon wegbewegt.\par
+An den beiden Extremstellen der Kennlinie, bei \SI{90}{\degree} und \SI{270}{\degree}, ist die Steigung hingegen nahezu null. Diese Punkte bilden die beiden Gleichgewichtspunkte des Systems. Der Punkt bei \SI{90}{\degree} entspricht einem stabilen Arbeitspunkt, da kleine Phasenabweichungen nur geringe und ausgleichende Änderungen an der Mittenfrequenz bewirken. Der Punkt bei \SI{270}{\degree} stellt dagegen einen instabilen Arbeitspunkt dar: Bereits geringe Abweichungen führen zu Verstärkungen in die falsche Richtung, weshalb das System diesen Zustand nicht halten kann und sich davon wegbewegt.\par
 \medskip
 Um das Regelverhalten zu verbessern wird die Frequenz proportional zur Phasenänderung korregiert. Bei großen Phasenabweichungen im Bezug auf die Gleichgewichtspunkte folgt eine starke Korrektur der Frequenz, kleine Abweichungen führen zu kleinen Korrekturen. Diese proporionale Regelung wird ebenfalls in den Code übernommen. Zu Vereinfachungszwecken wird die Phasencharakteristik des Phasendetektors nicht Sinusförimg abgebildet, sondern nur angehähert stufenförmig. So erfolgt bei großer Phasendiffernz eine große Korrektur der Frequenz und bei kleiner eine geringe.\par
 
@@ -629,7 +631,7 @@ Bild der Phase und Mag untereinander:
 
 In diesem Bild ist zu erkennen, dass die Phase stets die größte Steigung an der Grenzfrequenz hat. So kann die Grenzfrequenz durch Maximierung der Ableitung der Phase berechnet werden ohne das die Güte dieses Ergebnis manipulieren kann. Da die Güte auch die Steilheit der Flanken bestimmt ergibt sich zudem eine Abhänigkeit zwischen der Steigung und der Güte, diese sind nähmlich Propotional zu einander, je größer die Güte desto steiler der Übergang um die Mittenfrequenz. So kann festgehalten werden das zur bestimmung der Grenzfrequenz statt eines Magnitude Detektors besser ein Phasedetektor verwendet wird. So sollte man immer die Phase ansehen und nicht die magnitude, da die Phase an der Grenzfrequenz immer am steilsten ist, während nicht immer gewährleistet werden kann, dass die Magnitude dort am höchsten oder \SI{-3}{\decibel} erreicht, da der Gütefaktor dies verzerrt. 
 
-\textbf{was bringt mir das jetzt? verknüpfung zu meinem thema}
+\textbf{was bringt mir das jetzt? verknüpfung zu meinem thema, grenz un mittenfreq in diesem unterkapitel nochmal durchgehen, falls das mitrein kommt}
 
 
 \section{Einfluss des VCF auf die Filterfrequenz und praktische Parametersteuerung}
@@ -764,19 +766,19 @@ Im enteffekt beschreibt die Sensitivität des self-Tuned Filters also, wie stark
 
 
 
-\section{Theoretische und praktische Begrenzungen des Self-Tuning-Bereichs eines aktiven Filters}
+\section{Begrenzungen des Self-Tuning-Bereichs eines aktiven Filters}
 
 \subsection{Bestimmung der maximalen Mittenfrequenz eines aktiven Filters}
 
 Wie zuvor schon besprochen lässt sich die bauteilbedingte Mittenfrequenz eines aktiven Filters über die Gleichung $\omega_0 = \frac{1}{RC}$ beschreiben. Durch Variation der Werte von $R$ und $C$ lässt sich diese Frequenz in der Theorie beliebig verändern. In der Praxis können parasitäre Kapazitäten sowie weitere nichtideale Bauteileigenschaften das Filterverhalten beeinflussen, besonders wenn Standardbauteile mit größeren Toleranzen verwendet werden.\par
 \medskip
-Auch die Wahl des verwendeten Operationsverstärkers spielt für die maximal erreichbare Mittenfrequenz eine wichtige Rolle. So sind vor allem die Parameter für das Verstärkungs-Bandbreite-Produkt (eng. Gain-Bandwidth-Product, GBW) und die Slew-Rate (SR) entscheidend. Das GBW gibt an, bis zu welcher Frequenz der OpAmp eine Verstärkung von 1 stabil liefern kann. Die Slew-Rate beschreibt die maximale Anstiegsrate der Ausgangsspannung (maximale Änderungsrate der Ausgangsspannung) des OpAmps.\cite{halbleiter_4Quad}\par
+Auch die Wahl des verwendeten \gls{opv} spielt für die maximal erreichbare Mittenfrequenz eine wichtige Rolle. So sind vor allem die Parameter für das Verstärkungs-Bandbreite-Produkt (eng. Gain-Bandwidth-Product, GBW) und die Slew-Rate (SR) entscheidend. Das GBW gibt an, bis zu welcher Frequenz der OpAmp eine Verstärkung von 1 stabil liefern kann. Die Slew-Rate beschreibt die maximale Anstiegsrate der Ausgangsspannung (maximale Änderungsrate der Ausgangsspannung) des OpAmps.\cite{halbleiter_4Quad}\par
 \medskip
 Zusätzlich beeinflusst die gewählte Filtertopologie die maximal erreichbare  Frequenz. Höhere Filterordnungen oder Kaskaden mehrerer Stufen beanspruchen jeweils einen Teil der verfügbaren Verstärkungsbandbreite, sodass die Mittenfrequenz insgesamt weiter sinkt.\par
 \medskip
-In der Praxis wird zunächst die benötigte maximale Mittenfrequenz/Grenz des Filters bestimmt. Anschließend wird ein Operationsverstärker ausgewählt, dessen GBW im Regelfall mindestens um den Faktor \numrange{10}{100} höher liegt als die angestrebte Grenzfrequenz. Darauf basierend werden die Werte für $R$ und $C$ so dimensioniert, dass die gewünschte Mittenfrequenz erreicht wird.\cite{microchipADN003}, \cite{YT_opv_active_filters}\par
+In der Praxis wird zunächst die benötigte maximale Mittenfrequenz/Grenz des Filters bestimmt. Anschließend wird ein \gls{opv} ausgewählt, dessen GBW im Regelfall mindestens um den Faktor \numrange{10}{100} höher liegt als die angestrebte Grenzfrequenz. Darauf basierend werden die Werte für $R$ und $C$ so dimensioniert, dass die gewünschte Mitten/Grenzfrequenz erreicht wird.\cite{microchipADN003}, \cite{YT_opv_active_filters}\par
 \medskip
-Hier kann einmal auf die werte der eigenen Bauteile eingegangen werden und was das für das gesammtsystem bedeutet. z.b. (aus gedanken) der OP hat ein GBW von \SI{4}{\mega\hertz}, der Multiplizierer von \SI{10}{\mega\hertz}, also bestimmt der OP die maximal verwendbare Freqeunz. diese sollte nach daumenregel von oben bei ca ... liegen. Um das System dahingehend zu verbessern kann nun ein anderer Operationsverstärker herausgesucht werden. (Wird viellehct in Version \num{2} so gemacht)
+Hier kann einmal auf die werte der eigenen Bauteile eingegangen werden und was das für das gesammtsystem bedeutet. z.b. (aus gedanken) der OP hat ein GBW von \SI{4}{\mega\hertz}, der Multiplizierer von \SI{10}{\mega\hertz}, also bestimmt der OP die maximal verwendbare Freqeunz. diese sollte nach daumenregel von oben bei ca ... liegen. Um das System dahingehend zu verbessern kann nun ein anderer \gls{opv} herausgesucht werden. (Wird viellehct in Version \num{2} so gemacht)
 
 %https://dk.farnell.com/enhancing-signal-quality-understanding-the-role-of-filters-trc-ar
 (Farnell beschreibt auch unterschied aktiv und passiv filter)
