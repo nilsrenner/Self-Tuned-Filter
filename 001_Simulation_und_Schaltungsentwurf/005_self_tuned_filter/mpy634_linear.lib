@@ -13,4 +13,3 @@ EOUT Out 0 VALUE = { V(Xdiff,0) * V(Ydiff,0) / V(SF,0) }
 RZ Z1 Z2 1G
 
 .ENDS MPY634_linear
-

@@ -19,37 +19,7 @@
       },
       "measurements": [],
       "showGrid": true,
-      "traces": [
-        {
-          "color": "rgb(228, 26, 28)",
-          "cursor1": {
-            "position": 158.3538395265682,
-            "x_format": "3~Hz",
-            "y_format": "3~dB"
-          },
-          "cursorD": {
-            "x_format": "3~Hz",
-            "y_format": "3~dB"
-          },
-          "signal": "V(BPF) (gain)",
-          "trace_type": 521
-        },
-        {
-          "color": "rgb(166, 86, 40)",
-          "signal": "V(BSF) (gain)",
-          "trace_type": 521
-        },
-        {
-          "color": "rgb(247, 129, 191)",
-          "signal": "V(HPF) (gain)",
-          "trace_type": 521
-        },
-        {
-          "color": "rgb(55, 126, 184)",
-          "signal": "V(LPF) (gain)",
-          "trace_type": 521
-        }
-      ]
+      "traces": []
     },
     {
       "analysis": "TRAN",

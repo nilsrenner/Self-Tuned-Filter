@@ -9,10 +9,19 @@
 .param Q=1
 .param H0=1
 
-* AC Analysis
-.ac dec 100 50 1k
-.print ac V(BPF) V(LPF) V(HPF) V(V_F3)
+* Analysis
+*.ac dec 100 50 1k
 
+* Simulation control
+.control
+esave none
+set controlswait
+save V(BPF) V(LPF) V(HPF) V(V_F3) 
+ac dec 100 50 1k
+set xbrushwidth=2
+plot V(BPF) V(LPF) V(HPF) V(V_F3)
+wrdata self_tuned_filter.csv V(BPF) V(LPF) V(HPF) V(V_F3) 
+.endc
 
 * Multipliers
 XIC1 HPF GND +10V V_in GND +10V mult1_out mult1_out GND -10V MPY634_behavioral
@@ -51,11 +60,6 @@ V2 GND -10V DC 10
 V3 V_in GND DC 1 AC 1
 V4 V_3 GND DC 3
 
-* Simulation control
-.control
-set controlswait
-write selfe_tuned_filter.raw all
-.endc
 
 .end
 
