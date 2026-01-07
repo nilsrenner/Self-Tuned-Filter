@@ -1,3 +1,4 @@
+.title Self-Tuned-Filter
 * selfe_tuned_filter.cir - Generated for NGSpice batch simulation
 
 .include "TL082-dual.lib"
