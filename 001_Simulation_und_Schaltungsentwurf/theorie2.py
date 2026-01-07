@@ -349,8 +349,8 @@ plt.plot(time, out3, color=my_green,
 
 plt.title(
     r'Ausgangssignale des Multipliziers für $Y_1: f = 1000\,\mathrm{Hz},\phi=0^\circ$')
-plt.xlabel("Zeit [ms]")
-plt.ylabel("Spannung [V]")
+plt.xlabel("Zeit/ms")
+plt.ylabel("Spannung/V")
 plt.legend(loc='lower left')
 plt.grid(True, which='both', ls='--', lw=0.5)
 plt.tight_layout()
@@ -365,8 +365,8 @@ plt.plot(time, op2, color=my_green,
 
 plt.title(
     r'Eingangssignale in $X_1$ für Frequenzen $\omega < \omega_{\mathrm{ref}}$ und $\omega > \omega_{\mathrm{ref}}$')
-plt.xlabel("Zeit [ms]")
-plt.ylabel("Spannung [V]")
+plt.xlabel("Zeit/ms")
+plt.ylabel("Spannung/V")
 plt.legend(loc='lower left')
 plt.grid(True, which='both', ls='--', lw=0.5)
 plt.tight_layout()
@@ -395,8 +395,8 @@ plt.plot(t * 1e4, u, color=my_red, label=r'vereinfachter Verlauf',
 plt.xticks(xticks_pos, xtick_labels)
 plt.title(
     r'Vereinfachung der Abhänigkeit zwischen Steuerspannung und Phasendifferenz')
-plt.xlabel("Zeit [ms]")
-plt.ylabel("Spannung [V]")
+plt.xlabel("Zeit/ms")
+plt.ylabel("Spannung/V")
 plt.legend(loc='lower right')
 plt.grid(True, which='both', ls='--', lw=0.5)
 
@@ -405,8 +405,8 @@ plt.subplot(212)
 plt.plot(t * 1e4, u_, color=my_red, ls='-')
 plt.xticks(xticks_pos, xtick_labels)
 plt.title(r'Differenzierung der vereinfachten Abhängigkeit')
-plt.xlabel("Zeit [ms]")
-plt.ylabel("Spannung [V]")
+plt.xlabel("Zeit/ms")
+plt.ylabel("Spannung/V")
 plt.grid(True, which='both', ls='--', lw=0.5)
 plt.tight_layout()
 plt.show()
