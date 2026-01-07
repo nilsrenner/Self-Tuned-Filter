@@ -33,7 +33,7 @@ phase_log = []  # Phase in [-180,180]
 prev_ref = ref[0]
 
 # Proportionalfaktor
-Kp = df_max / 90.0 *0.3   # [Hz/°]
+Kp = df_max / 90.0 * 0.3   # [Hz/°]
 
 # --- Tiefpass-Parameter für delta_f ---
 alpha = 0.25            # 0<alpha<=1, kleiner = stärker geglättet
