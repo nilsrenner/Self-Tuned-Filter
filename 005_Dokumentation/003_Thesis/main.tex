@@ -9,7 +9,7 @@
 % Mathematik
 \usepackage{amsmath, amssymb, mathtools} % erweiterte Matheumgebungen
 \usepackage{siunitx}                     % SI-Einheiten und Zahlenformatierung
-
+\sisetup{per-mode=symbol}
 
 % Layout und Formatierung
 \usepackage{geometry}          % Seitenränder einstellen
@@ -30,6 +30,11 @@
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usetikzlibrary{arrows.meta, positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\newcommand{\datapath}{../../003_Messdaten}
+
 
 % Literatur
 \usepackage{csquotes}                           % saubere Anführungszeichen
@@ -107,12 +112,14 @@
     \vspace{2.5cm}
 
     \begin{tabular}{l l}
-      \textbf{Author:} & Nils Renner, Wulfhoopstraße 34a, 28201 Bremen \\
-      \textbf{Matr.-Nr.:} & 5197659 \\
-      \textbf{Abgabetermin:} & 2. März, 2026 \\ \\ \\
-      \textbf{Prüfer:} & Prof. Dr.-Ing. Mirco Meiners,\\ & \small{Hochschule Bremen,}\\ & \small{Concept Engineering SoCs and Design}\\ \\
-      \textbf{} & Prof. Dr. Sören Peik,\\ & \small{Hochschule Bremen,}\\ & \small{Microwave Technology and Satellite Communications} \\
+            \textbf{Autor:} & Nils Renner, Wulfhoopstraße 34a, 28201 Bremen\\
+            \textbf{Matr. Nr.:} & 5197659\\
+            \textbf{Abgabetermin:} & 2. März, 2026 \\ \\ \\
+            \textbf{Prüfer:} & Prof. Dr.-Ing. Mirco Meiners,\\ & \small{Hochschule Bremen,}\\ & \small{Concept Engineering SoCs and IC Design}\\ \\
+            \textbf{} & Prof. Dr. Sören Peik,\\ & \small{Hochschule Bremen,}\\ & \small{Microwave Technology and Satellite Communications} \\
     \end{tabular}
+
+
 
 %    {\scshape\LARGE Hochschule Bremen\\}
 %    {\scshape\Large Fakultät 4: Elektrotechnik und Informatik\\[1.5cm]}
@@ -120,9 +127,9 @@
 %    {\Large\bfseries Nils Renner (5197659)\\[2cm]}
 %    {\Large\bfseries Prüfer\\[0.5cm]}
 %    \begin{tabular}{l}
-%      Prof. Dr.-Ing. Mirco Meiners \\
-%      Prof. Dr. Sören Peik
-%    \end{tabular} \\[2cm]
+ %     Prof. Dr.-Ing. Mirco Meiners \\
+  %    Prof. Dr. Sören Peik
+   % \end{tabular} \\[2cm]
     \vfill
 \end{titlepage}
 
@@ -136,7 +143,7 @@
 \chapter*{Erklärung zur selbstständigen Arbeit}
 \addcontentsline{toc}{chapter}{Erklärung zur selbstständigen Arbeit}
 
-\href{https://www.hs-bremen.de/assets/hsb/de/Dokumente/ZLL/MMCC/KI-Eigenst\%C3\%A4ndigkeitserkl\%C3\%A4rung\_Nov\_2024\_Form.pdf}{https://www.hs-bremen.de/assets/hsb/de/Dokumente/ZLL/MMCC/KI-Eigenständigkeitserklärung\_Nov\_2024\_Form.pdf}
+
 
 \newpage
 \null

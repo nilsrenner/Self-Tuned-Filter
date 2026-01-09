@@ -4,17 +4,8 @@ import time
 
 ### SPI und Pins Initialisieren
 # SPI Channel 0 auf GPIO18/19/16
-spi = SPI(
-    0,
-    baudrate=1_000_000,
-    polarity=0,
-    phase=0,
-    bits=8,
-    firstbit=SPI.MSB,
-    sck=Pin(18),
-    mosi=Pin(19),
-    miso=Pin(16),
-)
+spi = SPI(0, baudrate=1_000_000, polarity=0, phase=0, bits=8, firstbit=SPI.MSB,
+    sck=Pin(18), mosi=Pin(19), miso=Pin(16))
 
 # Chip-Selects (aktiv low)
 cs1 = Pin(17, Pin.OUT, value=1) #Mittenfreqzenzbestimmend
@@ -37,8 +28,34 @@ def set_wiper1(cs_pin, value):  # Immer Wiper1 DES JEWEILIGEN Chips
     mcp_write(cs_pin, cmd, value)
 
 
-set_wiper0(cs1, 26)    # Chip1 Wiper0 = ca 10% = 1k
-set_wiper1(cs1, 26)   # Chip1 Wiper1 = ca 10%  
-set_wiper0(cs2, 128)   # Chip2 Wiper0 = 50%     wiper0 = Q
-set_wiper1(cs2, 32)    # Chip2 Wiper1 = 12,5%
+def read_wiper0(cs_pin):
+    tx = bytearray([0x0C, 0x00])
+    rx = bytearray(2)
+    cs_pin.value(0)
+    spi.write_readinto(tx, rx)
+    cs_pin.value(1)
+    return rx[1]
 
+
+def read_wiper1(cs_pin):
+    tx = bytearray([0x1C, 0x00])
+    rx = bytearray(2)
+    cs_pin.value(0)
+    spi.write_readinto(tx, rx)
+    cs_pin.value(1)
+    return rx[1]
+
+
+
+###   10% = 1k = 26, 90% = 9k oder 1k = 230
+set_wiper0(cs1, 232)    # Chip1 Wiper0
+set_wiper1(cs1, 232)   # Chip1 Wiper1  
+set_wiper0(cs2, 240)   # Chip2 Wiper0 
+set_wiper1(cs2, 232)    # Chip2 Wiper1 
+
+
+
+print("CS1 Wiper0:", read_wiper0(cs1))  # Sollte 50 sein
+print("CS1 Wiper1:", read_wiper1(cs1))  # Sollte 50 sein
+print("CS2 Wiper0:", read_wiper0(cs2))  # Sollte 128 sein
+print("CS2 Wiper1:", read_wiper1(cs2))  # Sollte 128

@@ -9,12 +9,19 @@ für die messung über den Red Pytaya immer 1x Tastköpfe verwenden, nicht 10x!\
 Bevor die ersten Messungen am System gemacht werden können, muss diese ausreichend auf ihre Funktionsfähigkeit getestet werden. Aufgrund der langen Lieferzeit der bestellten Bauteile, gab es im Vorfeld genügend Zeit ein Testprotokoll/Inbetriebnahmeprotokoll zu erarbeiten.\par
 
 
-\section{Test der Platine}
-Nach Fertigstellung der Platine wird zunächst der aufkommende Versorgungsstrom auf einen bestimmten Wert begrenzt.(mit oder ohne µC?) Anschließend wird kontrolliert, ob der Buck-Converter die \SI{3.3}{\volt} zuverlässig ausgibt. Sobald das funktioniert kann die Ansteuerung der Digitalpotentiometer durch den Mikrocontrollers programmiert werden.Dank der vorher geplanten Jumper kann der daraus resultierende Widerstandswert unabhängig von der Restschaltung gemessen und der Code dadurch validiert werden. 
+\section{Test der Leiterplatte (PCB)}
+Nach Fertigstellung des \gls{pcb} wird zunächst der aufkommende Versorgungsstrom auf einen bestimmten Wert begrenzt.(mit oder ohne µC?) Anschließend wird kontrolliert, ob der Buck-Converter die \SI{3.3}{\volt} zuverlässig ausgibt. Sobald das funktioniert kann die Ansteuerung der Digitalpotentiometer durch die \gls{mcu} programmiert werden.Dank der vorher geplanten Jumper kann der daraus resultierende Widerstandswert unabhängig von der Restschaltung gemessen und der Code dadurch validiert werden. 
 
 Im nächsten Schritt könnte schon das Gesammtsystem gemessen werden. Da die genaue Reaktion des Systems noch nicht genau bekannt ist, sollten die Multiplizierer erst einmal überbrückt werden um den bereits bekannten Biquad zu vermessen, bei dem das Endresultat bekannt ist. Der Phase-Detektor kann dabei vorerst vernachlässigt werden. Stimmen diese Ergebnisse mit den früheren Resultaten überein, kann anschließend das vollständige System vermessen werden. 
 
 \section{Messverfahren}
 Was soll gemessen werden, wie soll dies gemessen werden?
+
+Frequenzsweep (Amplituden und Phasengang) um es mit dem normalen Biquad zu vergleichen und die Grenz/Mittenfrequenz des Systems zu ermitteln und herauszufinden, welche Formel richtig ist. 
+
+Zeitaufnahme, um zu sehen ob beim Einschwigen eine Fallhöhe oder so existiert. (warscheinlich mit Oscilluskop)
+
+
+Aufnahme über spektrum analysator? Herausfinden wie groß der Filter/ Einstellungsbereich des Filters ist. Also bis zu welcher abweichung von eingehender Freq und bauteilbedingter Mittenfreq. der filter noch die win=w0 schafft. 
 
 \end{document}
