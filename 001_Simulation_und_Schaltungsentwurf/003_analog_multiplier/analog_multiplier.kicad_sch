@@ -1743,7 +1743,7 @@
 		)
 		(uuid "2a9b81a5-cf0a-4dcc-aefa-d200d47d2abd")
 	)
-	(text ".control\nset controlswait\nwrite analog_multiplier.raw all\n.endc"
+	(text ".control\nset controlswait\n.endc"
 		(exclude_from_sim no)
 		(at 57.658 125.984 0)
 		(effects

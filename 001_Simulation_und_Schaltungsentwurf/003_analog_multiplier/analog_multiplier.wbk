@@ -68,13 +68,7 @@
       },
       "measurements": [],
       "showGrid": true,
-      "traces": [
-        {
-          "color": "rgb(228, 26, 28)",
-          "signal": "V(detec_out_pHz) (gain)",
-          "trace_type": 9
-        }
-      ]
+      "traces": []
     }
   ],
   "user_defined_signals": [],
