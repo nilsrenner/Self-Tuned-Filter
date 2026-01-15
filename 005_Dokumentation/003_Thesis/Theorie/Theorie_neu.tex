@@ -27,8 +27,9 @@ Da zum Thema selbstabstimmender analoger Filter nur begrenzt wissenschaftliche L
 \section{Einführung in den Phasenregelkreis}     
 Bei einem \gls{pll} handelt es sich um eine geschlossene Rückkopplungsschleife. In dieser wird die Phase eines internen Signals wie dem Ausgang eines \gls{vco} an die Phase eines stabilen, externen Referenzsignals angepasst. Sobald die Signale synchron (locked) zueinander verlaufen besitzen internes Signal und Referenzsignal die gleiche Frequenz. Sobald die Frequenz des Referenzsignals verändert wird, versucht die elektronische Schaltung die Synchronisation aufrecht zu erhalten bzw. wieder zu erlangen. Das Ausgangssignal des \gls{vco} kann dem eingehenden Steuersignal also über einen gewissen Frequenzbereich folgen.\cite{chengCom}\par
 \medskip
-Der einfache Aufbau eines \gls{pll} besteht aus einem Phasen Detektor, einem Loopfilter und einem \gls{vco}. Diese werden wie in der folgenden Abbildung \ref{fig:bsb_pll} dargestellt.\par
->>>>>>> Stashed changes
+Der einfache Aufbau eines \gls{pll} besteht aus einem Phasen Detektor, einem Loopfilter und einem \gls{vco}. Diese
+werden wie in der folgenden Abbildung \ref{fig:bsb_pll} dargestellt.\par
+
 
 \begin{figure}[H]
   \centering
@@ -41,8 +42,6 @@ Der einfache Aufbau eines \gls{pll} besteht aus einem Phasen Detektor, einem Loo
 Dabei bestimmt der \gls{pd} die Phasendifferenz zwischen dem Referenzsignal und dem Ausgangssignal des \gls{vco}. Dieses Signal wird im darauffolgenden Schleifenfilter geglättet, sodass die bei der Phasendetektion entstehenden Obertöne (hochfrequente Signalanteile) unterdrückt werden. Der anschließende \gls{vco} gibt anhand seiner Eingangsspannung eine Frequenz aus, die proportional zu seiner Eingangsspannung ist. Stimmt diese Ausgangsfrequenz nun mit der Frequenz des Referenzsignals überein ist der \gls{pll} locked.\cite{chengCom}\par
 \medskip
 Im Folgenden werden die ersten beiden Bausteine des \gls{pll} genauer betrachtet. Um jedoch den \gls{pd} zu verstehen, muss zunächst die Funktionsweise des analogen Multiplizierers erläutert werden.\par
->>>>>>> Stashed changes
-
 
 
 \section{Analoger Multiplizierer}
@@ -173,37 +172,37 @@ Da die Analyse im ASLK-PRO-Manual immer von der Spannung $V_r$ als interne Refer
 Um ein besseres Verständnis für den Multiplizierer zu gewinnen, wird dieser in KiCad mit ngspice simuliert. Als erster Test werden als Input-Quellen zwei Gleichspannungen verwendet. Diese werden mit den Pins $X_1$ und $Y_1$ verbunden. Für die spätere Funktion des \gls{pd} werden die Pins $X_2$ und $Y_2$ an Ground angeschlossen. In KiCad können die Simulationsdaten in eine .raw-Datei exportiert werden, die es möglich macht, die Ergebnisse in Python zu plotten.\par
 
 \begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=0.9\linewidth,
-            height=0.55\linewidth,
-            xlabel={Zeit / \si{\milli\second}},
-            ylabel={Spannung / \si{\volt}},
-            grid=both,
-            legend cell align=left,
-            legend pos=south west,
-            % optional: Gitternetz feiner gestalten
-            %minor tick num=1,
-            %tick align=outside,
-        ]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.9\linewidth,
+      height=0.55\linewidth,
+      xlabel={Zeit / \si{\milli\second}},
+      ylabel={Spannung / \si{\volt}},
+      grid=both,
+      legend cell align=left,
+      legend pos=south west,
+      % optional: Gitternetz feiner gestalten
+      % minor tick num=1,
+      % tick align=outside,
+      ]
+      \addplot[color=blue, mark=none, solid, thick] table[x=time_ms, y=in1_dc_V,
+      colsep=comma]{\datapath/analog_multiplier_dc_down.csv}; 
+      \addlegendentry{Input $X_1$}
 
-           \addplot[color=blue, mark=none, solid, thick] table[x=time_ms, y=in1_dc_V, col sep=comma]{\datapath/analog_multiplier_dc_down.csv};
-          \addlegendentry{Input $X_1$}
+      \addplot[color=red, mark=none, solid, thick] table[x=time_ms, y=in2_dc_V,
+      colsep=comma]{\datapath/analog_multiplier_dc_down.csv};
+      \addlegendentry{Input $Y_1$}
 
-          \addplot[color=red, mark=none, solid, thick] table[x=time_ms, y=in2_dc_V, col sep=comma]{\datapath/analog_multiplier_dc_down.csv};
-          \addlegendentry{Input $Y_1$}
-
-          \addplot[color=orange, mark=none, solid, thick] table[x=time_ms, y=out_dc_V, col sep=comma]{\datapath/analog_multiplier_dc_down.csv};
-          \addlegendentry{Output}
-
-
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Demonstration des analogen Multiplizierers mit DC-Spannungen}
-    \label{fig:analog-multiplier-dc}
+      \addplot[color=orange, mark=none, solid, thick] table[x=time_ms, y=out_dc_V,
+      colsep=comma]{\datapath/analog_multiplier_dc_down.csv};
+      \addlegendentry{Output}
+      
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Demonstration des analogen Multiplizierers mit DC-Spannungen}
+  \label{fig:analog-multiplier-dc}
 \end{figure}
-
 
 
 \begin{figure} [H]
@@ -519,13 +518,12 @@ Durch Herauskürzen von s, dem Exponenten und anschließender Termumformung nach
 \end{equation}
 
 
-\medskip
-
-
-
-\medskip
 \textbf{Berechnung der Grenzfrequenz aus dem Video}\par
-Laut ASLK-PRO Manual müssten $V_c$ und $V_r$ getauscht sein. Jedoch ist die Mittenfrequenz eine physikalische Größe, die nicht von der Normierung abhängig sein darf. So kann davon ausgegangen werden, dass die im Manual vorgeschlagene Lösung entweder nicht korrekt ist, oder anders Normiert bzw eine andere Konvention verwendent wurde. (zweiteres ist unwahrscheinlicher, da der Rechenweg dadurch deutlich komplizierter zu sein scheint) YT vid  \cite{YT_stf_lab5}  sagt aber auch was anderes!!!\par
+Laut ASLK-PRO Manual müssten $V_c$ und $V_r$ getauscht sein. Jedoch ist die Mittenfrequenz eine physikalische Größe, die
+nicht von der Normierung abhängig sein darf. So kann davon ausgegangen werden, dass die im Manual vorgeschlagene Lösung
+entweder nicht korrekt ist, oder anders Normiert bzw.\ eine andere Konvention verwendent wurde. (zweiteres ist
+unwahrscheinlicher, da der Rechenweg dadurch deutlich komplizierter zu sein scheint) YT vid \cite{YT_stf_lab5} sagt aber
+auch was anderes!!!\par
 \medskip
 
 
@@ -539,40 +537,43 @@ Laut ASLK-PRO Manual müssten $V_c$ und $V_r$ getauscht sein. Jedoch ist die Mit
 Laut Quelle (begleitendem YouTube Video zu diesem Experiment) \cite{YT_stf_lab5} kann die Formel für die Mittenfrequenz anhand dieser vereinfachten Schaltung abgeleitet werden. Die bekannte Formel für den Integrator lautet
 
 \begin{equation}
-V_{out} = -\frac{V_{i}}{sCR} \label{eq:integrator}
+  V_{out} = -\frac{V_{i}}{sCR} \label{eq:integrator}
 \end{equation}
 
-Da $V_{i}$ gleich dem Ausgang des Multiplizierers ist ergibt sich für die Multiplizierergleichung
+Da $V_{i}$ gleich dem Ausgang des Multiplizierers ist, ergibt sich für die Multiplizierergleichung
 
 \begin{equation}
-V_{i} = \frac{V_{in} \cdot V_c}{V_r} \label{eq:multiplizirer}
+  V_{i} = \frac{V_{in} \cdot V_c}{V_r} \label{eq:multiplizirer}
 \end{equation}
 
 Wird \eqref{eq:multiplizirer} nun in \eqref{eq:integrator} eingesetzt ergibt sich
 
 \begin{equation*}
-V_{out} = -\frac{\frac{V_{in} \cdot V_c}{V_r}}{sCR} = -\frac{V_{in} \cdot V_c}{V_r \cdot sRC}
+  V_{out} = -\frac{\frac{V_{in} \cdot V_c}{V_r}}{sCR} = -\frac{V_{in} \cdot V_c}{V_r \cdot sRC}
 \end{equation*}
 
-Um die Übertragungsfunktion zu erlangen muss nun durch $V_{in}$ geteilt werden
+Um die Übertragungsfunktion zu erlangen, muss nun durch $V_{in}$ geteilt werden
 
 \begin{equation*}
-\frac{V_{out}}{V_{in}} = -\frac{V_c}{V_r \cdot sRC} = - \frac{V_c}{V_r} \cdot \frac{1}{sRC}
+  \frac{V_{out}}{V_{in}} = -\frac{V_c}{V_r \cdot sRC} = - \frac{V_c}{V_r} \cdot \frac{1}{sRC}
 \end{equation*}
 
-Aus dem Therm $\frac{1}{sRC}$ ergibt sich die Standartform $\omega_0 = \frac{1}{RC}$ mit einem zusätzlichen Faktor von $\frac{V_c}{V_r}$ sodass sich die Mittenfrequenz wiefolgt ergibt
+Aus dem Term $\frac{1}{sRC}$ ergibt sich die Standardform $\omega_0 = \frac{1}{RC}$ mit einem zusätzlichen Faktor von
+$\frac{V_c}{V_r}$, sodass sich die Mittenfrequenz wie folgt ergibt
 
 \begin{equation}
-\omega_0 = \frac{V_c}{V_r \cdot RC} \label{eq:freq-vcf}
+  \omega_0 = \frac{V_c}{V_r \cdot RC} \label{eq:freq-vcf}
 \end{equation}
 
 wobei
+
 \begin{itemize}
-  \item $\omega_0$ die Durchlassfrequenz des Filters ist,
-  \item $V_c$ die Steuerspannung des \gls{vcf} ist,
-  \item $V_r$ der Referenzwert des Multiplizierers ist (laut Datenblatt: $V_r = \SI{10}{\volt}$),
-  \item $RC$ die Zeitkonstante des Filters beschreibt.
+\item $\omega_0$ die Durchlassfrequenz des Filters ist,
+\item $V_c$ die Steuerspannung des \gls{vcf} ist,
+\item $V_r$ der Referenzwert des Multiplizierers ist (laut Datenblatt: $V_r = \SI{10}{\volt}$),
+\item $RC$ die Zeitkonstante des Filters beschreibt.
 \end{itemize}
+
 
 \subsection*{Herleitung der Funktionsweise des Voltage Controlled Filter}
 
@@ -592,16 +593,19 @@ Um das resultierende Verhalten anschaulich zu Untersuchen, wird der analytische 
     \label{fig:phase2omega1}
 \end{figure}
 
-Gut zu erkennen ist dieses Verhalten bei Betrachung der ersten und dritten türkisen Halbwelle. Die Phasenlage verbessert sich nicht im geringsten gegenüber der ersten Halbwelle. Das legt den Verdacht nahe, dass das System (sowohl Phasenlage als auch Frequenz) ungedämpft schwingt. Um diesen Verdacht genauer zu überprüfen wird die weitere Programmierung
-mithilfe eines KI-Sprachmodells entwickelt, wobei immer wieder darauf geachtet werden muss, dass alle Vorgaben eingehalten werden und das System in der Realität auch so funktioniert.\par
+Gut zu erkennen ist dieses Verhalten bei Betrachung der ersten und dritten türkisen Halbwelle. Die Phasenlage verbessert
+sich nicht im geringsten gegenüber der ersten Halbwelle. Das legt den Verdacht nahe, dass das System (sowohl Phasenlage
+als auch Frequenz) ungedämpft schwingt. Um diesen Verdacht genauer zu überprüfen wird die weitere Programmierung
+mithilfe eines KI-Sprachmodells entwickelt, wobei immer wieder darauf geachtet werden muss, dass alle Vorgaben
+eingehalten werden und das System in der Realität auch so funktioniert.\par
 
 \medskip
 
 \begin{figure} [h!]
-    \centering
-    \includegraphics[width=1\linewidth]{../Bilder/phase2omega2.png}
-    \caption{Frequenz- und Phasendifferenzverlauf des Algoritmus mit Stufenregelung}
-    \label{fig:phase2omega2}
+  \centering
+  \includegraphics[width=1\linewidth]{../Bilder/phase2omega2.png}
+  \caption{Frequenz- und Phasendifferenzverlauf des Algoritmus mit Stufenregelung}
+  \label{fig:phase2omega2}
 \end{figure}
 
 
@@ -677,8 +681,7 @@ Im Allgemeinen beschreibt die Sensitivität die Änderung einer Ausgangsgröße 
 Die Sensitivität des \gls{pd} $K_{pd}$ kann durch folgende Geichung beschrieben werden:
 
 \begin{equation}
-K_{pd} = \frac{dV_{av}}{d\phi}
-\quad \left[\si{\volt\per\radian}\right]
+K_{pd} = \frac{dV_{av}}{d\phi} \quad in \si{\volt\per\radian}
 \end{equation}
 
 
@@ -698,9 +701,6 @@ In Anlehnung an den Abhängigkeits/Sensitivitäst-Verlauf aus Abbildung~\ref{fig
 Diese vereinfachte Simulation stimmt an den durch das Manual bekannten Punken ($\SI{90}{\degree}$ und $\SI{270}{\degree}$) überein. Die Amplitude der Funktion ist allerdings deutlich größer als gedacht. Mit einem Maximalwert von \SI{2000}{\volt} würde die Regelung sehr früh um den Arbeitspunkt stagnieren, da die Verstärker nur bis zu \SI{15}{\volt} ausgeben können.\par
 \medskip
 Diese Amplitude ergibt sich in diesem Fall durch die Ableitung der hohen frequenz. In diesem Fall ändert die Frequenz also die Sensitivität des \gls{pd}. eine geringere Frequenz führt über die Ableitung zu einer geringeren Amplitunde und somit zu einer gerinegeren Sensitivität. \par
-
-
-
 
 
 \textbf{Kann man hier noch irgendwas rechnen? z.B. für eine Bestimmte frequenz? oder ist das immer 20V/pi wie in der Abbildung weiter oben?}
