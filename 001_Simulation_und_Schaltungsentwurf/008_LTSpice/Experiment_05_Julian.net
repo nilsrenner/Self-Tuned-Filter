@@ -1,0 +1,41 @@
+* C:\users\nils\Documents\001_Studium\007_Semester7-BA\Selfe-Tuned-Filter\001_Simulation_und_Schaltungsentwurf\008_LTSpice\Experiment_05_Julian.asc
+R1 N006 V_HP 1k
+R2 N007 V_F1 1k
+R3 N009 V_TP 1k
+R5 V_HP N009 1k
+R9 N009 V_F2 1k
+R6 V_F2 N011 1k
+R8 N011 V_F1 1k
+R7 N011 N004 1k
+C2 N001 N006 1µ
+C1 N002 N007 1µ
+VG1 N004 0 PULSE(-100m 100m 0 1n 1n 500µ 1m) AC 1 0
+V_OP+ V+ 0 10
+V_OP- 0 V- 10
+XU1 0 N006 V+ V- V_F1 tl082
+XU2 0 N007 V+ V- V_TP tl082
+XU3 0 N009 V+ V- V_HP tl082
+XU5 0 N011 V+ V- V_F2 tl082
+XU6 V_F3 0 ve V_F1 0 vdd N001 N001 0 vss MPY634
+XU7 V_F3 0 ve V_TP 0 vdd N002 N002 0 vss MPY634
+XU8 V_HP 0 ve N004 0 vdd N003 N003 0 vss MPY634
+VDD1 vdd 0 10
+VSS1 0 vss 10
+VE1 ve 0 10
+XU4 0 N008 V+ V- N005 tl082
+V3 N010 0 1
+R10 V_F3 N010 100k
+R11 V_F3 N005 10
+R4 N008 N003 1k
+C3 N005 N008 1µ
+.ac dec 1000 50 5000
+.inc tl082.cir
+.inc mpy634.cir
+;.tran 0 1600m
+*;step param R_C list 1k 25k 100k
+.param C=1u Cx3=1u R=1k R_C=1k
+*;dc V3 0 5 0.1
+*;ac dec 50 50 1000
+.lib mpy634.cir
+.backanno
+.end
