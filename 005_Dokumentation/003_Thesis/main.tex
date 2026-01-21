@@ -33,8 +33,8 @@
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\newcommand{\datapath}{../../003_Messdaten}
-
+%\newcommand{\datapath}{../../003_Messdaten}
+\usepgfplotslibrary{groupplots}
 
 % Literatur
 \usepackage{csquotes}                           % saubere Anführungszeichen
@@ -119,29 +119,18 @@
             \textbf{} & Prof. Dr. Sören Peik,\\ & \small{Hochschule Bremen,}\\ & \small{Microwave Technology and Satellite Communications} \\
     \end{tabular}
 
-
-
-%    {\scshape\LARGE Hochschule Bremen\\}
-%    {\scshape\Large Fakultät 4: Elektrotechnik und Informatik\\[1.5cm]}
-%    {\huge\bfseries Implementierung eines selbsteinstellenden Filters auf Basis eines spannungsgesteuerten Biquad-Filters\\[0.5cm]}
-%    {\Large\bfseries Nils Renner (5197659)\\[2cm]}
-%    {\Large\bfseries Prüfer\\[0.5cm]}
-%    \begin{tabular}{l}
-%     Prof. Dr.-Ing. Mirco Meiners \\
-%     Prof. Dr. Sören Peik
-%   \end{tabular} \\[2cm]
     \vfill
 \end{titlepage}
 
 \newpage
 \null
 \thispagestyle{empty}
-% -------------------------------------------------
+
+
 % Erklärung zur selbstständigen Arbeit
-% -------------------------------------------------
 \chapter*{Erklärung zur selbstständigen Arbeit}
 \addcontentsline{toc}{chapter}{Erklärung zur selbstständigen Arbeit}
-\href{https://www.hs-bremen.de/assets/hsb/de/Dokumente/ZLL/MMCC/KI-Eigenst\%C3\%A4ndigkeitserkl\%C3\%A4rung\_Nov\_2024\_Form.pdf}{https://www.hs-bremen.de/assets/hsb/de/Dokumente/ZLL/MMCC/KI-Eigenständigkeitserklärung\_Nov\_2024\_Form.pdf}
+%\href{https://www.hs-bremen.de/assets/hsb/de/Dokumente/ZLL/MMCC/KI-Eigenst\%C3\%A4ndigkeitserkl\%C3\%A4rung\_Nov\_2024\_Form.pdf}{https://www.hs-bremen.de/assets/hsb/de/Dokumente/ZLL/MMCC/KI-Eigenständigkeitserklärung\_Nov\_2024\_Form.pdf}
 
 
 
@@ -149,9 +138,7 @@
 \null
 \thispagestyle{empty}
 
-% -------------------------------------------------
 % Acknowledgements / Danksagung
-% -------------------------------------------------
 \chapter*{Acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
 
@@ -161,9 +148,7 @@ Danksagung
 \null
 \thispagestyle{empty}
 
-% -------------------------------------------------
 % Abstract
-% -------------------------------------------------
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
@@ -173,18 +158,14 @@ englisches Abstract
 \null
 \thispagestyle{empty}
 
-% -------------------------------------------------
 % Inhaltsverzeichnis
-% -------------------------------------------------
 \tableofcontents
 
 \newpage
 \null
 \thispagestyle{empty}
 
-% -------------------------------------------------
 % Abbildungsverzeichnis
-% -------------------------------------------------
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
 
@@ -192,19 +173,15 @@ englisches Abstract
 \null
 \thispagestyle{empty}
 
-% -------------------------------------------------
 % Tabellenverzeichnis (optional, empfohlen)
-% -------------------------------------------------
-%\listoftables
-%\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
 
-%\newpage
-%\null
-%\thispagestyle{empty}
+\newpage
+\null
+\thispagestyle{empty}
 
-% -------------------------------------------------
 % Abkürzungsverzeichnis
-% -------------------------------------------------
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, nonumberlist]
 \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
 
