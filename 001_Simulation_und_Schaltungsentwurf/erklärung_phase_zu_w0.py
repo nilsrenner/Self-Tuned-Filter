@@ -385,7 +385,71 @@ plt.tight_layout()
 plt.show()
 
 
-#%%
+#%% pgf
+
+import numpy as np
+import pandas as pd
+import os
+
+# --- Deine Frequenz-Definitionen ---
+f_e, f_d, f_c, f_b, f_a = 875, 900, 925, 950, 975
+f0 = 1000  
+fa, fb, fc, fd = 1025, 1050, 1075, 1100
+fe, ff, fg, fh = 1125, 1150, 1175, 1200
+
+T = 7e-3
+t = np.linspace(0, T, 200000)
+ref_sig = np.sin(f0 * 2*np.pi * t)
+
+# --- Segment-Berechnungen ---
+def get_seg(f, t_start, duration, phase_shift=0, func=np.sin, inv=1):
+    t_seg = np.linspace(t_start, t_start + duration, 2000)
+    sig = inv * func(2 * np.pi * f * (t_seg - t_start) + phase_shift)
+    return t_seg, sig
+
+# Erstellung der 14 Segmente (basierend auf deinem Code)
+t1, sig1 = get_seg(fb, 0, ((1/fb)/2)/2, phase_shift=np.pi/2)
+t2, sig2 = get_seg(fa, t1[-1], (1/fa)/2, inv=-1)
+t3, sig3 = get_seg(f0, t2[-1], (1/f0)/2)
+t4, sig4 = get_seg(f_a, t3[-1], (1/f_a)/2, inv=-1)
+t5, sig5 = get_seg(f_b, t4[-1], (1/f_b)/2)
+t6, sig6 = get_seg(f_a, t5[-1], (1/f_a)/2, inv=-1)
+t7, sig7 = get_seg(f0, t6[-1], (1/f0)/2)
+t8, sig8 = get_seg(fa, t7[-1], (1/fa)/2, inv=-1)
+t9, sig9 = get_seg(fb, t8[-1], (1/fb)/2)
+t10, sig10 = get_seg(fa, t9[-1], (1/fa)/2, inv=-1)
+t11, sig11 = get_seg(f0, t10[-1], (1/f0)/2)
+t12, sig12 = get_seg(f_a, t11[-1], (1/f_a)/2, inv=-1)
+t13, sig13 = get_seg(f_b, t12[-1], (1/f_b)/2)
+t14, sig14 = get_seg(f_a, t13[-1], (1/f_a)/2, inv=-1)
+
+# --- CSV Export mit Leerzeilen-Logik ---
+output_dir = os.path.join("..", "005_Dokumentation/003_Thesis/Bilder")
+os.makedirs(output_dir, exist_ok=True)
+
+segments = [
+    (t1, sig1, "start"), (t2, sig2, "down"), (t3, sig3, "f1000"),
+    (t4, sig4, "down"), (t5, sig5, "down"), (t6, sig6, "up"),
+    (t7, sig7, "f1000"), (t8, sig8, "up"), (t9, sig9, "up"),
+    (t10, sig10, "down"), (t11, sig11, "f1000"), (t12, sig12, "down"),
+    (t13, sig13, "down"), (t14, sig14, "up")
+]
+
+with open(os.path.join(output_dir, "phase_variation.csv"), "w") as f:
+    f.write("time,start,down,f1000,up\n")
+    for time_seg, sig_seg, label in segments:
+        for t_val, s_val in zip(time_seg[::20], sig_seg[::20]):
+            row = [f"{t_val*1000}", "nan", "nan", "nan", "nan"]
+            col_map = {"start":1, "down":2, "f1000":3, "up":4}
+            row[col_map[label]] = f"{s_val}"
+            f.write(",".join(row) + "\n")
+        f.write(",,,,\n") # Die "magische" Leerzeile für PGFPlots
+
+# Referenz separat
+pd.DataFrame({"time": t*1000, "ref": ref_sig}).iloc[::100].to_csv(
+    os.path.join(output_dir, "phase_ref_full.csv"), index=False)
+
+print("CSVs erfolgreich erstellt.")
 
 
 

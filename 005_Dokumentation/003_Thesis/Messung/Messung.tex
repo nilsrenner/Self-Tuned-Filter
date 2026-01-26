@@ -4,7 +4,7 @@
 
 
 \chapter{Aufnahme der Messergebnisse}
-fFür die Messung über den Red Pitaya immer 1:1-Tastköpfe verwenden, nicht 10:1!\par
+Für die Messung über den Red Pitaya immer 1:1-Tastköpfe verwenden, nicht 10:1!\par
 \medskip
 Bevor die ersten Messungen am System gemacht werden können, muss diese ausreichend auf ihre Funktionsfähigkeit getestet werden. Aufgrund der langen Lieferzeit der bestellten Bauteile, gab es im Vorfeld genügend Zeit ein Testprotokoll/Inbetriebnahmeprotokoll zu erarbeiten.\par
 
@@ -16,70 +16,87 @@ Nach Fertigstellung des \gls{pcb} wird zunächst der aufkommende Versorgungsstro
 
 
 
-Im nächsten Schritt könnte schon das Gesamtsystem gemessen werden. Da die genaue Reaktion des Systems noch nicht genau bekannt ist, sollten die Multiplizierer erst einmal überbrückt werden, um den bereits bekannten Biquad zu vermessen, bei dem das Endresultat bekannt ist. Der Phase-Detektor kann dabei vorerst vernachlässigt werden. Stimmen diese Ergebnisse mit den früheren Resultaten überein, kann anschließend das vollständige System vermessen werden. \par
+Im nächsten Schritt könnten die fehlenden \glspl{ic} gesteckt werden um das Gesamtsystem zu vermessen. Da die genaue Reaktion des Systems jedoch noch nicht genau bekannt ist, werden die Multiplizierer erst einmal überbrückt, um nur den bereits bekannten Biquad zu vermessen. Der Phase-Detektor kann dabei vorerst vernachlässigt werden. Stimmen diese Ergebnisse mit den früheren Resultaten überein, kann anschließend das vollständige System vermessen werden. \par
 \medskip
 
-
-Auffällig ist, dass der Pico nicht immer von alleine starten möchte. Grund hierfür könnte eine nicht ganz stabilisierte Versorgungsspannung sein. Lösungsmöglichkeiten hierfür wären z.B. die Planung eines Kondensator am $V_{sys}$-Eingang oder ein Schalter am 3.3V Jumper. Sobald die \SI{\pm15}{\volt} erst einmal anliegen kann der Schalter gesetzt werden womit die \gls{mcu} zuverlässiger startet. 
-Zur Erkennung das was passiert wird das Skript erweitert, sodass die ON-Board-LED als Indikator fungiert. 
+\textbf{Pico bootet nicht (Platinenversion 1)}
+Auffällig ist, dass der Pico bei anlegen der Versorgungsspannung nicht immer zuverlässig bootet. Ein möglicher Grund hierfür könnte eine nicht ausreichend stabilisierte Versorgungsspannung sein. Lösungsansätze sind z.B. das Einsetzen eines Stützkondensator am $V_{sys}$-Eingang oder das Hizufügen eines Schalter für den \SI{3.3}{\volt}-Jumper. Sobald die \SI{\pm15}{\volt} erst einmal anliegen kann der Schalter gesetzt werden womit die \gls{mcu} zuverlässiger startet. Um auf Anhieb zu erkennen, dass der Pico ordnungsgemäß hochfährt wird das Skript erweitert, sodass die Onboard-LED als Statusindikator fungiert.\par
+\medskip
 
 
 
 
 \subsection{Nachtunen der Widerstandswerte der Digitalpotentiometer}
-Bei der ersten Messung des herkömmlichen Biquads ohne self-tune System fällt auf, dass die Mittenfrequenz noch größere Abweichungen zum eigendlich eingestellten Wert zeigt. Dabei gibt es sowohl eine Diskrepanz zwischen dem theoretischen Sollwert \text{soll\_R} und dem durch den Wiper eingestellten Istwert \text{ist\_R}, als auch eine Abweichung zwischen dem Istwert und dem real abfallenden Widerstandswert. 
 
-Im Folgenden soll also kurz untersucht werden, ob diese anfallenen Abweichungen durch anpassungen des Skripts kompensiert werden können. Dafür werden die im Skript befindlichen Werte für den Ist- und Sollwiderstand über das \gls{ui} ausgegeben. Währenddessen wird der Widerstandswert des Poti \num{1} gemessen. Auf eine Messung der anderen Potis wird hierbei verzichtet, da diese bei Messung immer sehr nah (ca. 10 Ohm) aneinander ligen. \par
+Bei der ersten Messung des herkömmlichen Biquads ohne Self-Tune-System zeigt sich eine deutliche Abweichung der Mittenfrequenz von der in der \gls{ui} eingestellten Frequenz. Dabei gibt es sowohl eine Diskrepanz zwischen dem theoretischen Sollwert \text{soll\_R} und dem durch den Wiper eingestellten Istwert \text{ist\_R}, als auch eine Abweichung zwischen dem Istwert und dem real abfallenden Widerstandswert. \par
 \medskip
 
-Die dabei erhaltenen Werte sind in der folgenden Tabelle \ref{tab:digipot_r_val} dargestellt:
-
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{c|c|c|c|c|c}
-        UI-Werte / Hz & \text{ist\_R / $\Omega$} & \text{soll\_R / $\Omega$} & \text{real\_R / $\Omega$} & \text{(real - soll)} & \text{real\_R\_neu} \\ \hline
-        50 & 3178 & 3183 & 3244 & +61 & 3064 \\
-        100 & 1589 & 1591 & 1668 & +77 & 1566 \\
-        200 & 794 & 795 & 877 & +82 & 784 \\
-        500 & 302 & 318 & 387 & +69 & 298 \\
-        750 & 227 & 212 & 310 & +98 & 221 \\
-        1000 & 151 & 159 & 233 & +74 & 145 \\ 
-    \end{tabular}
-    \caption{Messwerte des Digitalpotentiometers (Poti 1)}
-    \label{tab:digipot_r_val}
-\end{table}
-
-Auffallend ist, dass die Differenz zwischen Real- und Sollwert immer positiv ist und eine durchschnittliche Differenz von \SI{78,2}{\ohm} erreicht wird. Bei Aufnahme der Widerstandswerte für $f_0 > \SI{1}{\kilo\hertz}$ zeigt sich zudem, dass der Realwiderstand nicht unter ca \SI{150}{\ohm} fällt, sodass die Mittenfrequenz für den herkömmlichen Biquad in dieser Schaltung \SI{1060}{\hertz} nicht überschreiten kann. \par
+Die Abweichung zwischen dem Ist- und Sollwert ist recht einfach zu erklären. Das verwendete Potentiometer wird über ein \num{8}-Bit Steuerregister angesteuert, dass nur $2 ^8= 256$ diskrete Zustände annehmen kann. Diese Zustände sind gleichmäßig über den gesamten Widerstandsbereich verteilt, was zu einer konstanten Schrittweite führt. Diese Schrittweite setzt sich wiefolgt zusammen:\par
 \medskip
-
-Die Abweichung von Ist- zu Sollwert ist vor allem durch die Schrittweite des Wipers im Poti zu erklären. Diese setzt sich wie folgt zusammen:
 
 \begin{equation}
     R_{step} = \frac{R_{max}-R_{min}}{2^{n}-1} = \frac{\SI{9980}{\ohm}-\SI{150}{\ohm}}{255} = \SI{38.5}{\ohm}
 \end{equation}
 
+wobei
+\begin{itemize}
+    \item $R_{max}$ den größt möglichen Widerstand darstellt,
+    \item $R_{min}$ den keinst möglichen Widerstand angibt.
+\end{itemize}
 
-Die minimale Schrittweite begrenzt sich also auf \SI{38.5}{\ohm}, sodass eine Abweichung von unter \SI{19.25}{\ohm} über diesen Digitalpotentiometer nicht korrigiert werden kann. Sie ist jedoch ein vielfaches von der durchschnittlichen Abweichung wodurch der aktuelle Wiperwiderstand im Skript von \num{2} Bit auf \num{4} Bit angehoben werden kann. \par
+Der Abstand zwischen zwei einstellbaren Widerstandswerten beträgt also $R_{step}=\SI{38}{\ohm}$. Bei der Umrechung eines gewünschten Widerstandswert in einen \num{8}-Bit Wert, muss dieser in den bereich von \num{0} bis \num{255} normiert werden. Da der normierte Wert seltenst einer Ganzzahl entspricht, wird dieser im Skript schließlich noch gerundet. So addieren sich auf die Abweichung durch die Schrittweite auch noch Rundungsfehler auf die Differenz von Ist- und Sollwert auf. \par
 \medskip
 
-Diese Änderung soll zu einer Annäherung von Soll- und Realwert führen. Die Abweichung verbessert sich im Durchschnitt auf etwa \SI{27.4}{\ohm}, wobei eine erneute Veränderung des Wiperwiderstand diese nicht weiter reduziert, da die Differenz der werte sowohl positive als auch negative Vorzeichen aufweisen. Interessant ist noch, dass die größte Abweichnung bei \SI{50}{\hertz} mit \SI{115}{\ohm} Differenz auftritt. Für höhere Mittenfrequenzen wird diese Differenz deutlich kleiner.
+%Dies beeinträchtigt stark die Differenz zwischen dem Idealwert und dem aus den Funktionen errechneten Wert. Wenn nun also ein bestimmter widerstandswert, zum Beispiel \SI{1}{\kilo\ohm}, eingestellt werden, muss dieser wert erst auf die \num{255} Steps normiert werden, die über den \gls{spi}-Bus übertragen werden können. Dabei kann es passieren, das der Wert nicht als Ganzzahl ausgegeben werden kann. Die zweite Fehlerquelle basiert also auf dem Ruden des Bitwerts für die Einstellung des Widerstandswerts. Diese addiert sich zu der ersten fehlerqelle.
 
+Die Diskrepanz zwischen dem eingestellten Istwert und dem tatsächlich gemessenen Realwert ist nicht so einfach zu ermitteln. Darum wird im Folgenden kurz untersucht, ob die anfallenden Abweichungen durch Anpassungen des Skripts kompensiert werden können. Dafür werden die Widerstände für den Ist- und Sollwert über das \gls{ui} ausgegeben. Gleichzeitig wird der Widerstand des Poti \num{1} über ein Multimeter gemessen. Auf eine Messung der anderen Potentiometer wird hierbei verzichtet, da ihre Werte immer innerhalb von \SI{10}{\ohm} übereinstimmten. Die gemessenen Werte sind in der Tabelle \ref{tab:digipot_r_val} dokumentiert.
 
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+        UI-Werte / Hz & \text{ist\_R / $\Omega$} & \text{soll\_R / $\Omega$} & \text{real\_R / $\Omega$} & \text{Differenz (real - soll)} \\ \hline
+        50 & 3178 & 3183 & 3244 & +61 \\
+        100 & 1589 & 1591 & 1668 & +77 \\
+        160 & 983 & 994 & 1067 & +73 \\
+        200 & 794 & 795 & 877 & +82 \\
+        300 & 529 & 530 & 611 & +81 \\
+        500 & 302 & 318 & 387 & +69 \\
+        750 & 227 & 212 & 310 & +98 \\
+        1000 & 151 & 159 & 233 & +74 \\ 
+    \end{tabular}
+    \caption{Vergleich der Ist-, Soll- und Realwiderstandswerte (Poti 1)}
+    \label{tab:digipot_r_val}
+\end{table}
 
+Auffallend ist, dass die Differenz zwischen Real- und Sollwert immer positiv ist, was auf eine generelle Überschreitung des gewollten Wert hindeutet. Über diese Messreihe beträgt die durchschnittliche Abweichung \SI{78,2}{\ohm}. Bei Aufnahme der Widerstandswerte für $f_0 > \SI{1}{\kilo\hertz}$ zeigt sich zudem, dass der Realwiderstand nicht unter ca \SI{150}{\ohm} fällt. Dadurch kann die Mittenfrequenz mit diesen Bauteilparametern \SI{1060}{\hertz} nicht überschreiten. \par
+\medskip
 
-Außerdem vielleicht noch wichtig: die maximale Mittenfrequenz kann durch Wahl eines kleineren C von 100nF noch verzehnfacht werden. Jedoch wird für den self-tuned Biquad verändert sich die Gleichung für die Mittenfrequenz woduch ebenfalls höhere Freqeunzen erreicht werden. 
+Durch die zuvor berechnete minimale Schrittweite von \SI{38.5}{\ohm} lässt sich zudem ein weiterer interesanter Aspekt ableiten. Die minimal korregierbare Abweichung beträgt \SI{\pm19.25}{\ohm}. Abweichungen unterhalb dieses Fehlers können durch diese Potentiometer also nicht weiter kompensiert werden. Die durchschnittliche Differenz von Soll- und Realwert liegt mit \SI{78,2}{\ohm} deutlich höher, sodass diese durch eine Anpassung des Wiperwiderstands in Skript von \num{2} auf \num{4} Bit um $2 \cdot \SI{38.5}{\ohm} = \SI{77}{\ohm}$ verringert werden. Die Ergebnisse dieser Anpassung werden in Tabelle \ref{tab:digipot_r_val2} dokumentiert.
 
+%Die minimale Schrittweite begrenzt sich also auf \SI{38.5}{\ohm}, sodass eine Abweichung von unter \SI{19.25}{\ohm} über diesen Digitalpotentiometer nicht korrigiert werden kann. Sie ist jedoch ein vielfaches von der durchschnittlichen Abweichung wodurch der aktuelle Wiperwiderstand im Skript von \num{2} Bit auf \num{4} Bit angehoben werden kann. \par
+\medskip
 
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+        UI-Werte / Hz & \text{soll\_R / $\Omega$} & \text{real\_R\_neu / $\Omega$} & \text{Diffenenz\_neu} & \text{Differenz\_alt} \\ \hline
+        50 & 3183 & 3064 & -115 & +61 \\
+        100 & 1591 & 1566 & -25 & +77 \\
+        160 & 994 & 971 & -23 & +73 \\
+        200 & 795 & 784 & -11 & +82 \\
+        300 & 530 & 532 & +2 & +81 \\
+        500 & 318 & 298 & -20 & +69 \\
+        750 & 212 & 221 & +9 & +98 \\
+        1000 & 159 & 145 & -14 & +74 \\ 
+    \end{tabular}
+    \caption{Messwerte des Digitalpotentiometers nach Anpassung}
+    \label{tab:digipot_r_val2}
+\end{table}
 
+Diese Anpassung führt zu einer deutlichen Annäherung von Soll- und Realwert. Die duchschnittliche Abweichung verbessert sich auf etwa \SI{27.4}{\ohm}. Die neuen Werte für die Differenz weisen dabe sowohl positive als auch negative Vorzeichen auf, wesshalb eine erneute Veränderung des Wiperwiderstand die Abweichung nicht weiter reduziert. Die größte Abweichnung tritt bei \SI{50}{\hertz} mit \SI{-115}{\ohm} Differenz auf, während die Differenzen für höhere Frequenzen deutlich kleiner werden.\par
+\medskip
 
-
-
-
-
-
-
-
+\textbf{Hinweis:}Zusätzlich ist zu erwähnen, dass die maximale Mittenfrequenz durch die Wahl eines kleineren Kondensators (z.B.\SI{100}{\nano\farad}) noch erheblich erhöht werden kann. Beim Self-Tuned Biquad ändert sich zudem die Gleichung für die Mittenfrequenz, wodurch ebenfalls höhere Frequenzen erreicht werden können.
 
 
 
@@ -88,56 +105,132 @@ Außerdem vielleicht noch wichtig: die maximale Mittenfrequenz kann durch Wahl e
 Was soll gemessen werden, wie soll dies gemessen werden?\par
 \medskip
 
-\subsection{Frequenzsweep/ Bode Diagramm/ ac analyse}
-Nach Aktualisierung des Red Pitaya OS funktioniert die Messwertaufnahme mit dem eingesteckten \gls{mcu} endlich. Zuvor war keine funktionierende Messung möglich. 
-Frequenzsweep (Amplituden und Phasengang) um es mit dem normalen Biquad zu vergleichen\par
+\subsection{Frequenzsweep/ Bode Analyser/ ac analyse}
+Nach der Aktualisierung des Red Pitaya Betriebsystems funkioniert die Messwertaufnahme mit der eingesteckten \gls{mcu} schließlich. Die Charakterisierung des Systems erfolgt über einen Frequenzsweep (Bode-Analyse), um den Amplituden- und Phasengang mit einem herkömmlichen Biquad-Filter zu vergleichen. Über diese Analyse soll zudem auch festgestellt werden, welche der beiden Gleichungen für die Mittenfrequenz die korrekte ist. \par
 \medskip
 
-Auffällig ist neben der Mittenfrequenz, dass die Phase beim Bandsperr-Filter in die andere Richtung springt. also anstatt wie in der Simulation um \SI{-180}{\degree} um \SI{180}{\degree}. Das sollte aber glaube ich keinen unterschied machen, da beide wieder bei der gleichen phasenverschiebung rauskommen nach dem Sprung. 
+%Auffällig ist neben der Mittenfrequenz, dass die Phase beim Bandsperr-Filter in die andere Richtung springt. also anstatt wie in der Simulation um \SI{-180}{\degree} um \SI{180}{\degree}. Das sollte aber glaube ich keinen unterschied machen, da beide wieder bei der gleichen phasenverschiebung rauskommen nach dem Sprung. \textbf{hat mit den C zutun. mit dem neunen passiert das nicht}
 
 
 
 
-\subsection*{Mittenfrequenz}
-Nach den ersten Messungen am Gesamtsystem fällt auf, dass bei Einstellung einer Frequenz von \SI{160}{\hertz} nicht wie beim herkömmlichen Biquad eine Abweichung von \textbf{ein paar Prozent (10 oder so)} zu sehen war. Stattdessen liegt die Mittenfrequenz $\omega_0$ bei ca \SI{860}{\hertz}. Dieses Verhalten ist damit zu erklären, dass bei veränderung des Schaltungsaufbau auch die Gleichung zur bestimmung von $\omega0$ beeinflusst wird. Die Mittenfrequenzgleichung für den herkömmlichen Biquad lautet:
+%\subsection*{Mittenfrequenz}
+\subsection{Erste Messungen am Gesamtsystem}
+Bei der ersten Aufnahme des Gesamtsystems treten mehrere unerwartete Phänomene auf. Trotz mehrfacher Überprüfung der Widerstandswerte der Digitalpotentiometer und aller relevanten Spannungen (R2 zeigt leichte Schwankungen) verhält sich das System nicht wie erwartet.  Obwohl die Filterparameter konstant gehalten werden zeigen die Ergebnisse der Bode-Analyse starke Inkonsistenzen. So schwankt die Mittenfrequenz $\omega_0$ am Bandsperrausgang über mehrere Messreihen hinweg stark und zeigt eine steigende Tendenz (von ca. 430 Hz bis hin zu 1519 Hz).(Die Bandsperre wird hier hauptsächlich verwendet um die Mittenfrequenz leicht beobachten zu können)\par
+\medskip
 
-\begin{equation}
-    \omega_0 = \frac{1}{RC} 
-    \tag{\ref{eq:w_0}}
-\end{equation}
+Bild? 
 
-Die in Kapitel \ref{sec:theorie_w0} hergeleiteten Mittenfrequenzen werden hier im Folgenden nocheinmal betrachtet, um zu verifizieren welche korrekt ist. Die Funktion \ref{eq:filtergrenzfrequenz} wurde dabei eigenständig hergeleitet, während die während die Funktion \ref{eq:freq-vcf} aus dem ASLK-PRO Manual stammt. 
+Zusätzlich weichen die Frequenzverläufe von den charakterischtischen Verläufen ab. Der Amplitudenverlauf der Bandsperre zeigt im zweiten Durchlassbereich eine Dämpfung von etwa 8 bis \SI{10}{\decibel}. Der Phasenverlauf zeigt zudem kurz vor dem Sprung an der Mittenfrequenz eine starke Erhöhung anstatt wie in der Simulation weiter zu fallen. Am Bandpass tritt im höheren Frequenzbereich keine Dämpfung mehr auf und verhält sich entsprechend eines Hochpasses. Die Flankensteilheit am Tiefpass ist deutlich zu gering, sodass dieser eher einem Allpass entspricht.\par
+\medskip
+
+Zusammenfassend lässt sich feststellen, dass dem System die notwendige Dämpfung im höheren Frequenzbereich fehlt, wobei lediglich der Hochpass (HP) einen korrekten Verlauf beibehält.\par
+\medskip
+
+Um die Ursache für die Inkonsistenzen einzugrenzen, soll der \gls{vcf} ohne Einfluss durch den Phasendetektor betrachtet werden. Durch das Auslöten von $R_10$ wird der Regelkreis von der Phasendetektion getrennt. Die Steuerspannung $V_c$ wird auf ein definiertes Potential von \SI{1}{\volt} gesetzt. Auf den ersten Blick scheinen die Verläufe der Ausgänge korrekt zu sein, sodass mit der tieferen Analyse der Mittenfrequenz begonnen werden kann.\par
+\medskip
+
+\subsection*{Verifizierung der Mittenfrequenzgleichung}
+Für den herkömmlichen Biquad ligt die Mittenfrequenz für $R= \SI{1}{\kilo\ohm}$ und $C= \SI{1}{\micro\farad}$ bei etwa \SI{160}{\hertz}. Bei gleichen Parametern liegt $f_0$ für den \gls{vcf} deutlich höher. Das liegt daran, dass mit der Veränderung des Schaltungsaufbaus auch die Zusammensetzung der Mittenfrequenz beeinflusst wird. Die Mittenfrequenz des herkömmlchen Biquads ist als $\omega_0 = \frac{1}{RC}$ \ref{eq:w_0} definiert, während für den \gls{vcf}-Aufbau die Referenzspannung $V_r$ und Steuerspannung $V_c$ berücksichtigt werden müssen. \par
+\medskip
+
+Die in Kapitel \ref{sec:theorie_w0} hergeleiteten Mittenfrequenzen werden hier im Folgenden nocheinmal betrachtet, um zu verifizieren welche korrekt ist. Die Funktion \ref{eq:filtergrenzfrequenz} wurde dabei eigenständig hergeleitet, während die während die Funktion \ref{eq:freq-vcf} aus dem ASLK-PRO Manual stammt. \par
+\medskip
 
 \begin{equation}
     \omega_0 = \frac{V_r}{V_cRC}
     \tag{\ref{eq:filtergrenzfrequenz}}
 \end{equation}
 
-
 \begin{equation}
     \omega_0 = \frac{V_c}{V_r \cdot RC} 
     \tag{\ref{eq:freq-vcf}}
 \end{equation}
 
-Wie schon zuvor erwähnt unterscheiden sich diese beiden gleichungen nur von dem hinzugefügten Faktor aus Referenzspannung $V_r$ und Steuerspannung $V_c$. Bei Messung dieser Signale fällt auf, dass das Potential für $V_r$ bei einer Versorgungsspannung von \SI{\pm15}{\volt} auf \SI{-13.73}{\volt} liegt und nicht wie im Datenblatt angegeben auf \SI{-10}{\volt} lasergetrimmt ist. Bei änderung der negativen Versorgungsspannung ist zudem zu erkennen, dass $V_r$ immer etwa \SI{1.27}{\volt} unter dieser zu sein scheint. Aus diesem Grund wird die Versorgugnsspannung von \SI{\pm15}{\volt} zeitweise auf \SI{\pm11}{\volt} reduziert, um möglichst nahe an den angegebenen \SI{-10}{\volt} mit \SI{-9.73}{\volt} zuliegen. (dies kann auch über den SF pin korregiert werden, jedoch wurde dieser in der ersten iteration falsch Verschaltet.)\par
+Wie schon zuvor erwähnt unterscheiden sich diese beiden Gleichungen nur in dem hinzugefügten Faktor aus Referenzspannung $V_r$ und Steuerspannung $V_c$. Bei Messung dieser Signale fällt auf, dass das Potential für $V_r$ bei einer Versorgungsspannung von \SI{\pm15}{\volt} auf \SI{-13.73}{\volt} liegt und nicht wie im Datenblatt angegeben auf \SI{-10}{\volt} lasergetrimmt ist. Bei Änderung der negativen Versorgungsspannung ist zudem zu erkennen, dass $V_r$ immer etwa \SI{1.27}{\volt} unter dieser zu sein scheint. Aus diesem Grund wird die Versorgugnsspannung von \SI{\pm15}{\volt} zeitweise auf \SI{\pm11}{\volt} reduziert, um mit \SI{-9.73}{\volt} möglichst Nahe an den angegebenen \SI{-10}{\volt} zuliegen. (dies kann auch über den SF pin korregiert werden, jedoch wurde dieser in der ersten iteration falsch Verschaltet.)\par
 \medskip  
 
-Die Steuerspannung wird bei einer Hilfsspannung $V_H = \SI{1}{\volt}$ gemessen und hat etwa einen Wert von \SI{2}{\volt}. Wenn die gemessenen Werte nun in die beiden formeln eingesetzt werden ergibt sich folgendes Bild:
+%Bei Annahme von $V_c=\SI{1}{\volt}$ und $V_r=\SI{9.73}{\volt}$ können nun die Modelle auf Richtigkeit getestet werden. 
+
+
+Für die Vermessung des \gls{vcf} werden die Filterparameter wie gewohnt gewählt. Die Widerstände liegen bei etwa \SI{1}{\kilo\ohm}, die Steuerspannung $V_c$ wird auf \SI{1}{\volt} und die Referenzspannung $V_r$ auf \SI{9.73}{\volt} eingestellt. Die visuelle Begutachtung der Filterverläufe zeigt zunächst einen korrekten Verlauf, weshalb  die frequenzbestimmenden Widerstände im nächsten Schritt über den gesamten Filterbereich variiert werden. Die Mittenfrequenz wird dabei über den Nulldurchgang der Phase im Bandsperrenausgang ermittelt. Die Ergebnisse sind in Tabelle \ref{tab:mittenfrequenzen} zusammengefasst.\par
+\medskip
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c|c|c}
+\textbf{($soll_R$)/$\Omega$} & \textbf{Messung: $\omega_0$/Hz} & \textbf{Theorie: $\omega_0$/Hz} & \textbf{Abweichung /\%} \\ \hline
+1591 & 1116.22 & 973.34 & 12.8 \\
+994 & 1776.34 & 1557.93 & 12.3 \\
+796 & 2140.18 & 1945.45 & 9.1 \\
+531 & 3253.12 & 2916.34 & 10.35 \\
+318 & 5789.74 & 4869.74 & 15.89 \\
+212 & 7653.34 & 7304.61 & 4.56 \\
+159 & 11570.81 & 9739.48 & 15.83 \\
+\end{tabular}
+\caption{Mittenfrequenzen und Abweichungen der verschiedenen Widerstände.}
+\label{tab:mittenfrequenzen}
+\end{table}
+
+Die theoretischen Werte basieren auf der eigenständig hergeleiteten Gleichung \ref{eq:filtergrenzfrequenz}. Es zeigt sich, dass das System zwar grob der theoretischen Gleichung folgt. Die Abweichungen sind mit bis zu \SI{15.89}{\percent} jedoch noch sehr hoch. Um diese Abweichungen zu kompensieren, wird die Berechnungsfunktion für die theoretische Mittenfrequenz in Python an die gemessenen Werte angepasst. Durch die Multiplikation der Widerstandswerte mit einem Faktor von \num{0.9} lässt sich die Abweichung für die gemessenen Werte auf \SI{\pm7.5}{\percent}reduzieren, statt der ursprünglichen \SI{\pm15.89}{\percent}.\par
+\medskip
+
+Um die Ursache für diese starken Abweichungen zu verstehen, wird die Schaltung nochmals detailliert betrachtet. Dabei fällt auf, dass die verbauten Elektrolytkondensatoren eine Toleranz von bis zu \SI{20}{\percent} aufweisen. Diese Toleranz zeigt sich auch bei der Messung unverbauter Kondensatoren desselben Typs. Obwohl die Toleranz von Bauteilen für einen Self-Tuned-Filter als Gesamtsystem theoretisch keine Rolle spielen sollte, ist es für präzise Messungen an Teilsystemen wie dem \gls{vcf} vorteilhaft, geringere Toleranzen zu haben. Aus diesem Grund werden die Elektrolytkondensatoren gegen Folienkondensatoren ausgetauscht, die eine Toleranz von nur \SI{5}{\percent} aufweisen.\par
+\medskip
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c|c|c}
+\textbf{Widerstand ($soll_R$)} & \textbf{Mittenfrequenz /Hz} & \textbf{Theoriewert /Hz} & \textbf{Abweichung /\%} \\ \hline
+1591 & 1038.04 & 973.34 & 6.23 \\
+994 & 1656.58 & 1557.93 & 5.95 \\
+796 & 1993.77 & 1945.45 & 2.42 \\
+531 & 2960.54 & 2916.34 & 1.49 \\
+318 & 5327.21 & 4869.74 & 8.59 \\
+212 & 6863.27 & 7304.61 & -6.43 \\
+159 & 9930.13 & 9739.48 & 1.92 \\
+\end{tabular}
+\caption{Mittenfrequenzen und Abweichungen der verschiedenen Widerstände.}
+\label{tab:mittenfrequenzen2}
+\end{table}
+
+Wie in Tabelle \ref{tab:mittenfrequenzen2} dargestellt verbessert sich die Abweichung zwischen den Theorie- und Praxiswerten nach Austausch der Kondensatoren deutlich. Für die betrachteten Datenpunkte reduziert sich die maximale Abweichung auf unter \SI{8.6}{\percent}, was fast einer Halbierung der vorherigen maximalen Abweichung entspricht. Die verbleibende Abweichung kann nicht einfach durch Skalierung eines Filterparameters verringert werden, da die größte negative Abweichung bei \SI{-6.43}{\percent} liegt. So wird diese auf die Bauteiltoleranzen, besonders die Digitalpotentiometer zurückzuführen sein. \par
+\medskip
+
+Zuletzt sollen nun noch die gegensätzlichen Mittenfrequenzgleichung überprüft werden. Für die Steuerspannung wird dabei ein Wert von $V_c = \SI{1}{\volt}$ eingesetzt, die Referenzspannung beträgt $V_r = \SI{9.73}{\volt}$. Werden diese Werte nun in die beiden Gleichungen eingesetzt ergibt sich folgendes Bild.\par
+\medskip
 
 \begin{equation}
-    f_0 = \frac{V_r}{V_c \cdot 2\pi RC} = \frac{\SI{9.73}{\volt}}{\SI{2}{\volt} \cdot 2\pi \cdot \SI{971}{\ohm} \cdot \SI{1}{\micro\farad}} = \SI{797,41}{\hertz}
+    f_0 = \frac{V_r}{V_c \cdot 2\pi RC} = \frac{\SI{9.73}{\volt}}{\SI{1}{\volt} \cdot 2\pi \cdot \SI{994}{\ohm} \cdot \SI{1}{\micro\farad}} = \SI{1557.93}{\hertz}
 \end{equation}
 
 \begin{equation}
-    f_0 =  \frac{V_c}{V_r \cdot 2\pi RC} = \frac{\SI{2}{\volt}}{\SI{9.73}{\volt} \cdot 2\pi \cdot \SI{971}{\ohm} \cdot \SI{1}{\micro\farad}} = \SI{33.7}{\hertz}
+    f_{0\_ASLK} =  \frac{V_c}{V_r \cdot 2\pi RC} = \frac{\SI{1}{\volt}}{\SI{9.73}{\volt} \cdot 2\pi \cdot \SI{994}{\ohm} \cdot \SI{1}{\micro\farad}} = \SI{16.46}{\hertz}
 \end{equation}
 
-Bei Betrachtung dieser Ergebnisse scheint die Eigenständig hergeleitete Mittenfrequenzgleichung korrekter zu sein. Die Mittenfrequenz vergrößert sich in der Messung schlißlich. \par
+Während die Gleichung aus dem ASLK-PRO Manual eine Mittenfrequenz von nur \SI{16.46}{\hertz} vorhersagt, liefert die eigenständig hergeleitete Gleichung einen Wert von \SI{1557.93}{\hertz}, der besser mit dem gemessenen Wert von \SI{1657}{\hertz} übereinstimmt.\par
 \medskip
 
-Zusätzlich ist bei der Betrachung der Mittenfrequenz am self-tuned Filter aufgefallen, das diese sehr stark zu schwanken scheint. bei einer aufnahme befindet sich diese bei 800 Hz, bei einer anderern bei über 1050 Hz. \par
+Um die Abhängigkeit der Mittenfrequenz von der Steuerspannung endgültig zu bestätigen, wird $V_c$ im Experiment von \SI{1}{\volt} auf \SI{2}{\volt} erhöht. Nach der Rechenvorschrift \ref{eq:filtergrenzfrequenz} sollte sich die Mittenfrequenz dadurch halbieren. Die Ergebnisse sind in Tabelle \ref{tab:mittenfrequenzen3} zusammengefasst:\par
 \medskip
 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c|c|c}
+\textbf{$V_c$/V} & \textbf{Theorie: $\omega_0$/Hz)} & \textbf{Messung: $\omega_0$/Hz)} & \textbf{Abweichung /\%} \\ \hline
+1 & 1557.93 & 1656.58 & 5.95 \\
+2 & 778.96 & 824.39 & 5.51\\
+\end{tabular}
+\caption{Vergleich der Mittenfrequenz bei Variation von $V_c$}
+\label{tab:mittenfrequenzen3}
+\end{table}
+
+Dadurch kann bestätigt werden, dass die eigenständig hergeleitete Gleichung \ref{eq:filtergrenzfrequenz} die Mittenfrequenz für diesen \gls{vcf} korrekt beschreibt. Die Abweichungen zwischen Theorie und Messung liegen im akzeptablen Bereich und sind vermutlich auf die Toleranzen der verwendeten Bauteile zurückzuführen.\par
+\medskip
+
+
+\textbf{Überleitung zu den ergebnissen aus der Sim}
 Auch die Simulation des Filters in LTspice kommt auf eine andere Mittenfrequenz. diese liegt bei etwa \SI{1.76}{\kilo\hertz}. dabei sind alle schaltungsteile gleich, nur die Versorgungs und hilfsspannungen müssen nochmals überprüft werden. 
 
 

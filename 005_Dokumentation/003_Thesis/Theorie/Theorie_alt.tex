@@ -166,13 +166,16 @@ Gut zu erkennen ist hierbei, dass alle Übertragungsfunktionen den gleichen Nenn
 
 
 \section{Grenzfrequenz und Mittenfrequenz}
-Da in der Vorbereitungsphase zu dieser Thesis aufgefallen ist, dass die Begriffe Grenzfrequenz $\omega_c$ und Mittenfrequenz $\omega_0$ in der Vorarbeit aus dem letzten Semester nicht immer eindeutig verwendet wurden, wird im Folgenden kurz auf deren Definition eingegangen.\par
+In der Vorbereitungsphase dieser Arbeit ist aufgefallen, dass die Begriffe Grenzfrequenz $\omega_c$ und Mittenfrequenz $\omega_0$ in der Vorarbeit nicht immer eindeutig verwendet wurden. Beide Begriffe beziehen sich auf charakteristische Frequenzen von Filtern, werden jedoch in unterschiedlichen Kontexten verwendet. Im ALSK-Pro-Manual werden für die Übertragungsfunktionen immer die Kreisfrequenzen verwendet, weswegen auch in dieser Arbeit hauptsächlich Kreisfrequenzen verwendet. Im Folgenden werden beide Begriffe kurz erläutert.\par
 \medskip
-Im ALSK-Pro-Manual werden für die Übertragungsfunktionen immer die Kreisfrequenzen verwendet, weswegen auch in dieser Arbeit hauptsächlich Kreisfrequenzen verwendet. Die Grenzfrequenz $\omega_c$ beschreibt dabei die Kreisfrequenz, bei der der Betrag der Übertragungsfunktion eines Filters auf $\frac{1}{\sqrt{2}}$ des Maximalwerts abgefallen bzw. bei Bandsperren angestiegen. Sie entspricht damit dem \SI{-3}{\decibel}-Punkt (bzw. \SI{+3}{\decibel}-Punkt bei Bandsperren) des Amplitudengangs.\par 
+
+
+Die Grenzfrequenz $\omega_c$ beschreibt die Kreisfrequenz, bei der der Betrag der Übertragungsfunktion eines Filters auf $\frac{1}{\sqrt{2}}$ des Maximalwerts abgefallen (bzw. bei Bandsperren auf $\frac{1}{\sqrt{2}}$ des Minimalwerts angestiegen) ist. Dies entspricht dem \SI{-3}{\decibel}-Punkt (bzw. \SI{+3}{\decibel}-Punkt bei Bandsperren) des Amplitudengangs.\par 
 \medskip
-Die Mittenfrequenz $\omega_0$ entspricht der Resonanzfrequenz des Filters. Bei Bandpass- und Bandsperrfiltern enspricht diese Frequenz dem Maximum bzw. Minimum des Amplitudengangs. Bei Hoch- und Tiefpässen sind Grenz- und Mittenfrequenz im Allgemeinen nicht identisch. Die Außnahme stellt dabei der Butterworth-Filter da, für diesen gilt $\omega_0=\omega_c$.\par
+Die Mittenfrequenz $\omega_0$ entspricht der Resonanzfrequenz des Filters. Bei Bandpassfiltern entspricht sie dem Maximum des Amplitudengangs, bei Bandsperren dem Minimum. Bei Hoch- und Tiefpass sind Grenz- und Mittenfrequenz im Allgemeinen nicht identisch. Ausgenommen davon ist der Butterworth-Filter, für den $\omega_0=\omega_c$ gilt. Für Filter mit einer Güte $Q>\frac{1}{\sqrt{2}}$ tritt eine Resonanzüberhöhung im Amplitudengang auf. So ist die Mittenfrequenz auch bei Hoch- und Tiefpass erkennbar, da sie dem Maximum der Resonanzüberhöhung entspricht.\par
 \medskip
-Für eine Güte $Q>\frac{1}{\sqrt{2}}$ ist die Mittenfrequenz auch bei Hoch- und Tiefpässen erkennbar. Dort tritt eine Resonanzüberhöhung im Amplitudengang auf, deren Maximum bei der Mittenfrequenz liegt. Beim Bandpass liegt die Mittenfrequenz im Zentrum des Durchlassbereichs, während die unteren und oberen Grenzfrequenzen die Bandbreite des Übertragungsbereichs begrenzen.\par
+
+Beim Bandpass liegt $\omega_0$ im Zentrum des Durchlassbereichs, während die untere und obere Grenzfrequenz ($\omega_{c1}$ und $\omega_{c2}$) die Bandbreite des Übertragungsbereichs begrenzen.\par
 
 
 

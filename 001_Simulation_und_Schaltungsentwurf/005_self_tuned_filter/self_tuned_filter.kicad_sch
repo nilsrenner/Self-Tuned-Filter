@@ -1582,12 +1582,6 @@
 		(uuid "8b57c2df-fb10-4ffd-916b-f449a70c9532")
 	)
 	(junction
-		(at 228.6 59.69)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "964c191a-e05d-46c9-b0ed-ad8c90e19d49")
-	)
-	(junction
 		(at 43.18 148.59)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1841,16 +1835,6 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 59.69) (xy 228.6 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "14c6059e-5a02-476e-911c-ec660e0235f0")
-	)
-	(wire
-		(pts
 			(xy 297.18 55.88) (xy 297.18 59.69)
 		)
 		(stroke
@@ -2041,7 +2025,7 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 59.69) (xy 228.6 59.69)
+			(xy 219.71 59.69) (xy 245.11 59.69)
 		)
 		(stroke
 			(width 0)
@@ -2331,16 +2315,6 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 90.17) (xy 228.6 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "76588059-5e6e-4116-a4ce-e0c780fc66fa")
-	)
-	(wire
-		(pts
 			(xy 186.69 149.86) (xy 187.96 149.86)
 		)
 		(stroke
@@ -2428,16 +2402,6 @@
 			(type default)
 		)
 		(uuid "7d908667-9812-437e-bda7-67355a7768b2")
-	)
-	(wire
-		(pts
-			(xy 228.6 59.69) (xy 245.11 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "83620fa0-67e3-411d-b3f6-c432a9248054")
 	)
 	(wire
 		(pts
@@ -3807,7 +3771,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2"
+		(property "Value" "1"
 			(at 377.19 82.4201 0)
 			(effects
 				(font
@@ -4252,104 +4216,6 @@
 			(project "selfe_tuned_filter"
 				(path "/8c03fc9a-cf6b-4365-99d8-e11c100e5159"
 					(reference "V1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Simulation_SPICE:VDC")
-		(at 228.6 85.09 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2e5001c3-80d6-4078-9af0-518d8e4fdfd6")
-		(property "Reference" "V3"
-			(at 232.41 83.6901 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.1"
-			(at 232.41 86.2301 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 228.6 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for"
-			(at 228.6 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Voltage source, DC"
-			(at 228.6 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=+ 2=-"
-			(at 228.6 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" "DC"
-			(at 228.6 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "V"
-			(at 228.6 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b8afd886-35de-49a8-b8ab-4502890cd4ed")
-		)
-		(pin "1"
-			(uuid "f5e0524f-f54d-4ee0-ade2-67450c770b7a")
-		)
-		(instances
-			(project "selfe_tuned_filter"
-				(path "/8c03fc9a-cf6b-4365-99d8-e11c100e5159"
-					(reference "V3")
 					(unit 1)
 				)
 			)
@@ -4887,7 +4753,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10"
 			(at 367.03 64.77 90)
 			(effects
 				(font
@@ -7883,72 +7749,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 228.6 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ba464844-59d2-474c-89be-9064b19b322d")
-		(property "Reference" "#PWR013"
-			(at 228.6 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 228.6 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e3f6c49a-9830-4bd1-b367-e4e415e359e4")
-		)
-		(instances
-			(project "selfe_tuned_filter"
-				(path "/8c03fc9a-cf6b-4365-99d8-e11c100e5159"
-					(reference "#PWR013")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Small")
 		(at 184.15 64.77 90)
 		(unit 1)
@@ -8035,7 +7835,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "100k"
 			(at 375.92 73.6599 0)
 			(effects
 				(font

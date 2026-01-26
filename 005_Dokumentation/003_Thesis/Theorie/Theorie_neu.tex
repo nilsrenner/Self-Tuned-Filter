@@ -195,7 +195,7 @@ Um ein besseres Verständnis für den Multiplizierer zu gewinnen, wird dieser in
         \end{axis}
     \end{tikzpicture}
     \caption{Demonstration des analogen Multipliziers mit DC-Spannungen}
-    \label{fig:analog_multiplier_dc}
+    \label{fig:mult_dc}
 \end{figure}
 
 
@@ -636,8 +636,8 @@ Aus Abbildung~\ref{fig:av_volt_phase} geht hervor, dass sich die durchschnittlic
             legend pos=south east,
             xlabel={Zeit / \si{\milli\second}}, ylabel={Spannung / \si{\volt}},
             xmin=0, xmax=10,
-            title style={yshift=0.8cm},
-            title={Eingangssignale des Multiplizierers  in $X_1$},
+            %title style={yshift=0.8cm},
+            %title={Eingangssignale des Multiplizierers  in $X_1$},
             % Zweite Achse oben
             extra x ticks={0, 2.5, 5, 7.5, 10},
             extra x tick labels={$0$, $\pm\frac{\pi}{2}$, $\pm \pi$, $\pm \frac{3 \pi}{2}$, $2\pi$},
@@ -667,6 +667,9 @@ Aus Abbildung~\ref{fig:av_volt_phase} geht hervor, dass sich die durchschnittlic
 
 Da nun bekannt ist, bei welchem Zeitpunkt welche Phasenlage zu erwarten ist, kann die x-Achsenbeschriftung durch diese Phasenlagen ersetzt werden. Nach der Integration der Ausgangssignale aus Abbildung~\ref{fig:pd_out_freq}, dass $V_c$ zwischen der Phasenlage von \SI{90}{\degree} über \SI{180}{\degree} bis \SI{270}{\degree} vom Potential her steigt.
 (also um \SI{180}{\degree}, \SI{90}{\degree} und \SI{270}{\degree} sind die Grenzwerte). Wenn sich die Phase des Eingangssignals aber zwischen \SI{270}{\degree} und \SI{90}{\degree} bewegt, sinkt die Spannung $V_c$.
+
+
+
 
 \section{Aufbau und Steuerung des Voltage Controlled Filters}
 \label{sec:VCF}

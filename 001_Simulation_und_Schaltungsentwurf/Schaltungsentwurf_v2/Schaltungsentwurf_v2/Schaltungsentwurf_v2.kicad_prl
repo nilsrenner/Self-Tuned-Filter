@@ -1,6 +1,6 @@
 {
   "board": {
-    "active_layer": 0,
+    "active_layer": 6,
     "active_layer_preset": "",
     "auto_track_width": true,
     "hidden_netclasses": [],
@@ -50,8 +50,8 @@
       "conflict_shadows",
       "shapes"
     ],
-    "visible_layers": "ffffffff_ffffffff_ffffffff_ffffffff",
-    "zone_display_mode": 0
+    "visible_layers": "00000000_00000000_55555555_f75555e5",
+    "zone_display_mode": 1
   },
   "git": {
     "repo_type": "",
@@ -59,7 +59,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "self_tuned_filter.kicad_prl",
+    "filename": "Schaltungsentwurf_v2.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {
